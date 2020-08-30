@@ -119,7 +119,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             return RedirectToAction("Login");
         }
 
-        //TODO:deneme amaclı oluşturdum işim bitince view ve bu action sil
+        //TODO:deneme amaclı oluşturdum işim bitince view ve bu action Delete
         [Authorize(Roles ="admin")]
         public ActionResult listedeneme()
         {

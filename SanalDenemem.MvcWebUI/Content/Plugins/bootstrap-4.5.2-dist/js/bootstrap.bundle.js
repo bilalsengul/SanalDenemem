@@ -3019,7 +3019,7 @@
    * - `-start`
    * - `-end`
    *
-   * Variations are interpreted easily if you think of them as the left to right
+   * Variations are interpreted eaDeletey if you think of them as the left to right
    * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
    * is right.<br />
    * Vertically (`left` and `right`), `start` is top and `end` is bottom.
@@ -5933,7 +5933,7 @@
       var dataAttributes = $(this.element).data();
       Object.keys(dataAttributes).forEach(function (dataAttr) {
         if (DISALLOWED_ATTRIBUTES.indexOf(dataAttr) !== -1) {
-          delete dataAttributes[dataAttr];
+          Delete dataAttributes[dataAttr];
         }
       });
       config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});

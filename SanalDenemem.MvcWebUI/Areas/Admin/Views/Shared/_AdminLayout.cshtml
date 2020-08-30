@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="~/Content/Images/favicon.ico">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/Plugins/bootstrap-4.5.2-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome JS -->
+    <script src="https://kit.fontawesome.com/81d9f539ed.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            padding-top: 3.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            @Html.ActionLink("SANALDENEMEM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Sınav Tipleri", "Index", "ExamTypes", new { area = "Admin" }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "ExamTypes" ? "active" : "")">
+                    <a class="nav-link" href="@Url.Action("Index", "ExamTypes", new { area = "Admin" })">Sınav Tipleri</a>
+                </li>
+                <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Lessons" ? "active" : "")">
+                    <a class="nav-link" href="@Url.Action("Index", "Lessons", new { area = "Admin" })">Dersler</a>
+                </li>
+                <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Topics" ? "active" : "")">
+                    <a class="nav-link" href="@Url.Action("Index", "Topics", new { area = "Admin" })">Konular</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <main role="main">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    @RenderBody()
+                </div>
+            </div>
+            <hr>
+        </div>
+    </main>
+
+    <footer class="container-fluid bg-dark" style="bottom: 0 !important; position: absolute; color: white; padding-top: 0.8rem;">
+        <p>&copy; Company 2020</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="~/Content/Plugins/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
