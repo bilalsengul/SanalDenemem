@@ -5933,7 +5933,7 @@
       var dataAttributes = $(this.element).data();
       Object.keys(dataAttributes).forEach(function (dataAttr) {
         if (DISALLOWED_ATTRIBUTES.indexOf(dataAttr) !== -1) {
-          Delete dataAttributes[dataAttr];
+          DeletedataAttributes[dataAttr];
         }
       });
       config = _extends({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
