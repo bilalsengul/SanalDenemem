@@ -26,5 +26,10 @@ namespace SanalDenemem.MvcWebUI.Controllers
             RoleManager = new RoleManager<ApplicationRole>(roleStore);
 
         }
+
+       /* protected Member GetCurrentUser()
+        {
+            return (Member)Session["LogonUser"];
+        }*/
     }
 }

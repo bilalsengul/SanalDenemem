@@ -98,7 +98,9 @@ namespace SanalDenemem.MvcWebUI.Controllers
                     {
                         return Redirect(ReturnUrl);
                     }
-                    return RedirectToAction("index");//giriş olunca indexse yolladım.
+                   // HttpCookie cookie = new HttpCookie("LogonUserId", user.Id);
+                    Session["LogonUser"] = user;
+                    return RedirectToAction("details","Members",new { id=user.Id});//giriş olunca indexse yolladım.
                 }
                 else
                 {
@@ -116,6 +118,8 @@ namespace SanalDenemem.MvcWebUI.Controllers
         {
             var authManager = HttpContext.GetOwinContext().Authentication;
             authManager.SignOut();
+            Session["LogonUser"] = null;
+            //Request.Cookies.Remove("LogonUserId");
             return RedirectToAction("Login");
         }
 
