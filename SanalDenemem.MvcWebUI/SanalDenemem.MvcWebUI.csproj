@@ -244,6 +244,8 @@
     <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Members\Upload.cshtml" />
+    <Content Include="Views\Members\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -256,6 +258,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\Css\" />
     <Folder Include="Content\Js\" />
+    <Folder Include="Server\img\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <PropertyGroup>
