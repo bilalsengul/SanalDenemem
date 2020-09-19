@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -14,6 +15,69 @@ namespace SanalDenemem.MvcWebUI.Controllers
     {
         //private DataContext db = new DataContext();
 
+
+        public ActionResult Profile(string id)
+        {
+            if (id == null&& !Request.IsAuthenticated)
+            {
+                return View("Error", new string[] { "yetkisiz veya hatalı giriş" });
+            }
+           
+            var member = db.Members.FirstOrDefault(i => i.UserName == id || i.UserId == id);
+            if (member == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View(member);
+        }
+
+
+        [HttpGet]
+        // GET: Home
+        public ActionResult Upload()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase file, string id)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                var extension = Path.GetExtension(file.FileName);
+                if (extension == ".jpg" || extension == ".png")
+                {
+                    //farklı isimde kayıt ettim
+                    var folder = Server.MapPath("~/Server/img");
+                    var randomfilename = Path.GetRandomFileName();
+                    var filename = Path.ChangeExtension(randomfilename, ".jpg");
+                    var path = Path.Combine(folder, filename);
+
+                    file.SaveAs(path);
+
+                    //veri tabanına resmi kayıt ettim.
+                    var member = db.Members.FirstOrDefault(i => i.UserId == id);
+                    member.ProfileImageName = filename;
+                    db.SaveChanges();
+
+                }
+                else
+                {
+                    ViewData["message"] = "resim dosyası seciniz seciniz.";
+                    return View();
+                }
+            }
+            else
+            {
+                ViewData["message"] = "bir dosya seciniz.";
+                return View();
+            }
+            return RedirectToAction("Profile", new { id = id });
+        }
+
+
+        #region bu kısımlara karışmayın en son ben(yunus) publis etmeden önce silecegim veya düzeltecegim.
+        /*
         // GET: Members
         public ActionResult Index(string id)
         {
@@ -30,6 +94,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
         // GET: Members/Details/5
         public ActionResult Details(string id)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -130,5 +195,9 @@ namespace SanalDenemem.MvcWebUI.Controllers
             }
             base.Dispose(disposing);
         }
+        */
+        #endregion
+
+
     }
 }

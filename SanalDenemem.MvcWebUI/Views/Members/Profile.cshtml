@@ -1,0 +1,63 @@
+﻿@model SanalDenemem.MvcWebUI.Entity.Member
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile</h2>
+
+<div>
+    <h4>Member</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileImageName)
+        </dt>
+
+        <dd>
+            @if (Model.ProfileImageName == null)
+            {
+                @Html.ActionLink("Resim Ekle", "Upload", new { id = Model.UserId }, new { @class = "btn btn-primary btn-sm" })
+            }
+            else
+            { <img width="100
+                         " src="/Server/img/@Model.ProfileImageName" />
+
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+
+
+    </dl>
+</div>

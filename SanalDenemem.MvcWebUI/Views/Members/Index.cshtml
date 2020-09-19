@@ -44,7 +44,18 @@
             @Html.DisplayFor(modelItem => Model.Surname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => Model.ProfileImageName)
+            @if (Model.ProfileImageName == null)
+            {
+                @Html.ActionLink("Resim Ekle", "Upload", new { id = Model.UserId}, new { @class = "btn btn-primary btn-sm" })
+            }
+            else
+            {
+
+
+                <img width="70
+                         " src="/Server/img/@Model.ProfileImageName" />
+
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id= Model.Id }) |
