@@ -1,11 +1,11 @@
 ﻿@model SanalDenemem.MvcWebUI.Entity.Exam
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Admin | Sınavlar | Sil";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Delete</h2>
+<h2>Sil</h2>
 
 <h3>Silmek istediğinize emin misiniz?</h3>
 <div>
@@ -30,12 +30,13 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Listeye Dön", "Index")
         </div>
     }
 </div>

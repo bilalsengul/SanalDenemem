@@ -16,7 +16,7 @@
 
     <style>
         body {
-            padding-top: 3.5rem;
+            padding-top: 4rem;
         }
     </style>
 </head>
@@ -29,15 +29,6 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             @Html.ActionLink("SANALDENEMEM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sınavlar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sorular</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Cevaplar</a>
-                </li>
                 <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "ExamTypes" ? "active" : "")">
                     <a class="nav-link" href="@Url.Action("Index", "ExamTypes", new { area = "Admin" })">Sınav Tipleri</a>
                 </li>
@@ -47,10 +38,13 @@
                 <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Topics" ? "active" : "")">
                     <a class="nav-link" href="@Url.Action("Index", "Topics", new { area = "Admin" })">Konular</a>
                 </li>
+                <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Exams" ? "active" : "")">
+                    <a class="nav-link" href="@Url.Action("Index", "Exams", new { area = "Admin" })">Sınavlar</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Arama</button>
             </form>
         </div>
     </nav>
