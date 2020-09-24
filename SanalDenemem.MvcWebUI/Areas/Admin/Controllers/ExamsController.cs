@@ -174,16 +174,16 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
             return Json(TopicList);
         }
 
-        [HttpPost]
-        public ActionResult InsertQuestion()
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            List<Question> questionlist = db.Questions.Where(x => x.ExamId == int.Parse(id)).ToList();
-            return View(questionlist);
-        }
+        //[HttpPost]
+        //public ActionResult InsertQuestion()
+        //{
+        //    //if (id == null)
+        //    //{
+        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    //}
+        //    //List<Question> questionlist = db.Questions.Where(x => x.ExamId == int.Parse(id)).ToList();
+        //    //return View(questionlist);
+        //}
 
     }
 }
