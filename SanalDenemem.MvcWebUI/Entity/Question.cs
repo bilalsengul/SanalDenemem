@@ -8,6 +8,7 @@ namespace SanalDenemem.MvcWebUI.Entity
     public class Question
     {
         public int Id { get; set; }
+        public int RowNo { get; set; }
         public string Desc { get; set; }
         public string Text { get; set; }
         public string Image { get; set; }

@@ -141,6 +141,7 @@
     <Content Include="Content\Plugins\vendor\holder.min.js" />
     <Content Include="Content\Plugins\vendor\jquery-slim.min.js" />
     <Content Include="Content\Plugins\vendor\popper.min.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\css\bootstrap-grid.css.map" />
@@ -153,6 +154,19 @@
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\js\bootstrap.bundle.min.js.map" />
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\js\bootstrap.js.map" />
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\js\bootstrap.min.js.map" />
+    <Content Include="Areas\Admin\Views\Questions\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Questions\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Questions\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Questions\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Questions\Index.cshtml" />
+    <None Include="Scripts\jquery-3.5.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.5.1.js" />
+    <Content Include="Scripts\jquery-3.5.1.min.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.js" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Web.config" />
@@ -169,6 +183,7 @@
     <Compile Include="Areas\Admin\Controllers\OptionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuestionsController.cs" />
     <Compile Include="Areas\Admin\Controllers\TopicsController.cs" />
+    <Compile Include="Areas\Admin\Views\Exams\ExamViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -201,6 +216,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="libman.json" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Exams\Questions.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -229,11 +247,6 @@
     <Content Include="Areas\Admin\Views\Exams\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Exams\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Exams\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Questions\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Options\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Options\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Options\Details.cshtml" />
@@ -246,6 +259,8 @@
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Members\Upload.cshtml" />
     <Content Include="Views\Members\Profile.cshtml" />
+    <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.5.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

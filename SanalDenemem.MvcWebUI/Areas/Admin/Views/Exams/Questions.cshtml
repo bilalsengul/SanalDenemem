@@ -1,0 +1,372 @@
+﻿@model SanalDenemem.MvcWebUI.Areas.Admin.Views.Exams.ExamViewModel
+
+@{
+    ViewBag.Title = "Admin | Sınavlar | Sorular";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseNewQuestion" aria-expanded="false" aria-controls="collapseNewQuestion">
+    Yeni Soru Ekle
+</button>
+
+<div style="margin-top: 1%;" class="collapse" id="collapseNewQuestion">
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="RowNumber">Sıra No</label>
+                    </div>
+                    <input type="number" class="form-control" id="RowNumber" placeholder="Giriniz...">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="DDLLessons">Ders</label>
+                    </div>
+                    <select class="custom-select" id="DDLLessons">
+                        <option selected="">Seçiniz...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="DDLTopics">Konu</label>
+                    </div>
+                    <select class="custom-select" id="DDLTopics">
+                        <option selected="">Seçiniz...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Description">Açıklama</label>
+                    </div>
+                    <textarea type="text" class="form-control" id="Description" placeholder="Giriniz..."></textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Text">Yazı</label>
+                    </div>
+                    <textarea type="text" class="form-control" id="Text" placeholder="Giriniz..."></textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Image">Resim</label>
+                    </div>
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="Image">Seçiniz...</label>
+                        <input type="file" class="custom-file-input" accept=".jpg,.png" id="Image">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Option1">1. Seçenek</label>
+                    </div>
+                    <input style="width: 70%;" type="text" class="form-control" id="Option1" placeholder="Giriniz...">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Option2">2. Seçenek</label>
+                    </div>
+                    <input style="width: 70%;" type="text" class="form-control" id="Option2" placeholder="Giriniz...">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Option3">3. Seçenek</label>
+                    </div>
+                    <input style="width: 70%;" type="text" class="form-control" id="Option3" placeholder="Giriniz...">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Option4">4. Seçenek</label>
+                    </div>
+                    <input style="width: 70%;" type="text" class="form-control" id="Option4" placeholder="Giriniz...">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Option5">5. Seçenek</label>
+                    </div>
+                    <input style="width: 70%;" type="text" class="form-control" id="Option5" placeholder="Giriniz...">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-outline-success" type="button" onclick="SaveQuestion()">
+                    Kaydet
+                </button>
+                <button class="btn btn-outline-warning" type="button">
+                    Temizle
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<h2 style="margin-top: 1%;">@Model.Exam.Title Sınavı Soruları</h2>
+<table class="table">
+    <tr>
+        <th>Sıra No</th>
+        <th>Ders</th>
+        @*<th>Konu</th>*@
+        <th>Açıklama</th>
+        <th>Yazı</th>
+        <th>Resim</th>
+        <th>İşlemler</th>
+    </tr>
+    @if (Model.QuestionList != null)
+    {
+        foreach (var item in Model.QuestionList)
+        {
+            <tr>
+                <td>
+                    @item.RowNo
+                </td>
+                <td>
+                    @item.Topic.Lesson.LessonName
+                </td>
+                @*<td>
+                        @item.Topic.TopicName
+                    </td>*@
+                <td>
+                    @item.Desc
+                </td>
+                <td>
+                    @item.Text
+                </td>
+                <td>
+                    @item.Image
+                </td>
+                <td>
+                    <input type="hidden" id="quesId" name="quesId" value="@item.Id">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editQuestionModal">Düzenle</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteQuestionModal">Sil</button>
+                </td>
+            </tr>
+        }
+    }
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="editQuestionModal" tabindex="-1" aria-labelledby="editQuestionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editQuestionModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        AjaxCallDDL('POST', '@Url.Action("GetLessons", "Exams")', 'DDLLessons', 'Id', 'LessonName');
+        $('#DDLTopics').attr('disabled', true);
+    });
+
+    $('#DDLLessons').change(function () {
+        if ($('#DDLLessons').val() != 'Seçiniz...') {
+            $('#DDLTopics').attr('disabled', false);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetTopicsByLesson", "Exams")',
+                data: { 'lessonId': $(this).val()},
+                success: function (response) {
+                    $('#DDLTopics option').remove();
+                    $('#DDLTopics').append(createOption("Seçiniz...", "Seçiniz..."));
+                    for (var i = 0; i < response.length; i++) {
+                        var option = createOption(response[i].Id, response[i].TopicName);
+                        $('#DDLTopics').append($(option));
+                    }
+                },
+                failure: function (response) {
+                    console.log(response);
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+        else {
+            $('#DDLTopics option').remove();
+            $('#DDLTopics').append(createOption("Seçiniz...", "Seçiniz..."));
+            $('#DDLTopics').attr('disabled', true);
+        }
+    });
+    
+    $('input[type=file]').change(function () {
+        if ($(this).val().split('.')[1] == 'png' || $(this).val().split('.')[1] == 'jpg') {
+            var t = $(this).val();
+            var labelText = 'Dosya: ' + t.substr(12, t.length);
+            $(this).prev('label').text(labelText);
+        }
+        else {
+            alert('Sadece png veya jpg uzantılı dosyalar seçebilirsiniz.');
+        }
+    });
+
+
+
+
+    
+        //public int Id { get; set; }
+        //public int RowNo { get; set; }
+        //public string Desc { get; set; }
+        //public string Text { get; set; }
+        //public string Image { get; set; }
+        //public int ExamId { get; set; }
+        //public int TopicId { get; set; }
+        //public Exam Exam { get; set; }
+        //public Topic Topic { get; set; }
+        //public List < Option > Options { get; set; }
+
+
+    //$('#DDLLessons').val() != 'Seçiniz...') {
+    //    $('#DDLTopics').att
+
+
+
+    function SaveQuestion() {
+
+        var arr = window.location.href.split('/');
+        let requestModel = {
+            "RowNo": $('#RowNumber').val(),
+            "LessonId": $('#DDLLessons').val(),
+            "TopicId": $('#DDLTopics').val(),
+            "examId": arr[arr.length - 1]
+        };
+
+        console.log(requestModel);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("CreateQuestion", "Exams")',
+            data: { "id": 2 },
+            success: function (response) {
+                console.log(response);
+            },
+            failure: function (response) {
+                console.log(response);
+            },
+            error: function (response) {
+                console.log(response);
+            }
+        });
+
+    }
+
+
+
+
+
+
+    function GetRNSearchClearInput() {
+        $("#FormedDirectorateDDL").val("").trigger('change');
+        $('#RNSearchEndDate').val("");
+    }
+
+    function GetUserSearchClearInput() {
+        $('input#txtSearchUserName').val('').trigger('change');
+        $('input#txtSearchFirstName').val('').trigger('change');
+        $('input#txtSearchLastName').val('').trigger('change');
+    }
+    //Inputları temizler.
+    function clearInputs() {
+        $("#shiftddl").val("").trigger('change');
+        $("#riskdate").val("");
+        $('#riskclosecheck').prop("checked", false);
+        $("input[name='causeradio']").prop("checked", false);
+    }
+
+    //DDL texte göre değiştirir.
+    function changeDDL(ddlId, ddlText) {
+        $('#' + ddlId + ' option').each(function () {
+            if ($(this).text() == ddlText) {
+                $(this).prop('selected', true).trigger('change');
+            }
+        });
+    }
+</script>
+<script>
+    //COMMON
+    //DDL doldurur.
+    function AjaxCallDDL(_type, _url, _ddlid, _value, _text) {
+        $.ajax({
+            type: _type,
+            url: _url,
+            success: function (response) {
+                for (var i = 0; i < response.length; i++) {
+                    var option = createOption(response[i][_value], response[i][_text]);
+                    $("#" + _ddlid).append($(option));
+                }
+            },
+            error: function (err) {
+                alert(err);
+            }
+        });
+    }
+
+    //DDL için option oluşturur.
+    function createOption(code, text) {
+        return "<option value=" + code + ">" + text + "</option>"
+    }
+</script>

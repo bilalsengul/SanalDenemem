@@ -19,6 +19,9 @@
             @Html.DisplayNameFor(model => model.Topic.TopicName)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.RowNo)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Desc)
         </th>
         <th>
@@ -37,6 +40,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Topic.TopicName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RowNo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Desc)

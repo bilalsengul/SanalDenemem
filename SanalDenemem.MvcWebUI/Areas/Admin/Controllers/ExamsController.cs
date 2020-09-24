@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SanalDenemem.MvcWebUI.Areas.Admin.Views.Exams;
 using SanalDenemem.MvcWebUI.Entity;
 
 namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
@@ -128,5 +129,61 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // GET: Admin/Exams/Questions/5
+        public ActionResult Questions(int? id)
+        {
+            ExamViewModel evm = new ExamViewModel();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            evm.QuestionList = db.Questions.Where(x => x.ExamId == id).ToList();
+            foreach (var item in evm.QuestionList)
+            {
+                item.Topic = db.Topics.Where(x => x.Id == item.TopicId).FirstOrDefault();
+                item.Topic.Lesson = db.Lessons.Where(x => x.Id == item.Topic.LessonId).FirstOrDefault();
+            }
+            evm.Exam = db.Exams.Where(x => x.Id == id).FirstOrDefault();
+            return View(evm);
+        }
+
+        // GET: Admin/Exams/Questions/5
+        [HttpPost]
+        public ActionResult CreateQuestion(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Question> questionlist = db.Questions.Where(x => x.ExamId == int.Parse(id)).ToList();
+            return View(questionlist);
+        }
+
+        [HttpPost]
+        public JsonResult GetLessons()
+        {
+            List<Lesson> LessonList = db.Lessons.ToList();
+            return Json(LessonList);
+        }
+
+        [HttpPost]
+        public JsonResult GetTopicsByLesson(int lessonId)
+        {
+            List<Topic> TopicList = db.Topics.Where(x => x.LessonId == lessonId).ToList();
+            return Json(TopicList);
+        }
+
+        [HttpPost]
+        public ActionResult InsertQuestion()
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            List<Question> questionlist = db.Questions.Where(x => x.ExamId == int.Parse(id)).ToList();
+            return View(questionlist);
+        }
+
     }
 }
