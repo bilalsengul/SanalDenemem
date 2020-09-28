@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 html {
   font-family: sans-serif;
@@ -361,7 +361,7 @@ img {
 }
 
 .img-responsive {
-  display: block;
+  /*display: block;*/
   max-width: 100%;
   height: auto;
 }

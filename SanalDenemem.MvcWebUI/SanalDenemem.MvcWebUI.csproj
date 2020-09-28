@@ -381,6 +381,7 @@
     <Compile Include="Areas\Admin\Controllers\TopicsController.cs" />
     <Compile Include="Areas\Admin\Views\Exams\ExamViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminManagerController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -403,6 +404,8 @@
     <Compile Include="Identity\IdentityInitializer.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\RoleAdminInfo.cs" />
+    <Compile Include="Models\RoleUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -462,6 +465,9 @@
     <Content Include="Views\Home\Pricing.cshtml" />
     <Content Include="Views\Home\Exams.cshtml" />
     <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\AdminManager\Index.cshtml" />
+    <Content Include="Views\AdminManager\Edit.cshtml" />
+    <Content Include="Views\AdminManager\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
