@@ -1,0 +1,32 @@
+﻿@model string[]
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+}
+<link rel="apple-touch-icon" href="~/Content/edutemplate/images/ikon.ico" />
+<link rel="icon" type="image/ico" href="~/Content/edutemplate/images/ikon.ico" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Meta-Tags -->
+
+<link rel="stylesheet" href="~/Content/edutemplate/css/font-awesome.min.css" media="all" />
+
+<!-- Style --> <link rel="stylesheet" href="~/Content/edutemplate/css/stylehata.css" type="text/css" media="all">
+
+<!-- Fonts -->
+<link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+<!-- //Fonts -->
+
+
+<h1> <span></span> </h1>
+<div class="w3layout-agileits">
+    <h2>404 </h2>
+    @foreach (var eror in Model)
+    {
+    <h3>
+        @eror
+    </h3>
+    }
+
+    <a href="@Url.Action("Index","Home")"><i class="fa fa-angle-double-left" aria-hidden="true"></i>Anasayfaya Dön </a>
+</div>
+

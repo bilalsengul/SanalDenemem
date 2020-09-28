@@ -353,6 +353,7 @@
     <Content Include="Content\edutemplate\sass\_bootstrap-compass.scss" />
     <Content Include="Content\edutemplate\sass\_bootstrap-mincer.scss" />
     <Content Include="Content\edutemplate\sass\_bootstrap-sprockets.scss" />
+    <Content Include="Areas\Admin\Views\Base\Index.cshtml" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -373,6 +374,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup1.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExamsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ExamTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LessonsController.cs" />
@@ -468,6 +470,8 @@
     <Content Include="Views\AdminManager\Index.cshtml" />
     <Content Include="Views\AdminManager\Edit.cshtml" />
     <Content Include="Views\AdminManager\Error.cshtml" />
+    <Content Include="Views\Home\ExamTypes.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

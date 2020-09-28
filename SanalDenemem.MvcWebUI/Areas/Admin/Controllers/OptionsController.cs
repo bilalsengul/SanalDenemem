@@ -10,6 +10,7 @@ using SanalDenemem.MvcWebUI.Entity;
 
 namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class OptionsController : Controller
     {
         private DataContext db = new DataContext();

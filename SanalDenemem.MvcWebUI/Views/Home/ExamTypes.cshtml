@@ -1,0 +1,51 @@
+﻿@model List<SanalDenemem.MvcWebUI.Entity.ExamType>
+@{
+    ViewBag.Title = "Exams";
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+}
+
+<aside id="fh5co-hero">
+    <div class="flexslider">
+        <ul class="slides">
+            <li style="background-image: url(../Content/edutemplate/images/exam.jpg);">
+                <div class="overlay-gradient"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <h1 class="heading-section">Sınavlar</h1>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<div id="fh5co-course">
+    <div class="container">
+        <div class="row animate-box">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                <h2> Sınavlar</h2>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 animate-box">
+                    <div class="course">
+                        <a href="#" class="course-img" style="background-image: url(../Content/edutemplate/images/project-1.jpg);">
+                        </a>
+                        <div class="desc">
+                            <h3><a href="#">@item.ExamTypeName</a></h3>
+                            <p>@item.Desc</p>
+                            <span><a href="@Url.Action("Exams", "Home", new { id=item.Id})" class="btn btn-primary btn-sm btn-course">Sınava Katıl</a></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

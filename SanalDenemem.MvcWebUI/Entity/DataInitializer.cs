@@ -21,7 +21,11 @@ namespace SanalDenemem.MvcWebUI.Entity
                 new ExamType{ExamTypeName="KPSS-1", Desc="Kamu Personeli Seçme Sınavı - 1"},
                 new ExamType{ExamTypeName="KPSS-2", Desc="Kamu Personeli Seçme Sınavı - 2"},
                 new ExamType{ExamTypeName="KPSS-3", Desc="Kamu Personeli Seçme Sınavı - 3"},
-                new ExamType{ExamTypeName="KPSS-4", Desc="Kamu Personeli Seçme Sınavı - 4"}
+                new ExamType{ExamTypeName="KPSS-4", Desc="Kamu Personeli Seçme Sınavı - 4"},
+                new ExamType{ExamTypeName="YKS", Desc="Yükseköğretim Kurumları Sınavı"},
+                new ExamType{ExamTypeName="AYT", Desc="Alan Yeterlilik Testi"},
+                new ExamType{ExamTypeName="TYT", Desc="Temel Yeterlilik Testi"},
+                new ExamType{ExamTypeName="DHPT", Desc="Din Hizmetleri Alan Bilgisi Testi"}
             };
             examTypes.ForEach(s => context.ExamTypes.Add(s));
             context.SaveChanges();

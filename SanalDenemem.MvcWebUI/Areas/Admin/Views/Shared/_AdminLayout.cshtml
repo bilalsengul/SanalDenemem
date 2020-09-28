@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="~/Content/Images/favicon.ico">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Admin</title>
+    <link rel="apple-touch-icon" href="~/Content/edutemplate/images/ikon.ico" />
+    <link rel="icon" type="image/ico" href="~/Content/edutemplate/images/ikon.ico" />
 
     <script src="~/Scripts/jquery-3.5.1.min.js"></script>
 
@@ -24,7 +25,6 @@
     </style>
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -32,6 +32,12 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             @Html.ActionLink("SANALDENEMEM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Base" ? "active" : "")">
+                    <a class="nav-link" href="@Url.Action("Index", "Base", new { area = "Admin" })">Anasayfa</a>
+                </li>
+                <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "AdminManager" ? "active" : "")">
+                    <a class="nav-link" href="@Url.Action("Index", "AdminManager", new { area = "" })">Hesap Yönetimi</a>
+                </li>
                 <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "ExamTypes" ? "active" : "")">
                     <a class="nav-link" href="@Url.Action("Index", "ExamTypes", new { area = "Admin" })">Sınav Tipleri</a>
                 </li>
@@ -45,10 +51,10 @@
                     <a class="nav-link" href="@Url.Action("Index", "Exams", new { area = "Admin" })">Sınavlar</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            @*<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Arama</button>
-            </form>
+            </form>*@
         </div>
     </nav>
 

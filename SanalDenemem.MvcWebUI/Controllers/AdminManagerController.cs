@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SanalDenemem.MvcWebUI.Controllers
 {
-    // [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class AdminManagerController : BaseController
     {
         public ActionResult Index()

@@ -12,6 +12,7 @@ using SanalDenemem.MvcWebUI.Entity;
 
 namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ExamsController : Controller
     {
         private DataContext db = new DataContext();

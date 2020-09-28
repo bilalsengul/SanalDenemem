@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SanalDenemem.MvcWebUI.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
 {
     public class HomeController : BaseController
     {
+
         // GET: Home
         public ActionResult Index()
         {
@@ -23,10 +25,21 @@ namespace SanalDenemem.MvcWebUI.Controllers
         {
             return View();
         }
-        public ActionResult Exams()
+
+        public ActionResult ExamTypes()
         {
-            return View();
+            return View(db.ExamTypes.ToList());
         }
+
+        public ActionResult Exams(int? id)
+        {
+            if (id == null)
+            {
+                return View(@"~/Views/Shared/Error.cshtml", new string[] { "Hatalı Sayfa" });
+            }
+            return View(db.Exams.Where(x => x.ExamTypeId == id).ToList());
+        }
+
         public ActionResult Blog()
         {
             return View();
