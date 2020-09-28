@@ -125,6 +125,105 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\edutemplate\about.html" />
+    <Content Include="Content\edutemplate\blog.html" />
+    <Content Include="Content\edutemplate\courses.html" />
+    <Content Include="Content\edutemplate\css\animate.css" />
+    <Content Include="Content\edutemplate\css\bootstrap.css" />
+    <Content Include="Content\edutemplate\css\flexslider.css" />
+    <Content Include="Content\edutemplate\css\font-awesome.min.css" />
+    <Content Include="Content\edutemplate\css\icomoon.css" />
+    <Content Include="Content\edutemplate\css\magnific-popup.css" />
+    <Content Include="Content\edutemplate\css\owl.carousel.min.css" />
+    <Content Include="Content\edutemplate\css\owl.theme.default.min.css" />
+    <Content Include="Content\edutemplate\css\pricing.css" />
+    <Content Include="Content\edutemplate\css\style.css" />
+    <Content Include="Content\edutemplate\css\stylegiris.css" />
+    <Content Include="Content\edutemplate\css\stylehata.css" />
+    <Content Include="Content\edutemplate\css\stylekayit.css" />
+    <Content Include="Content\edutemplate\fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\edutemplate\fonts\icomoon\icomoon.svg" />
+    <Content Include="Content\edutemplate\giris.html" />
+    <Content Include="Content\edutemplate\hata.html" />
+    <Content Include="Content\edutemplate\images\1.jpg" />
+    <Content Include="Content\edutemplate\images\12.jpg" />
+    <Content Include="Content\edutemplate\images\2.jpg" />
+    <Content Include="Content\edutemplate\images\3.jpg" />
+    <Content Include="Content\edutemplate\images\4.jpg" />
+    <Content Include="Content\edutemplate\images\5.jpg" />
+    <Content Include="Content\edutemplate\images\6.jpg" />
+    <Content Include="Content\edutemplate\images\7.jpg" />
+    <Content Include="Content\edutemplate\images\8.jpg" />
+    <Content Include="Content\edutemplate\images\9.jpg" />
+    <Content Include="Content\edutemplate\images\about.jpg" />
+    <Content Include="Content\edutemplate\images\banner.jpg" />
+    <Content Include="Content\edutemplate\images\banner1.jpg" />
+    <Content Include="Content\edutemplate\images\banner1eski.jpg" />
+    <Content Include="Content\edutemplate\images\bg.jpg" />
+    <Content Include="Content\edutemplate\images\blog.jpg" />
+    <Content Include="Content\edutemplate\images\e-mail.png" />
+    <Content Include="Content\edutemplate\images\exam.jpg" />
+    <Content Include="Content\edutemplate\images\ikon.ico" />
+    <Content Include="Content\edutemplate\images\img_bg_1.jpg" />
+    <Content Include="Content\edutemplate\images\img_bg_2.jpg" />
+    <Content Include="Content\edutemplate\images\img_bg_3.jpg" />
+    <Content Include="Content\edutemplate\images\img_bg_4.jpg" />
+    <Content Include="Content\edutemplate\images\ivan-aleksic-PDRFeeDniCk-unsplash.jpg" />
+    <Content Include="Content\edutemplate\images\kelly-sikkema-fjNaOMcYNUs-unsplash.jpg" />
+    <Content Include="Content\edutemplate\images\loader.gif" />
+    <Content Include="Content\edutemplate\images\loc.png" />
+    <Content Include="Content\edutemplate\images\logo.jpeg" />
+    <Content Include="Content\edutemplate\images\password.png" />
+    <Content Include="Content\edutemplate\images\patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg" />
+    <Content Include="Content\edutemplate\images\person1.jpg" />
+    <Content Include="Content\edutemplate\images\person2.jpg" />
+    <Content Include="Content\edutemplate\images\person3.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-cottonbro-4065895.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-ekaterina-bolovtsova-4049795.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-julia-m-cameron-4144148.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-julia-m-cameron-4144531.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-julia-m-cameron-4145353.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-karolina-grabowska-4195504.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-karolina-grabowska-4468011.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-pixabay-207691.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-pixabay-262508.jpg" />
+    <Content Include="Content\edutemplate\images\pexels-pixabay-373488.jpg" />
+    <Content Include="Content\edutemplate\images\pricing.jpg" />
+    <Content Include="Content\edutemplate\images\project-1.jpg" />
+    <Content Include="Content\edutemplate\images\project-2.jpg" />
+    <Content Include="Content\edutemplate\images\project-3.jpg" />
+    <Content Include="Content\edutemplate\images\project-4.jpg" />
+    <Content Include="Content\edutemplate\images\project-5.jpg" />
+    <Content Include="Content\edutemplate\images\project-6.jpg" />
+    <Content Include="Content\edutemplate\images\project-7.jpg" />
+    <Content Include="Content\edutemplate\images\project-8.jpg" />
+    <Content Include="Content\edutemplate\images\project-9.jpg" />
+    <Content Include="Content\edutemplate\images\rishabh-agarwal-8hmEEHtmeTo-unsplash.jpg" />
+    <Content Include="Content\edutemplate\images\school.jpg" />
+    <Content Include="Content\edutemplate\images\staff-1.jpg" />
+    <Content Include="Content\edutemplate\images\staff-2.jpg" />
+    <Content Include="Content\edutemplate\images\staff-3.jpg" />
+    <Content Include="Content\edutemplate\images\tick.png" />
+    <Content Include="Content\edutemplate\images\user.png" />
+    <Content Include="Content\edutemplate\images\work_1.png" />
+    <Content Include="Content\edutemplate\index.html" />
+    <Content Include="Content\edutemplate\js\bootstrap.min.js" />
+    <Content Include="Content\edutemplate\js\google_map.js" />
+    <Content Include="Content\edutemplate\js\jquery.countTo.js" />
+    <Content Include="Content\edutemplate\js\jquery.easing.1.3.js" />
+    <Content Include="Content\edutemplate\js\jquery.flexslider-min.js" />
+    <Content Include="Content\edutemplate\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\edutemplate\js\jquery.min.js" />
+    <Content Include="Content\edutemplate\js\jquery.stellar.min.js" />
+    <Content Include="Content\edutemplate\js\jquery.waypoints.min.js" />
+    <Content Include="Content\edutemplate\js\magnific-popup-options.js" />
+    <Content Include="Content\edutemplate\js\main.js" />
+    <Content Include="Content\edutemplate\js\modernizr-2.6.2.min.js" />
+    <Content Include="Content\edutemplate\js\owl.carousel.min.js" />
+    <Content Include="Content\edutemplate\js\respond.min.js" />
+    <Content Include="Content\edutemplate\js\simplyCountdown.js" />
+    <Content Include="Content\edutemplate\kayit.html" />
+    <Content Include="Content\edutemplate\pricing.html" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\css\bootstrap-grid.css" />
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\css\bootstrap-grid.min.css" />
@@ -159,6 +258,101 @@
     <Content Include="Areas\Admin\Views\Questions\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Questions\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Questions\Index.cshtml" />
+    <Content Include="Content\edutemplate\css\.DS_Store" />
+    <Content Include="Content\edutemplate\css\bootstrap.css.map" />
+    <Content Include="Content\edutemplate\css\style.css.map" />
+    <Content Include="Content\edutemplate\fonts\.DS_Store" />
+    <Content Include="Content\edutemplate\fonts\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\edutemplate\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\edutemplate\fonts\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\edutemplate\fonts\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\edutemplate\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\edutemplate\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\edutemplate\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\edutemplate\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\edutemplate\fonts\FontAwesome.otf" />
+    <Content Include="Content\edutemplate\fonts\icomoon\.DS_Store" />
+    <Content Include="Content\edutemplate\fonts\icomoon\icomoon.eot" />
+    <Content Include="Content\edutemplate\fonts\icomoon\icomoon.ttf" />
+    <Content Include="Content\edutemplate\fonts\icomoon\icomoon.woff" />
+    <Content Include="Content\edutemplate\images\.DS_Store" />
+    <Content Include="Content\edutemplate\js\.DS_Store" />
+    <Content Include="Content\edutemplate\sass\.DS_Store" />
+    <Content Include="Content\edutemplate\sass\bootstrap.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_alerts.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_buttons.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_center-block.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_forms.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_gradients.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_grid.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_hide-text.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_image.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_labels.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_list-group.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_nav-vertical-align.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_opacity.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_pagination.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_panels.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_progress-bar.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_reset-filter.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_resize.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_responsive-visibility.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_size.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_tab-focus.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_table-row.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_text-overflow.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_alerts.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_badges.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_breadcrumbs.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_button-groups.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_buttons.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_carousel.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_close.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_code.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_component-animations.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_dropdowns.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_forms.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_glyphicons.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_grid.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_input-groups.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_jumbotron.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_labels.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_list-group.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_media.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_mixins.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_modals.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_navbar.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_navs.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_normalize.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_pager.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_pagination.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_panels.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_popovers.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_print.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_progress-bars.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_responsive-embed.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_responsive-utilities.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_scaffolding.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_tables.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_theme.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_thumbnails.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_tooltip.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_type.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_utilities.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_variables.scss" />
+    <Content Include="Content\edutemplate\sass\bootstrap\_wells.scss" />
+    <Content Include="Content\edutemplate\sass\style.scss" />
+    <Content Include="Content\edutemplate\sass\_bootstrap-compass.scss" />
+    <Content Include="Content\edutemplate\sass\_bootstrap-mincer.scss" />
+    <Content Include="Content\edutemplate\sass\_bootstrap-sprockets.scss" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -169,7 +363,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\listedeneme.cshtml" />
   </ItemGroup>
@@ -185,6 +381,7 @@
     <Compile Include="Areas\Admin\Controllers\TopicsController.cs" />
     <Compile Include="Areas\Admin\Views\Exams\ExamViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminManagerController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -207,6 +404,8 @@
     <Compile Include="Identity\IdentityInitializer.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\RoleAdminInfo.cs" />
+    <Compile Include="Models\RoleUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,7 +421,6 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Error.cshtml" />
@@ -261,6 +459,15 @@
     <Content Include="Views\Members\Profile.cshtml" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.1.min.map" />
+    <Content Include="Views\Shared\_TemplateLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Pricing.cshtml" />
+    <Content Include="Views\Home\Exams.cshtml" />
+    <Content Include="Views\Home\Blog.cshtml" />
+    <Content Include="Views\AdminManager\Index.cshtml" />
+    <Content Include="Views\AdminManager\Edit.cshtml" />
+    <Content Include="Views\AdminManager\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -316,5 +523,12 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
+<Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+</Target>
   -->
 </Project>

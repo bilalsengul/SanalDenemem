@@ -1,57 +1,146 @@
-﻿@model SanalDenemem.MvcWebUI.Models.Login
+﻿@*@model SanalDenemem.MvcWebUI.Models.Login
 
-@{
-    ViewBag.Title = "Login";
-}
+    @{
+        ViewBag.Title = "Login";
+    }
 
-<h2>Login</h2>
+    <h2>Login</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Login</h4>
-    <hr />
-    @Html.ValidationSummary()
-    <div class="form-group">
-        @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Login</h4>
+        <hr />
+        @Html.ValidationSummary()
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.RememberMe)
-                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.RememberMe)
+                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
+    }
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
     </div>
-</div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+
+@model SanalDenemem.MvcWebUI.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+
+<link rel="apple-touch-icon" href="~/Content/edutemplate/images/ikon.ico" />
+<link rel="icon" type="image/ico" href="~/Content/edutemplate/images/ikon.ico" />
+<script>
+    addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+</script>
+<!-- //Meta tag Keywords -->
+<!--/Style-CSS -->
+<link rel="stylesheet" href="~/Content/edutemplate/css/stylegiris.css" type="text/css" media="all" />
+<!--//Style-CSS -->
+
+
+
+<section class="w3l-forms-23">
+    <div class="forms23-block-hny">
+        <div class="wrapper">
+
+            <a class="logo" href="@Url.Action("Index","Home")"></a>
+
+            <div class="d-grid forms23-grids">
+                <div class="form23">
+                    <div class="main-bg">
+                        <h6 class="sec-one"></h6>
+                        <div class="speci-login first-look">
+                            <img src="~/Content/edutemplate/images/user.png" alt="" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="bottom-content">
+
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+
+
+                            @Html.ValidationSummary()
+
+                            @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "input-form", @placeholder = "Kullanıcı Adı" } })
+
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "input-form", placeholder = "Şifre" } })
+
+
+                            <button type="submit" class="loginhny-btn btn">Giriş Yapın</button>
+
+                        }
+
+                        <p>Hesabınız yok ise hemen bize katılın ! 		 <a href="@Url.Action("Register","Account")">Kayıt Ol!</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+
+
+
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

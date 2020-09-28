@@ -1,80 +1,205 @@
-﻿@model SanalDenemem.MvcWebUI.Models.Register
+﻿@*@model SanalDenemem.MvcWebUI.Models.Register
+
+    @{
+        ViewBag.Title = "Register";
+    }
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="panel panel-default">
+                    <div class="panel-heading text-center">
+                        <h2>Giriş</h2>
+                    </div>
+                    @Html.ValidationSummary()
+                    <div class="panel-body">
+
+                        <div class="form-group">
+                            <center>
+                                <img src="http://placehold.it/125x125" class="img-circle img-responsive" />
+                            </center>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "İsim", type = "text" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.Surname, new { @class = "form-control", placeholder = "Soyisim", type = "text" })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Kullanıcı adı", type = "text" })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "E-mail", type = "text" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Paralo", type = "password" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.PasswordFor(model => model.RePassword, new { @class = "form-control", placeholder = "Paralo Tekrar", type = "password" })
+                            @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <div class="panel-footer text-right">
+                        <a href="@Url.Action("Login","Account")" class="btn btn-info">
+                            <span class="glyphicon glyphicon-log-in"></span> Login
+                        </a>
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-floppy-saved"></span> Register
+                        </button>
+
+                    </div>
+                </div>
+            }
+        </div>
+            </div>
+
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+@model SanalDenemem.MvcWebUI.Models.Register
 
 @{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+
+<link rel="apple-touch-icon" href="~/Content/edutemplate/images/ikon.ico" />
+<link rel="icon" type="image/ico" href="~/Content/edutemplate/images/ikon.ico"/>
+<script>
+    addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+</script>
+<!-- //Meta tag Keywords -->
+<!--/Style-CSS -->
+<link rel="stylesheet" href="~/Content/edutemplate/css/stylekayit.css" type="text/css" media="all" />
+<!--//Style-CSS -->
 
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
 
-            <div class="panel panel-default">
-                <div class="panel-heading text-center">
-                    <h2>Giriş</h2>
-                </div>
-                @Html.ValidationSummary()
-                <div class="panel-body">
-
-                    <div class="form-group">
-                        <center>
-                            <img src="http://placehold.it/125x125" class="img-circle img-responsive" />
-                        </center>
+<section class="w3l-login-6">
+    <div class="login-hny">
+        <div class="form-content">
+            <div class="form-right">
+                <div class="overlay">
+                    <div class="grid-info-form">
+                        <h3> Kayıt Ol </h3>
+                        <p>Ve platformumuzun sağladığı binlerce faydalı sınava yönelike denemelerden tamamen ücretsiz olarak faydalan ve sıralamanı ülke çapında yerini sınavdan önce öğren!</p>
+                        <a href="@Url.Action("Index","Home")" class="read-more-1 btn">Daha fazla bilgi için...</a>
                     </div>
-
-                    <div class="form-group">
-                        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "İsim", type = "text" })
-                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-
-                    </div>
-
-                    <div class="form-group">
-                        @Html.TextBoxFor(model => model.Surname, new { @class = "form-control", placeholder = "Soyisim", type = "text" })
-                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-
-                    </div>
-
-                    <div class="form-group">
-                        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Kullanıcı adı", type = "text" })
-                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
-
-                    </div>
-
-                    <div class="form-group">
-                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "E-mail", type = "text" })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-
-                    </div>
-
-                    <div class="form-group">
-                        @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Paralo", type = "password" })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
-                    </div>
-
-                    <div class="form-group">
-                        @Html.PasswordFor(model => model.RePassword, new { @class = "form-control", placeholder = "Paralo Tekrar", type = "password" })
-                        @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
-
-                    </div>
-                </div>
-
-                <div class="panel-footer text-right">
-                    <a href="@Url.Action("Login","Account")" class="btn btn-info">
-                        <span class="glyphicon glyphicon-log-in"></span> Login
-                    </a>
-                    <button type="submit" class="btn btn-success">
-                        <span class="glyphicon glyphicon-floppy-saved"></span> Register
-                    </button>
-
                 </div>
             </div>
-        }
-    </div>
+            <div class="form-left">
+                <div class="middle">
+                    <h4>Kayıt Ol</h4>
+                    <p> Kayıt olun ve yeni kayıt avantajlarından faydalanın...</p>
+                </div>
+
+
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "signin-form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="panel panel-default">
+
+                    @Html.ValidationSummary()
+                    <div class="panel-body">
+
+
+
+                        <div class="form-input">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "İsim", type = "text" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-input">
+                            @Html.TextBoxFor(model => model.Surname, new { @class = "form-control", placeholder = "Soyisim", type = "text" })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-input">
+                            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Kullanıcı adı", type = "text" })
+                            @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-input">
+                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "E-mail", type = "text" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-input">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Paralo", type = "password" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-input">
+                            @Html.PasswordFor(model => model.RePassword, new { @class = "form-control", placeholder = "Paralo Tekrar", type = "password" })
+                            @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+                    <label class="container" style="text-align:center">
+                        Kayıt olan her üye tüm Üyelik şartlarını kabul etmiştir.
+                        @*Tüm üyelik <a href="#">şartlarını</a> kabul ediyorum
+                        <input  type="checkbox">
+                        <span class="checkmark"></span>*@
+                    </label>
+                    <button type="submit" class="btn">Hesap Oluştur</button>
+                    @*<div class="panel-footer text-right">
+            <a href="@Url.Action("Login","Account")" class="btn btn-info">
+                <span class="glyphicon glyphicon-log-in"></span> Login
+            </a>
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-floppy-saved"></span> Register
+            </button>
+
+        </div>*@
+                </div>
+                }
+
+            </div>
+
         </div>
+
+    </div>
+</section>
+<!-- //login-section -->
 
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

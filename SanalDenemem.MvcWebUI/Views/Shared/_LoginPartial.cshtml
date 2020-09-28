@@ -1,17 +1,29 @@
-﻿<ul class="navbar-nav my-2 my-lg-0">
+﻿@{
+    var logInUser = (SanalDenemem.MvcWebUI.Identity.ApplicationUser)Session["LogonUser"];
+}
+
     @if (Request.IsAuthenticated)
     {
-        //giriş yapan kısım
+        
+            var logId = User.Identity.Name;
+            if (logInUser != null)
+            {
+                logId = logInUser.Id;
+            }
+            
 
-        <li class="nav-item active">
-            <a class="navbar-link" href="/account/index">@User.Identity.Name</a>
+        
+
+        <li class="btn-cta">
+            <a href="@Url.Action("Profile","Members",new { id =logId })"><span>Profil</span></a>
         </li>
         <li class="nav-item active">
-            <a class="navbar-link" href="/account/logout">cıkış</a>
+            <a class="btn-cta" href="/account/logout"><span>cıkış</span></a>
         </li>
 
     }
     else
     {
+        <li class="btn-cta"><a href="/account/login"><span>Giris Yap</span></a></li>
+        <li class="btn-cta"><a href="/account/register"><span>Kayit ol</span></a></li>
     }
-</ul>
