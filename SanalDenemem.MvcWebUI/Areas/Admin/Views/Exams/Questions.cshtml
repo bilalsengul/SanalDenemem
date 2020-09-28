@@ -25,9 +25,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="DDLLessons">Ders</label>
                     </div>
-                    <select class="custom-select" id="DDLLessons">
-                        <option selected="">Seçiniz...</option>
-                    </select>
+                    @Html.DropDownList("LessonId", null, htmlAttributes: new { @class = "custom-select", @id = "DDLLessons" })
                 </div>
             </div>
             <div class="col-md-5">
@@ -73,7 +71,7 @@
                         <label class="input-group-text" for="Option1">1. Seçenek</label>
                     </div>
                     <input style="width: 70%;" type="text" class="form-control" id="Option1" placeholder="Giriniz...">
-                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option1State" name="trueOption">
                 </div>
             </div>
             <div class="col-md-6">
@@ -82,7 +80,7 @@
                         <label class="input-group-text" for="Option2">2. Seçenek</label>
                     </div>
                     <input style="width: 70%;" type="text" class="form-control" id="Option2" placeholder="Giriniz...">
-                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option2State" name="trueOption">
                 </div>
             </div>
             <div class="col-md-6">
@@ -91,7 +89,7 @@
                         <label class="input-group-text" for="Option3">3. Seçenek</label>
                     </div>
                     <input style="width: 70%;" type="text" class="form-control" id="Option3" placeholder="Giriniz...">
-                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option3State" name="trueOption">
                 </div>
             </div>
             <div class="col-md-6">
@@ -100,7 +98,7 @@
                         <label class="input-group-text" for="Option4">4. Seçenek</label>
                     </div>
                     <input style="width: 70%;" type="text" class="form-control" id="Option4" placeholder="Giriniz...">
-                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option4State" name="trueOption">
                 </div>
             </div>
             <div class="col-md-6">
@@ -109,7 +107,7 @@
                         <label class="input-group-text" for="Option5">5. Seçenek</label>
                     </div>
                     <input style="width: 70%;" type="text" class="form-control" id="Option5" placeholder="Giriniz...">
-                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" name="trueOption">
+                    <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option5State" name="trueOption">
                 </div>
             </div>
             <div class="col-md-12">
@@ -130,13 +128,12 @@
     <tr>
         <th>Sıra No</th>
         <th>Ders</th>
-        @*<th>Konu</th>*@
+        <th>Konu</th>
         <th>Açıklama</th>
         <th>Yazı</th>
-        <th>Resim</th>
         <th>İşlemler</th>
     </tr>
-    @if (Model.QuestionList != null)
+    @if (Model.QuestionList.Count > 0)
     {
         foreach (var item in Model.QuestionList)
         {
@@ -147,9 +144,9 @@
                 <td>
                     @item.Topic.Lesson.LessonName
                 </td>
-                @*<td>
-                        @item.Topic.TopicName
-                    </td>*@
+                <td>
+                    @item.Topic.TopicName
+                </td>
                 <td>
                     @item.Desc
                 </td>
@@ -157,12 +154,9 @@
                     @item.Text
                 </td>
                 <td>
-                    @item.Image
-                </td>
-                <td>
                     <input type="hidden" id="quesId" name="quesId" value="@item.Id">
                     <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editQuestionModal">Düzenle</button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteQuestionModal">Sil</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteQuestionModal" onclick="DeleteQuestion(@item.Id)">Sil</button>
                 </td>
             </tr>
         }
@@ -216,11 +210,11 @@
 </div>
 
 
-
 <script>
     $(document).ready(function () {
-        AjaxCallDDL('POST', '@Url.Action("GetLessons", "Exams")', 'DDLLessons', 'Id', 'LessonName');
         $('#DDLTopics').attr('disabled', true);
+        $('#DDLLessons').prepend(createOption("Seçiniz...", "Seçiniz..."));
+        $('#DDLLessons').val("Seçiniz...");
     });
 
     $('#DDLLessons').change(function () {
@@ -252,7 +246,7 @@
             $('#DDLTopics').attr('disabled', true);
         }
     });
-    
+
     $('input[type=file]').change(function () {
         if ($(this).val().split('.')[1] == 'png' || $(this).val().split('.')[1] == 'jpg') {
             var t = $(this).val();
@@ -263,60 +257,6 @@
             alert('Sadece png veya jpg uzantılı dosyalar seçebilirsiniz.');
         }
     });
-
-
-
-
-    
-        //public int Id { get; set; }
-        //public int RowNo { get; set; }
-        //public string Desc { get; set; }
-        //public string Text { get; set; }
-        //public string Image { get; set; }
-        //public int ExamId { get; set; }
-        //public int TopicId { get; set; }
-        //public Exam Exam { get; set; }
-        //public Topic Topic { get; set; }
-        //public List < Option > Options { get; set; }
-
-
-    //$('#DDLLessons').val() != 'Seçiniz...') {
-    //    $('#DDLTopics').att
-
-
-
-    function SaveQuestion() {
-
-        var arr = window.location.href.split('/');
-        let requestModel = {
-            "RowNo": $('#RowNumber').val(),
-            "LessonId": $('#DDLLessons').val(),
-            "TopicId": $('#DDLTopics').val(),
-            "examId": arr[arr.length - 1]
-        };
-
-        console.log(requestModel);
-
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("CreateQuestion", "Exams")',
-            data: { "id": 2 },
-            success: function (response) {
-                console.log(response);
-            },
-            failure: function (response) {
-                console.log(response);
-            },
-            error: function (response) {
-                console.log(response);
-            }
-        });
-
-    }
-
-
-
-
 
 
     function GetRNSearchClearInput() {
@@ -345,6 +285,11 @@
             }
         });
     }
+
+    function inputValidation() {
+
+    }
+
 </script>
 <script>
     //COMMON
@@ -354,6 +299,7 @@
             type: _type,
             url: _url,
             success: function (response) {
+                console.log(response);
                 for (var i = 0; i < response.length; i++) {
                     var option = createOption(response[i][_value], response[i][_text]);
                     $("#" + _ddlid).append($(option));
@@ -368,5 +314,68 @@
     //DDL için option oluşturur.
     function createOption(code, text) {
         return "<option value=" + code + ">" + text + "</option>"
+    }
+</script>
+<script>
+    function SaveQuestion() {
+        var arr = window.location.href.split('/');
+        var fileData = new FormData();
+        fileData.append('RowNo', $('#RowNumber').val());
+        fileData.append('Desc', $('#Description').val());
+        fileData.append('Text', $('#Text').val());
+        var files = document.getElementById("Image").files;
+        if (files.length != 0) { fileData.append(files[0].name, files[0]); }
+        fileData.append('ExamId', arr[arr.length - 1]);
+        fileData.append('LessonId', $('#DDLLessons').val());
+        fileData.append('TopicId', $('#DDLTopics').val());
+        fileData.append('Option1', $('#Option1').val());
+        fileData.append('Option2', $('#Option2').val());
+        fileData.append('Option3', $('#Option3').val());
+        fileData.append('Option4', $('#Option4').val());
+        fileData.append('Option5', $('#Option5').val());
+        fileData.append('Option1State', $('#Option1State').prop('checked') ? true : false);
+        fileData.append('Option2State', $('#Option2State').prop('checked') ? true : false);
+        fileData.append('Option3State', $('#Option3State').prop('checked') ? true : false);
+        fileData.append('Option4State', $('#Option4State').prop('checked') ? true : false);
+        fileData.append('Option5State', $('#Option5State').prop('checked') ? true : false);
+
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("InsertQuestion", "Exams")',
+            contentType: false,
+            processData: false,
+            data: fileData,
+            success: function (response) {
+                if (response.IsSuccess) {
+                    location.reload();
+                }
+                else {
+                    console.log(response);
+                }
+            },
+            error: function (err) {
+                alert(err);
+            }
+        });
+    }
+</script>
+<script>
+    function DeleteQuestion(id) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("DeleteQuestion", "Exams")',
+            data: { 'questionId': id},
+            success: function (response) {
+                if (response.IsSuccess) {
+                    location.reload();
+                }
+                else {
+                    console.log(response);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
     }
 </script>

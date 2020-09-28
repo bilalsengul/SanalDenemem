@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -30,6 +31,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Exam exam = db.Exams.Find(id);
+            exam.ExamType = db.ExamTypes.Where(x => x.Id == exam.ExamTypeId).FirstOrDefault();
             if (exam == null)
             {
                 return HttpNotFound();
@@ -145,6 +147,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
                 item.Topic.Lesson = db.Lessons.Where(x => x.Id == item.Topic.LessonId).FirstOrDefault();
             }
             evm.Exam = db.Exams.Where(x => x.Id == id).FirstOrDefault();
+            ViewBag.LessonId = new SelectList(db.Lessons, "Id", "LessonName");
             return View(evm);
         }
 
@@ -161,29 +164,105 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public JsonResult GetLessons()
-        {
-            List<Lesson> LessonList = db.Lessons.ToList();
-            return Json(LessonList);
-        }
-
-        [HttpPost]
         public JsonResult GetTopicsByLesson(int lessonId)
         {
             List<Topic> TopicList = db.Topics.Where(x => x.LessonId == lessonId).ToList();
             return Json(TopicList);
         }
 
-        //[HttpPost]
-        //public ActionResult InsertQuestion()
-        //{
-        //    //if (id == null)
-        //    //{
-        //    //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    //}
-        //    //List<Question> questionlist = db.Questions.Where(x => x.ExamId == int.Parse(id)).ToList();
-        //    //return View(questionlist);
-        //}
+        public class QuestionRequestModel
+        {
+            public int RowNo { get; set; }
+            public string Desc { get; set; }
+            public string Text { get; set; }
+            public string Image { get; set; }
+            public int ExamId { get; set; }
+            public int LessonId { get; set; }
+            public int TopicId { get; set; }
+            public string Option1 { get; set; }
+            public string Option2 { get; set; }
+            public string Option3 { get; set; }
+            public string Option4 { get; set; }
+            public string Option5 { get; set; }
+            public bool Option1State { get; set; }
+            public bool Option2State { get; set; }
+            public bool Option3State { get; set; }
+            public bool Option4State { get; set; }
+            public bool Option5State { get; set; }
+        }
 
+        [HttpPost]
+        public JsonResult InsertQuestion(QuestionRequestModel requestModel)
+        {
+            Question question = new Question();
+            question.RowNo = requestModel.RowNo;
+            question.Desc = requestModel.Desc;
+            question.Text = requestModel.Text;
+            HttpFileCollectionBase files = Request.Files;
+            HttpPostedFileBase file = files[0];
+            string extension = Path.GetExtension(file.FileName);
+            string guid = Guid.NewGuid().ToString() + file.FileName.Split('.')[0] + extension.ToLower();
+            string path = Server.MapPath(@"~/Content/Uploads/Questions/");
+            bool folderExists = Directory.Exists(path);
+            if (!folderExists) { Directory.CreateDirectory(path); }
+            file.SaveAs(Path.Combine(path, guid));
+            question.Image = Path.Combine(path, guid);
+            question.ExamId = requestModel.ExamId;
+            question.LessonId = requestModel.LessonId;
+            question.TopicId = requestModel.TopicId;
+            List<Option> options = new List<Option>();
+            Option option1 = new Option();
+            option1.OptionText = requestModel.Option1;
+            option1.IsCorrect = requestModel.Option1State;
+            option1.QuestionId = question.Id;
+            Option option2 = new Option();
+            option2.OptionText = requestModel.Option2;
+            option2.IsCorrect = requestModel.Option2State;
+            option2.QuestionId = question.Id;
+            Option option3 = new Option();
+            option3.OptionText = requestModel.Option3;
+            option3.IsCorrect = requestModel.Option3State;
+            option3.QuestionId = question.Id;
+            Option option4 = new Option();
+            option4.OptionText = requestModel.Option4;
+            option4.IsCorrect = requestModel.Option4State;
+            option4.QuestionId = question.Id;
+            Option option5 = new Option();
+            option5.OptionText = requestModel.Option5;
+            option5.IsCorrect = requestModel.Option5State;
+            option5.QuestionId = question.Id;
+            options.Add(option1);
+            options.Add(option2);
+            options.Add(option3);
+            options.Add(option4);
+            options.Add(option5);
+            question.Options = options;
+            try
+            {
+                db.Questions.Add(question);
+                db.SaveChanges();
+                return Json(new { IsSuccess = true, Message = "Kayıt Başarılı!" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { IsSuccess = false, Message = "Kayıt Başarısız!" });
+            }
+        }
+
+        [HttpPost]
+        public JsonResult DeleteQuestion(int questionId)
+        {
+            Question question = db.Questions.Where(x => x.Id == questionId).FirstOrDefault();
+            try
+            {
+                db.Questions.Remove(question);
+                db.SaveChanges();
+                return Json(new { IsSuccess = true, Message = "Silme Başarılı!" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { IsSuccess = false, Message = "Silme Başarısız!" });
+            }
+        }
     }
 }

@@ -14,6 +14,6 @@ namespace SanalDenemem.MvcWebUI.Entity
         public string ExamTypeName { get; set; }
         [DisplayName("Açıklama")]
         public string Desc { get; set; }
-        public List<Exam> Exams { get; set; }
+        public virtual List<Exam> Exams { get; set; }
     }
 }

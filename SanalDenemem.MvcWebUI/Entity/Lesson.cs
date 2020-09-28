@@ -11,6 +11,7 @@ namespace SanalDenemem.MvcWebUI.Entity
         public int Id { get; set; }
         [DisplayName("Ders İsmi")]
         public string LessonName { get; set; }
-        public List<Topic> Topics { get; set; }
+        public virtual List<Topic> Topics { get; set; }
+        public virtual List<Question> Questions { get; set; }
     }
 }

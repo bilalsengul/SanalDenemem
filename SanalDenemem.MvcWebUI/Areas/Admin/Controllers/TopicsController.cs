@@ -29,6 +29,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Topic topic = db.Topics.Find(id);
+            topic.Lesson = db.Lessons.Where(x => x.Id == topic.LessonId).FirstOrDefault();
             if (topic == null)
             {
                 return HttpNotFound();
