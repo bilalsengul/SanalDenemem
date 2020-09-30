@@ -200,14 +200,21 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
             question.Desc = requestModel.Desc;
             question.Text = requestModel.Text;
             HttpFileCollectionBase files = Request.Files;
-            HttpPostedFileBase file = files[0];
-            string extension = Path.GetExtension(file.FileName);
-            string guid = Guid.NewGuid().ToString() + file.FileName.Split('.')[0] + extension.ToLower();
-            string path = Server.MapPath(@"~/Content/Uploads/Questions/");
-            bool folderExists = Directory.Exists(path);
-            if (!folderExists) { Directory.CreateDirectory(path); }
-            file.SaveAs(Path.Combine(path, guid));
-            question.Image = Path.Combine(path, guid);
+            if (files.Count>0)
+            {
+                HttpPostedFileBase file = files[0];
+                string extension = Path.GetExtension(file.FileName);
+                string guid = Guid.NewGuid().ToString() + file.FileName.Split('.')[0] + extension.ToLower();
+                string path = Server.MapPath(@"~/Content/Uploads/Questions/");
+                bool folderExists = Directory.Exists(path);
+                if (!folderExists) { Directory.CreateDirectory(path); }
+                file.SaveAs(Path.Combine(path, guid));
+                question.Image = Path.Combine(path, guid);
+            }
+            else
+            {
+                question.Image = null;
+            }
             question.ExamId = requestModel.ExamId;
             question.LessonId = requestModel.LessonId;
             question.TopicId = requestModel.TopicId;

@@ -22,7 +22,7 @@
                             <h3><a href="#">@item.Title</a></h3>
                             @if (Request.IsAuthenticated && User.IsInRole("premiumMember"))
                             {
-                                <span><a href="@Url.Action("Exams", "Home", new { id=item.Id})" class="btn btn-primary btn-sm btn-course">Sınava Gir</a></span>
+                                <span><a href="@Url.Action("ExamQuestionTransition", "Home", new { id=item.Id})" target="_blank" class="btn btn-primary btn-sm btn-course">Sınava Gir</a></span>
                             }
                             else
                             {

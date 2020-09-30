@@ -1,0 +1,113 @@
+﻿@model List<SanalDenemem.MvcWebUI.Entity.Question>
+@{
+    ViewBag.Title = "ExamQuestion";
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+}
+
+<style>
+    .group-question {
+        padding: 2%;
+        margin: 2%;
+        border: 5px solid #bdc3c7;
+        background-color: #bdc3c7;
+    }
+
+    .exam-title {
+        width: 100%;
+        color: #34495e;
+        text-align: center;
+    }
+
+    .group-option {
+        color: #ecf0f1;
+        font-size: 2rem;
+        margin: 1%;
+        border: 2px solid #2980b9;
+        background-color: #3498db;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+</style>
+
+<script>
+    function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            if (display.textContent == "00:00") {
+                pencereyiKapat();
+            }
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                timer = duration;
+            }
+        }, 1000);
+    }
+
+    window.onload = function () {
+        var fiveMinutes = 1 * @Model.FirstOrDefault().Exam.ExamTime,
+            display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    };
+
+    function pencereyiKapat() {
+        window.open('', '_parent', '');
+        window.close();
+    }
+</script>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container" style="margin-top: 3%;">
+    <div class="row">
+        <div class="exam-title">
+            <h1>@Model.FirstOrDefault().Exam.Title</h1>
+            <h5 style="position: absolute;">(<i class="icon-time"></i> Kalan Sınav Süresi: <span id="time"></span>)</h5>
+        </div>
+    </div>
+    <div class="col-md-12" style="margin: 2%;">
+        @foreach (var item in Model)
+        {
+            <div class="card test-panel" style="margin-top: 2%;">
+
+                <div class="card-header">
+                    <h2>Soru: @item.RowNo</h2>
+                </div>
+                <div class="card-body">
+                    @if (item.Image != null)
+                    {
+                        <div style="text-align: center;">
+                            <img style="max-height: 400px; max-width: 100%; object-fit: cover;" src="~/Content/Uploads/Questions/@item.Image" />
+                        </div>
+                    }
+                    <p style="font-size: 1.5rem; font-weight: 400; margin-top: 1%;">@item.Desc</p>
+                    <p style="font-size: 2rem; font-weight: bold;">@item.Text</p>
+
+                    <div class="col-md-12" style="padding: 0;">
+                        <br>
+                        @foreach (var opt in item.Options)
+                        {
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text" style="font-size: 1.8rem !important;">
+                                        <input name="@opt.QuestionId-ques" type="radio" class="ml-1" style="width: 1em; height: 1em;">
+                                    </div>
+                                </div>
+                                <label for="@opt.QuestionId-ques" class="form-control test-option" style="font-size: 1.8rem !important; height: fit-content;">@opt.OptionText</label><br>
+                            </div>
+                            <br>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -472,6 +472,8 @@
     <Content Include="Views\AdminManager\Error.cshtml" />
     <Content Include="Views\Home\ExamTypes.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Home\ExamQuestion.cshtml" />
+    <Content Include="Views\Home\ExamQuestionTransition.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

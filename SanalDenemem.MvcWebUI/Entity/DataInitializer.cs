@@ -32,14 +32,14 @@ namespace SanalDenemem.MvcWebUI.Entity
 
             //SINAVLAR
             var exams = new List<Exam>{
-                new Exam{ExamTypeId=1,Title="A Denemesi"},
-                new Exam{ExamTypeId=1,Title="B Denemesi"},
-                new Exam{ExamTypeId=2,Title="C Denemesi"},
-                new Exam{ExamTypeId=2,Title="D Denemesi"},
-                new Exam{ExamTypeId=3,Title="E Denemesi"},
-                new Exam{ExamTypeId=3,Title="F Denemesi"},
-                new Exam{ExamTypeId=4,Title="G Denemesi"},
-                new Exam{ExamTypeId=4,Title="H Denemesi"}
+                new Exam{ExamTypeId=1,Title="A Denemesi", ExamTime=20},
+                new Exam{ExamTypeId=1,Title="B Denemesi", ExamTime=50},
+                new Exam{ExamTypeId=2,Title="C Denemesi", ExamTime=40},
+                new Exam{ExamTypeId=2,Title="D Denemesi", ExamTime=50},
+                new Exam{ExamTypeId=3,Title="E Denemesi", ExamTime=60},
+                new Exam{ExamTypeId=3,Title="F Denemesi", ExamTime=60},
+                new Exam{ExamTypeId=4,Title="G Denemesi", ExamTime=30},
+                new Exam{ExamTypeId=4,Title="H Denemesi", ExamTime=10}
             };
             exams.ForEach(s => context.Exams.Add(s));
             context.SaveChanges();
@@ -68,6 +68,24 @@ namespace SanalDenemem.MvcWebUI.Entity
                 new Topic{LessonId=5, TopicName="-", Desc="-"}
             };
             topics.ForEach(s => context.Topics.Add(s));
+            context.SaveChanges();
+
+            //SORULAR
+            var questions = new List<Question>{
+                new Question{Desc="Bilal uzun biridir.", Text="Bilalin boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=1}
+            };
+            questions.ForEach(s => context.Questions.Add(s));
+            context.SaveChanges();
+
+            //SEÇENEKLER
+            var options = new List<Option>{
+                new Option{OptionText="180cm", QuestionId=1},
+                new Option{OptionText="185cm", QuestionId=1},
+                new Option{OptionText="190cm", QuestionId=1},
+                new Option{OptionText="195cm", QuestionId=1},
+                new Option{OptionText="200cm", QuestionId=1}
+            };
+            options.ForEach(s => context.Options.Add(s));
             context.SaveChanges();
 
             base.Seed(context);

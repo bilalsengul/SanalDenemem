@@ -1,0 +1,10 @@
+﻿@model SanalDenemem.MvcWebUI.Entity.Exam
+
+@{
+    ViewBag.Title = "ExamQuestionTransition";
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+}
+
+<h2>ExamQuestionTransition</h2>
+
+@Html.ActionLink("Sınava Gir", "ExamQuestion", "Home",  new { id = Model.Id }, null))
