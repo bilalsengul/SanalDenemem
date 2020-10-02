@@ -17,6 +17,7 @@ namespace SanalDenemem.MvcWebUI.Entity
         public string Name { get; set; }
         public string Surname { get; set; }
         List<MemberExam>MemberExams { get; set; }
+        List<Task>Tasks { get; set; }
         // public virtual ICollection<Exam> Exames { get; set; }
         //public string Email { get; set; }
         //public string Password { get; set; }

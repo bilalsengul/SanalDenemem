@@ -125,15 +125,15 @@ namespace SanalDenemem.MvcWebUI.Controllers
         }
 
         //TODO:deneme amaclı oluşturdum işim bitince view ve bu action Delete
-        [Authorize(Roles ="admin")]
-        public ActionResult listedeneme()
-        {
+        //[Authorize(Roles ="admin")]
+        //public ActionResult listedeneme()
+        //{
             
            
-            var users = UserManager.Users.ToList();
+        //    var users = UserManager.Users.ToList();
            
-            return View(users);
-        }
+        //    return View(users);
+        //}
 
         public void memberAdd(Member member)
         {

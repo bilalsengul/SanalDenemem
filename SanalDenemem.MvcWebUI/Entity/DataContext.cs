@@ -47,5 +47,6 @@ namespace SanalDenemem.MvcWebUI.Entity
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Option> Options { get; set; }
+        public DbSet<Task> Tasks { get; set; }
     }
 }

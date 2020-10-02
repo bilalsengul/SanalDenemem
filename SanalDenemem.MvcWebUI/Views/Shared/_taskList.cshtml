@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SanalDenemem.MvcWebUI.Entity.Task>
+
+
+
+<p>
+   
+
+    <a href="@Url.Action("Create","Task",new {id=ViewBag.id})" >
+        <i class="glyphicon glyphicon-bookmark"></i>
+        Görev Oluştur
+    </a>
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Done)
+        </th>
+        <th></th>
+    </tr>
+    @if (ViewBag.count != 0)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @if (item.Done == true)
+                    {
+                        <i class="	glyphicon glyphicon-ok-circle"></i>
+                    }
+                    else
+                    {
+                        <i  class="	glyphicon glyphicon-remove-circle"></i>
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit","Task", new { id = item.Id })">Düzenle</a> |
+                    <a href="@Url.Action("Delete","Task", new { id = item.Id })">Sil</a>
+                </td>
+            </tr>
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4" style="text-align: center;">Yapılacaklar Listesi Boş</td>
+        </tr>
+
+    }
+
+
+</table>

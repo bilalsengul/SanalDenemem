@@ -368,7 +368,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\listedeneme.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -387,6 +386,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
+    <Compile Include="Controllers\TaskController.cs" />
     <Compile Include="Entity\DataContext.cs" />
     <Compile Include="Entity\DataInitializer.cs" />
     <Compile Include="Entity\Exam.cs" />
@@ -396,6 +396,7 @@
     <Compile Include="Entity\MemberExam.cs" />
     <Compile Include="Entity\Option.cs" />
     <Compile Include="Entity\Question.cs" />
+    <Compile Include="Entity\Task.cs" />
     <Compile Include="Entity\Topic.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -474,6 +475,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\ExamQuestion.cshtml" />
     <Content Include="Views\Home\ExamQuestionTransition.cshtml" />
+    <Content Include="Views\Shared\_ExamResult.cshtml" />
+    <Content Include="Views\Task\Create.cshtml" />
+    <Content Include="Views\Task\Edit.cshtml" />
+    <Content Include="Views\Shared\_taskList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

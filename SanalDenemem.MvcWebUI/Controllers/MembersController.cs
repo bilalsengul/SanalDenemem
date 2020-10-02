@@ -13,12 +13,11 @@ namespace SanalDenemem.MvcWebUI.Controllers
 {
     public class MembersController : BaseController
     {
-        //private DataContext db = new DataContext();
-
-
+ 
         public ActionResult Profile(string id)
         {
-            if (id == null&& !Request.IsAuthenticated)
+           
+            if (id == null && !Request.IsAuthenticated || id == null)
             {
                 return View("Error", new string[] { "yetkisiz veya hatalı giriş" });
             }
@@ -32,6 +31,21 @@ namespace SanalDenemem.MvcWebUI.Controllers
             return View(member);
         }
 
+        [ChildActionOnly]
+        public PartialViewResult ExamResult()
+        {
+          
+            return PartialView("_ExamResult");
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult Tasks(int currentId)
+        {
+            var tasks = db.Tasks.Where(i => i.MemberId == currentId).ToList();
+            ViewBag.count = tasks.Count;
+            ViewBag.id = currentId;
+            return PartialView("_taskList",tasks);
+        }
 
         [HttpGet]
         // GET: Home
