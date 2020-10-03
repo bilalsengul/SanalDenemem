@@ -80,16 +80,41 @@ namespace SanalDenemem.MvcWebUI.Controllers
 
         public ActionResult ExamResult(List<SubResult> dizi)
         {
+            MemberExam memberExam = new MemberExam();
+            List<SubMemberExam> subMemberExams = new List<SubMemberExam>();
             int correctCount = 0;
-            int falseCount = 0;
+            int failCount = 0;
+            memberExam.CorrectCount = correctCount;
+            memberExam.FailCount = failCount;
+            memberExam.State = true;
+            memberExam.SubMemberExams = subMemberExams;
+            memberExam.MemberId = dizi[0].memberId;
+            memberExam.ExamId = dizi[0].examId;
+            memberExam.Score = correctCount * 0.75 + failCount * 0.25;
+            db.MemberExams.Add(memberExam);
+            db.SaveChanges();
             foreach (SubResult item in dizi)
             {
                 bool isCorrect = db.Options.Where(x => x.Id == item.optId && x.QuestionId == item.quesId).FirstOrDefault().IsCorrect;
                 if (isCorrect) { correctCount++; }
-                else { falseCount++; }
+                else { failCount++; }
 
+                SubMemberExam subMemberExam = new SubMemberExam();
+                subMemberExam.MemberExamId = memberExam.Id;
+                subMemberExam.QuestionId = item.quesId;
+                subMemberExam.SelectedOptionId = item.optId;
+                subMemberExam.CorrectOptionId = db.Options.Where(x => x.QuestionId == item.quesId && x.IsCorrect == true).FirstOrDefault().Id;
+                db.SubMemberExams.Add(subMemberExam);
+                subMemberExams.Add(subMemberExam);
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+
+                }
             }
-
 
             return View();
         }

@@ -86,6 +86,24 @@ namespace SanalDenemem.MvcWebUI.Identity
                 manager.AddToRole(user.Id, "premiumMember");
             }
 
+            if (!context.Users.Any(i => i.Name == "uogut"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser()
+                {
+                    Name = "Ümit Recep",
+                    Surname = "ÖĞÜT",
+                    UserName = "uogut",
+                    Email = "umitrecepogut@gmail.com"
+                };
+
+                manager.Create(user, "12341234");
+                manager.AddToRole(user.Id, "admin");
+                manager.AddToRole(user.Id, "freeMember");
+                manager.AddToRole(user.Id, "premiumMember");
+            }
+
             base.Seed(context);
         }
     }

@@ -12,5 +12,7 @@ namespace SanalDenemem.MvcWebUI.Entity
         public int QuestionId { get; set; }
         public int CorrectOptionId { get; set; }
         public int SelectedOptionId { get; set; }
+        public MemberExam MemberExam { get; set; }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 namespace SanalDenemem.MvcWebUI.Entity
@@ -35,6 +36,12 @@ namespace SanalDenemem.MvcWebUI.Entity
             .HasRequired(i => i.Lesson)
             .WithMany(u => u.Topics)
             .HasForeignKey(i => i.LessonId)
+            .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<SubMemberExam>()
+            .HasRequired(i => i.MemberExam)
+            .WithMany(u => u.SubMemberExams)
+            .HasForeignKey(i => i.MemberExamId)
             .WillCascadeOnDelete(false);
         }
 
