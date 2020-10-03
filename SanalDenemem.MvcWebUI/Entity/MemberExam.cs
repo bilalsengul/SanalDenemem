@@ -16,5 +16,6 @@ namespace SanalDenemem.MvcWebUI.Entity
         public int CorrectCount { get; set; }
         public int FailCount { get; set; }
         public int Score { get; set; }
+        public List<SubMemberExam> SubMemberExams { get; set; }
     }
 }

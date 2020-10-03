@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_TemplateLayout.cshtml";
 }
 
-<h2>ExamQuestionTransition</h2>
+<div style="text-align: center;">
+    <h1>Sınava Geçiş Ekranı</h1>
+    <h4>(Sınav Süresi: @Model.ExamTime dk)</h4>
 
-@Html.ActionLink("Sınava Gir", "ExamQuestion", "Home",  new { id = Model.Id }, null))
+
+    @Html.ActionLink("Sınavı Başlat", "ExamQuestion", "Home", new { id = Model.Id }, new { @class = "btn btn-primary" })
+</div>

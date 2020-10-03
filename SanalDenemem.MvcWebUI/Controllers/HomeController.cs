@@ -1,4 +1,5 @@
-﻿using SanalDenemem.MvcWebUI.Entity;
+﻿using Microsoft.AspNet.Identity;
+using SanalDenemem.MvcWebUI.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,7 +65,33 @@ namespace SanalDenemem.MvcWebUI.Controllers
                     item.Image = item.Image.Split('\\').Last();
                 }
             }
-            return View(list);
+            int member = db.Members.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id;
+
+            return View(Tuple.Create<int, List<Question>>(member, list));
+        }
+
+        public class SubResult
+        {
+            public int examId { get; set; }
+            public int quesId { get; set; }
+            public int optId { get; set; }
+            public int memberId { get; set; }
+        }
+
+        public ActionResult ExamResult(List<SubResult> dizi)
+        {
+            int correctCount = 0;
+            int falseCount = 0;
+            foreach (SubResult item in dizi)
+            {
+                bool isCorrect = db.Options.Where(x => x.Id == item.optId && x.QuestionId == item.quesId).FirstOrDefault().IsCorrect;
+                if (isCorrect) { correctCount++; }
+                else { falseCount++; }
+
+            }
+
+
+            return View();
         }
 
         public ActionResult Blog()

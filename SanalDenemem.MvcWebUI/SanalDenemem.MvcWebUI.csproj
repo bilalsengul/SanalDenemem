@@ -396,6 +396,7 @@
     <Compile Include="Entity\MemberExam.cs" />
     <Compile Include="Entity\Option.cs" />
     <Compile Include="Entity\Question.cs" />
+    <Compile Include="Entity\SubMemberExam.cs" />
     <Compile Include="Entity\Task.cs" />
     <Compile Include="Entity\Topic.cs" />
     <Compile Include="Global.asax.cs">

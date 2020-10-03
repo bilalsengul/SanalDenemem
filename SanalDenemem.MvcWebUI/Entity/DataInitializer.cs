@@ -72,18 +72,30 @@ namespace SanalDenemem.MvcWebUI.Entity
 
             //SORULAR
             var questions = new List<Question>{
-                new Question{Desc="Bilal uzun biridir.", Text="Bilalin boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=1}
+                new Question{Desc="Bilal uzun biridir.", Text="Bilalin boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=1},
+                new Question{Desc="Yunus uzun biridir.", Text="Yunusun boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=2},
+                new Question{Desc="Ümit uzun biridir.", Text="Ümitin boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=3}
             };
             questions.ForEach(s => context.Questions.Add(s));
             context.SaveChanges();
 
             //SEÇENEKLER
             var options = new List<Option>{
-                new Option{OptionText="180cm", QuestionId=1},
-                new Option{OptionText="185cm", QuestionId=1},
-                new Option{OptionText="190cm", QuestionId=1},
-                new Option{OptionText="195cm", QuestionId=1},
-                new Option{OptionText="200cm", QuestionId=1}
+                new Option{OptionText="180cm", QuestionId=1, IsCorrect=false},
+                new Option{OptionText="185cm", QuestionId=1, IsCorrect=false},
+                new Option{OptionText="190cm", QuestionId=1, IsCorrect=true},
+                new Option{OptionText="195cm", QuestionId=1, IsCorrect=false},
+                new Option{OptionText="200cm", QuestionId=1, IsCorrect=false},
+                new Option{OptionText="180cm", QuestionId=2, IsCorrect=false},
+                new Option{OptionText="185cm", QuestionId=2, IsCorrect=true},
+                new Option{OptionText="190cm", QuestionId=2, IsCorrect=false},
+                new Option{OptionText="195cm", QuestionId=2, IsCorrect=false},
+                new Option{OptionText="200cm", QuestionId=2, IsCorrect=false},
+                new Option{OptionText="180cm", QuestionId=3, IsCorrect=false},
+                new Option{OptionText="185cm", QuestionId=3, IsCorrect=false},
+                new Option{OptionText="190cm", QuestionId=3, IsCorrect=false},
+                new Option{OptionText="195cm", QuestionId=3, IsCorrect=true},
+                new Option{OptionText="200cm", QuestionId=3, IsCorrect=false}
             };
             options.ForEach(s => context.Options.Add(s));
             context.SaveChanges();
