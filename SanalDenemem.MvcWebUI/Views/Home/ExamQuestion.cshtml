@@ -110,6 +110,7 @@
             </div>
         }
     </div>
+    <button onclick="finishExam()" class="btn btn-danger">Sınavı Bitir</button>
 </div>
 
 
@@ -141,13 +142,6 @@
             data: { dizi: dizi },
             success: function (response) {
                 console.log(response);
-
-                //if (response.IsSuccess) {
-                //    location.reload();
-                //}
-                //else {
-                //    console.log(response);
-                //}
             },
             error: function (err) {
                 alert(err);

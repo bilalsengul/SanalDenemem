@@ -47,11 +47,21 @@ namespace SanalDenemem.MvcWebUI.Controllers
             {
                 return View(@"~/Views/Shared/Error.cshtml", new string[] { "Hatalı Sayfa" });
             }
+            //int memberId = db.Members.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id;
+            //if (db.MemberExams.Where(x => x.MemberId == memberId && x.ExamId == id).FirstOrDefault().State == true)
+            //{
+            //    return View(@"~/Views/Shared/Error.cshtml", new string[] { "Sınava daha önce giriş yaptınız." });
+            //}
             return View(db.Exams.Where(x => x.Id == id).FirstOrDefault());
         }
 
         public ActionResult ExamQuestion(int? id)
         {
+            //int memberId = db.Members.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id;
+            //if (db.MemberExams.Where(x => x.MemberId == memberId && x.ExamId == id).FirstOrDefault().State == true)
+            //{
+            //    return View(@"~/Views/Shared/Error.cshtml", new string[] { "Sınava daha önce giriş yaptınız." });
+            //}
             if (id == null)
             {
                 return View(@"~/Views/Shared/Error.cshtml", new string[] { "Hatalı Sayfa" });
@@ -84,15 +94,14 @@ namespace SanalDenemem.MvcWebUI.Controllers
             List<SubMemberExam> subMemberExams = new List<SubMemberExam>();
             int correctCount = 0;
             int failCount = 0;
-            memberExam.CorrectCount = correctCount;
-            memberExam.FailCount = failCount;
             memberExam.State = true;
             memberExam.SubMemberExams = subMemberExams;
             memberExam.MemberId = dizi[0].memberId;
             memberExam.ExamId = dizi[0].examId;
-            memberExam.Score = correctCount * 0.75 + failCount * 0.25;
+            memberExam.CorrectCount = correctCount;
+            memberExam.FailCount = failCount;
+            memberExam.Score = correctCount - failCount * 0.25;
             db.MemberExams.Add(memberExam);
-            db.SaveChanges();
             foreach (SubResult item in dizi)
             {
                 bool isCorrect = db.Options.Where(x => x.Id == item.optId && x.QuestionId == item.quesId).FirstOrDefault().IsCorrect;
@@ -106,15 +115,13 @@ namespace SanalDenemem.MvcWebUI.Controllers
                 subMemberExam.CorrectOptionId = db.Options.Where(x => x.QuestionId == item.quesId && x.IsCorrect == true).FirstOrDefault().Id;
                 db.SubMemberExams.Add(subMemberExam);
                 subMemberExams.Add(subMemberExam);
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (Exception e)
-                {
-
-                }
+                db.SaveChanges();
             }
+            var a = db.MemberExams.Where(x => x.Id == memberExam.Id).FirstOrDefault();
+            a.FailCount = failCount;
+            a.CorrectCount = correctCount;
+            a.Score = correctCount - failCount * 0.25;
+            db.SaveChanges();
 
             return View();
         }
