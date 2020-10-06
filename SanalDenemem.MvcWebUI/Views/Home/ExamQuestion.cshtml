@@ -136,12 +136,14 @@
     }
 
     function finishExam() {
+        console.log("finisexam girdi.")
         $.ajax({
             type: "POST",
             url: '@Url.Action("ExamResult", "Home")',
             data: { dizi: dizi },
             success: function (response) {
                 console.log(response);
+                console.log("basarılı.")
             },
             error: function (err) {
                 alert(err);

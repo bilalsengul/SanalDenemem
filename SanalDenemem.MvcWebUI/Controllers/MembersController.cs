@@ -16,17 +16,24 @@ namespace SanalDenemem.MvcWebUI.Controllers
  
         public ActionResult Profile(string id)
         {
-           
-            if (id == null && !Request.IsAuthenticated || id == null)
+            var username = User.Identity.Name;
+            var member = db.Members.FirstOrDefault(i => i.UserName == username);
+            //if (id == null && !Request.IsAuthenticated || id == null)
+            //{
+            //    return View("Error", new string[] { "yetkisiz veya hatalı giriş" });
+            //}
+
+
+            if (!Request.IsAuthenticated&&member==null)
             {
                 return View("Error", new string[] { "yetkisiz veya hatalı giriş" });
             }
-           
-            var member = db.Members.FirstOrDefault(i => i.UserName == id || i.UserId == id);
-            if (member == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+
+                //var member = db.Members.FirstOrDefault(i => i.UserName == id || i.UserId == id);
+            //if (member == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
 
             return View(member);
         }
@@ -34,9 +41,23 @@ namespace SanalDenemem.MvcWebUI.Controllers
         [ChildActionOnly]
         public PartialViewResult ExamResult()
         {
-          
-            return PartialView("_ExamResult");
+            var username = User.Identity.Name;
+            var id = db.Members.FirstOrDefault(i => i.UserName == username).Id;
+            var memberExam = db.MemberExams.Where(i => i.MemberId == id).ToList();
+
+            return PartialView("_ExamResult",memberExam);
         }
+
+        //public ActionResult ExamResult(int? id)
+        //{
+        //    //id exam id tuttum. burda soruları dönderecez.
+        //    if (id == null)
+        //    {
+        //        return View("Error", new string[] { " hatalı giriş" });
+        //    }
+            
+        //}
+
 
         [ChildActionOnly]
         public PartialViewResult Tasks(int currentId)
