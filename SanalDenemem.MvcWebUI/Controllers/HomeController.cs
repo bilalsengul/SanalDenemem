@@ -88,7 +88,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             public int memberId { get; set; }
         }
 
-        public ActionResult ExamResult(List<SubResult> dizi)
+        public JsonResult ExamResult(List<SubResult> dizi)
         {
             MemberExam memberExam = new MemberExam();
             List<SubMemberExam> subMemberExams = new List<SubMemberExam>();
@@ -123,7 +123,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             a.Score = correctCount - failCount * 0.25;
             db.SaveChanges();
 
-            return View();
+            return Json(new { IsSuccess = true, Message = "Kayıt Başarılı!" });
         }
 
         public ActionResult Blog()

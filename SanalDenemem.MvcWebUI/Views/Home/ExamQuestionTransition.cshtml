@@ -8,7 +8,41 @@
 <div style="text-align: center;">
     <h1>Sınava Geçiş Ekranı</h1>
     <h4>(Sınav Süresi: @Model.ExamTime dk)</h4>
-
+    <br />
+    <br />
+    <p>
+        Öğrencilerimiz, sınav bilgi sistemi ile çevrimiçi (online) sınav sistemine OBS kullanıcı adı ve şifreleri ile katılabilecektir.
+        Final Sınavları; 11 Haziran 2020 Saat 08:00 - 21 Haziran 2020 Saat 23:59 tarihleri arasında gerçekleşecek olup sınav tarih detayları sinavbilgisistemi.beykent.edu.tradresinde yayınlanmıştır. İlgili sınavlara https://pusulasinav.beykent.edu.tradresinden erişebilirsiniz. Öğrencilerimiz, sınav bilgi sistemi ile çevrimiçi (online) sınav sistemine OBS kullanıcı adı ve şifreleri ile katılabilecektir.
+        Sınava girmeden en az 24 saat önce mutlaka sınav sistemine giriş denemesi yapmış olmanız sisteme girişte yaşanabilecek sorunları daha önce tespit edilerek bizlere iletmeniz de yardımcı olacaktır.
+        Sisteme erişim sağlayan öğrencilerin karşısına 2019-2020 Bahar Döneminde final sınavına girmeleri gereken derslerinin listesi gelecek ve öğrenciler bu ekrandan sınava girecekleri dersi seçerek o derse ait sınavını başlatabilecektir.
+        Çoktan seçmeli cevaplar için sınav 50 dakika açık kalacak olup zaman sınırı (sınav süresi) 35 dakika ile sınırlandırılmıştır.
+        Yazılı cevap istenen sınavlarda;
+        - 70 dakika açık kalacak sınavlar için zaman sınırı (sınav süresi) 50 dakika,
+        - 120 dakika açık kalacak sınavlar için zaman sınırı (sınav süresi) 100 dakika ile sınırlandırılmıştır.
+        - Proje/ödev toplama ve evde cevaplanan sınav (take home exam) için teslim süresi 24 saat ile sınırlandırılmıştır.
+        - Sınav sistemi (pusulasinav.beykent.edu.tr) dışında gönderilen (eposta, bağlantı vb.) proje/ödev çalışmaları değerlendirmeye alınmayacaktır.
+        Öğrenciler, sınav ve proje/ödev/take home exam teslim sürelerini ayrıca sınav sisteminden ilgili derse ait etkinlikte görebilecektir.
+        Sınavı Şimdi Uygula butonu görünmüyorsa, sınav henüz başlamamış demektir.
+        Sınav Başlangıç ve Sınav Bitiş süreleri arasında sınava erişim sağlanabilir.
+        Her sınava sadece 1 kere giriş yapılabilir.
+        Sınav boyunca bitime kalan süre ekranda gösterilecektir.
+        Sınav esnasında, her sayfada bir soru ve o soruya ait cevap şıkları gösterilecektir.
+        Bir soru görüldükten sonra, cevap işaretlenirse ya da işaretlenmeden diğer soruya geçilir ise, sınav güvenliği sebebi ile bir daha önceki soruya geri dönülemeyecektir.
+        Dört yanlış bir doğru cevabı götürmeyecektir.
+        Başka bir öğrencinin yerine sınava girmek ya da kendisi yerine başka birini sınava sokmak eylemlerinden herhangi birini gerçekleştiren öğrencilerin sınavları geçersiz sayılır ve Yükseköğretim Kurumları Öğrenci Disiplin Yönetmeliği kapsamında işlem başlatılır.
+        Sınav esnasında internet/elektrik kesintisi ya da cihaz arızası yaşanması durumunda sınav süresinin sonuna kadar sisteme yeniden giriş yaparak kaldığınız yerden, kalan sınav süreniz ile devam edebilirsiniz. Bu aşamada sınav süresi devam ediyor olacaktır.
+        Gerekli tedbirleri almak öğrencinin sorumluluğundadır.
+        Sınav esnasında her soruda uyarı olarak görünecek olan “Tüm soruları cevapladıktan sonra Uygulamayı Bitir butonuna, ardından Tümünü gönder ve bitir butonuna tıklayınız” uyarısını dikkate almayan öğrencilerin sınav puanı oluşmaz.
+        Sınav sistemine erişen kullanıcıların tüm hareketleri (log) kayıt altına alınmaktadır. (Sisteme başarılı ya da başarısız giriş denemeleri ve nedenleri, cihaz bilgisi, IP bilgisi, sayfalar/ sorular arasında geçişler, işaretlenen cevaplar vb.)
+        11 Haziran 2020 Saat 08:00 - 21 Haziran 2020 Saat 23:59 tarihleri arasında sınava girmeyen öğrencilerimiz için, daha sonra hiçbir şekilde ek sınav açılmayacaktır.
+        Öğrenciler sınav sonuçlarını OBS üzerinden görebilecektir.
+        Sistemde oluşabilecek yoğunluk nedeniyle mağduriyetler oluşmaması için sınavın son saatlere bırakılmamasını önemle rica ediyoruz.
+        Sınav ile ilgili tüm sorunlarınız için http://adaydestek.beykent.edu.tr adresinden destek talebi gönderebilirsiniz. Destek taleplerinizde; yardım konusu olarak Örgün Öğretim (Pusula) seçmeli ve mutlaka Öğrenci Numarası belirtmeniz gerekmektedir. Destek almak istediğiniz konuyla ilgili detaylı açıklama ve öğrenci numarası belirtilmeyen taleplere çözüm sağlanmayacak olup talep kapatılacaktır.
+    </p>
+    <br />
+    <br />
+    <br />
+    <br />
 
     @Html.ActionLink("Sınavı Başlat", "ExamQuestion", "Home", new { id = Model.Id }, new { @class = "btn btn-primary" })
 </div>

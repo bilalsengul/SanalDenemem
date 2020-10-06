@@ -142,7 +142,7 @@
             url: '@Url.Action("ExamResult", "Home")',
             data: { dizi: dizi },
             success: function (response) {
-                console.log(response);
+                window.location.href = '@Url.Action("Profile", "Members")';
                 console.log("basarılı.")
             },
             error: function (err) {

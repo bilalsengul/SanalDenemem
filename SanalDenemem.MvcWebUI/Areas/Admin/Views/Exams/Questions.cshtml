@@ -17,7 +17,7 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="RowNumber">Sıra No</label>
                     </div>
-                    <input type="number" class="form-control" id="RowNumber" placeholder="Giriniz...">
+                    <input type="number" class="form-control" id="RowNumber" min="1" placeholder="Giriniz...">
                 </div>
             </div>
             <div class="col-md-5">
@@ -139,7 +139,7 @@
         {
             <tr>
                 <td>
-                    @item.RowNo
+                    @item.RowNo<input type="hidden" id="quesId" name="quesId" value="@item.Id">
                 </td>
                 <td>
                     @item.Topic.Lesson.LessonName
@@ -164,7 +164,7 @@
 </table>
 
 <!-- Modal -->
-<div class="modal fade" id="editQuestionModal" tabindex="-1" aria-labelledby="editQuestionModalLabel" aria-hidden="true">
+<div class="modal bd-example-modal-lg fade" id="editQuestionModal" tabindex="-1" aria-labelledby="editQuestionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -175,33 +175,117 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <div class="col-md-2">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdRowNumber">Sıra No</label>
+                            </div>
+                            <input type="number" class="form-control" id="UpdRowNumber" min="1" placeholder="Giriniz...">
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <div class="col-md-5">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdDDLLessons">Ders</label>
+                            </div>
+                            @Html.DropDownList("LessonId", null, htmlAttributes: new { @class = "custom-select", @id = "UpdDDLLessons" })
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdDDLTopics">Konu</label>
+                            </div>
+                            <select class="custom-select" id="UpdDDLTopics">
+                                <option selected="">Seçiniz...</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdDescription">Açıklama</label>
+                            </div>
+                            <textarea type="text" class="form-control" id="UpdDescription" placeholder="Giriniz..."></textarea>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdText">Yazı</label>
+                            </div>
+                            <textarea type="text" class="form-control" id="UpdText" placeholder="Giriniz..."></textarea>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdImage">Resim</label>
+                            </div>
+                            <div class="custom-file">
+                                <label class="custom-file-label" for="UpdImage">Seçiniz...</label>
+                                <input type="file" class="custom-file-input" accept=".jpg,.png" id="UpdImage">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdOption1">1. Seçenek</label>
+                            </div>
+                            <input style="width: 70%;" type="text" class="form-control" id="UpdOption1" placeholder="Giriniz...">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option1State" name="trueOption">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdOption2">2. Seçenek</label>
+                            </div>
+                            <input style="width: 70%;" type="text" class="form-control" id="UpdOption2" placeholder="Giriniz...">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option2State" name="trueOption">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdOption3">3. Seçenek</label>
+                            </div>
+                            <input style="width: 70%;" type="text" class="form-control" id="UpdOption3" placeholder="Giriniz...">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option3State" name="trueOption">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdOption4">4. Seçenek</label>
+                            </div>
+                            <input style="width: 70%;" type="text" class="form-control" id="UpdOption4" placeholder="Giriniz...">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option4State" name="trueOption">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdOption5">5. Seçenek</label>
+                            </div>
+                            <input style="width: 70%;" type="text" class="form-control" id="UpdOption5" placeholder="Giriniz...">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option5State" name="trueOption">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-outline-success" type="button" onclick="UpdateQuestion()">
+                            Kaydet
+                        </button>
+                        <button class="btn btn-outline-warning" type="button">
+                            Temizle
+                        </button>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                <button type="button" class="btn btn-primary">Güncelle</button>
             </div>
         </div>
     </div>
@@ -282,11 +366,6 @@
             }
         });
     }
-
-    function inputValidation() {
-
-    }
-
 </script>
 <script>
     //COMMON
@@ -336,25 +415,46 @@
         fileData.append('Option4State', $('#Option4State').prop('checked') ? true : false);
         fileData.append('Option5State', $('#Option5State').prop('checked') ? true : false);
 
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("InsertQuestion", "Exams")',
-            contentType: false,
-            processData: false,
-            data: fileData,
-            success: function (response) {
-                if (response.IsSuccess) {
-                    location.reload();
+        if (inputValidation()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("InsertQuestion", "Exams")',
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (response) {
+                    if (response.IsSuccess) {
+                        location.reload();
+                    }
+                    else {
+                        console.log(response);
+                    }
+                },
+                error: function (err) {
+                    alert(err);
                 }
-                else {
-                    console.log(response);
-                }
-            },
-            error: function (err) {
-                alert(err);
-            }
-        });
+            });
+        }
     }
+
+    function inputValidation() {
+        let curRowNo = $('#RowNumber').val();
+        let rowNos = [];
+        @foreach (var item in Model.QuestionList) { <text>rowNos.push(@item.RowNo);</text> }
+        if (jQuery.inArray(parseInt(curRowNo), rowNos) != -1) { alert("Girdiğiniz Satır Numarası zaten var."); return false; }
+        ///////////
+        if ($('#DDLLessons').val() == "Seçiniz...") { alert("Ders seçmelisiniz."); return false; }
+        if ($('#DDLTopics').val() == "Seçiniz...") { alert("Konu seçmelisiniz."); return false; }
+        if ($('#Text').val() == "") { alert("Yazı girmelisiniz."); return false; }
+        if ($('#Option1').val() == "") { alert("1. Seçenek girmelisiniz."); return false; }
+        if ($('#Option2').val() == "") { alert("2. Seçenek girmelisiniz."); return false; }
+        if ($('#Option3').val() == "") { alert("3. Seçenek girmelisiniz."); return false; }
+        if ($('#Option4').val() == "") { alert("4. Seçenek girmelisiniz."); return false; }
+        if ($('#Option5').val() == "") { alert("5. Seçenek girmelisiniz."); return false; }
+        if (!($('#Option1State').is(':checked') || $('#Option2State').is(':checked') || $('#Option3State').is(':checked') || $('#Option4State').is(':checked') || $('#Option5State').is(':checked'))) { alert("Doğru şıkkı seçmelisiniz."); return false; }
+        return true;
+    }
+
 </script>
 <script>
     function DeleteQuestion(id) {

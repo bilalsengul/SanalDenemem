@@ -200,7 +200,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
             question.Desc = requestModel.Desc;
             question.Text = requestModel.Text;
             HttpFileCollectionBase files = Request.Files;
-            if (files.Count>0)
+            if (files.Count > 0)
             {
                 HttpPostedFileBase file = files[0];
                 string extension = Path.GetExtension(file.FileName);
@@ -261,6 +261,11 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         public JsonResult DeleteQuestion(int questionId)
         {
             Question question = db.Questions.Where(x => x.Id == questionId).FirstOrDefault();
+            foreach (var item in db.Options.Where(x => x.QuestionId == questionId).ToList())
+            {
+                db.Options.Remove(item);
+                db.SaveChanges();
+            }
             try
             {
                 db.Questions.Remove(question);

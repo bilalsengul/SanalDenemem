@@ -13,7 +13,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
 {
     public class MembersController : BaseController
     {
- 
+
         public ActionResult Profile(string id)
         {
             var username = User.Identity.Name;
@@ -24,12 +24,12 @@ namespace SanalDenemem.MvcWebUI.Controllers
             //}
 
 
-            if (!Request.IsAuthenticated&&member==null)
+            if (!Request.IsAuthenticated && member == null)
             {
                 return View("Error", new string[] { "yetkisiz veya hatalı giriş" });
             }
 
-                //var member = db.Members.FirstOrDefault(i => i.UserName == id || i.UserId == id);
+            //var member = db.Members.FirstOrDefault(i => i.UserName == id || i.UserId == id);
             //if (member == null)
             //{
             //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -44,19 +44,41 @@ namespace SanalDenemem.MvcWebUI.Controllers
             var username = User.Identity.Name;
             var id = db.Members.FirstOrDefault(i => i.UserName == username).Id;
             var memberExam = db.MemberExams.Where(i => i.MemberId == id).ToList();
+            //db.Exams.Where(x => x.Id == memberExam[0].ExamId).FirstOrDefault().Title;
 
-            return PartialView("_ExamResult",memberExam);
+            return PartialView("_ExamResult", memberExam);
         }
 
-        //public ActionResult ExamResult(int? id)
-        //{
-        //    //id exam id tuttum. burda soruları dönderecez.
-        //    if (id == null)
-        //    {
-        //        return View("Error", new string[] { " hatalı giriş" });
-        //    }
-            
-        //}
+
+        public class SubMemberExamDetail
+        {
+            public SubMemberExam SubMemberExam { get; set; }
+            public Question Question { get; set; }
+            public Option CorrectOption { get; set; }
+            public Option SelectedOption { get; set; }
+        }
+        public ActionResult ExamResultDetails(int? id)
+        {
+            //id exam id tuttum. burda soruları dönderecez.
+            if (id == null)
+            {
+                return View("Error", new string[] { " hatalı giriş" });
+            }
+            List<SubMemberExamDetail> subs = new List<SubMemberExamDetail>();
+
+            var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
+            var subMemberExams = db.SubMemberExams.Where(x=>x.MemberExamId == memberExam.Id).ToList();
+            foreach (var item in subMemberExams)
+            {
+                SubMemberExamDetail examDetail = new SubMemberExamDetail();
+                examDetail.SubMemberExam = item;
+                examDetail.Question = db.Questions.Where(x => x.Id == item.QuestionId).FirstOrDefault();
+                examDetail.SelectedOption = db.Options.Where(x => x.Id == item.SelectedOptionId).FirstOrDefault();
+                examDetail.CorrectOption = db.Options.Where(x => x.Id == item.CorrectOptionId).FirstOrDefault();
+                subs.Add(examDetail);
+            }
+            return View(subs);
+        }
 
 
         [ChildActionOnly]
@@ -65,7 +87,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             var tasks = db.Tasks.Where(i => i.MemberId == currentId).ToList();
             ViewBag.count = tasks.Count;
             ViewBag.id = currentId;
-            return PartialView("_taskList",tasks);
+            return PartialView("_taskList", tasks);
         }
 
         [HttpGet]
