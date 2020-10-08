@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_TemplateLayout.cshtml";
 }
 
-<h2>ExamResultDetails</h2>
-
 <style>
     .group-question {
         padding: 2%;
@@ -37,6 +35,11 @@
 
 <div class="container" style="margin-top: 3%;">
     <div class="row">
+        <div class="exam-title">
+            <h1>@Model[0].Question.Exam.Title</h1>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12" style="margin: 2%;">
             @foreach (var item in Model)
             {
@@ -61,10 +64,20 @@
                             {
                                 if (item.CorrectOption.Id == opt.Id)
                                 {
-                                    <div class="input-group">
-                                        <label for="@opt.QuestionId-ques" class="form-control test-option" style="background-color: lightgreen; font-size: 1.8rem !important; height: fit-content;">@opt.OptionText</label><br>
-                                    </div>
-                                    <br>
+                                    if (item.SelectedOption.OptionText == "Empty")
+                                    {
+                                        <div class="input-group">
+                                            <label for="@opt.QuestionId-ques" class="form-control test-option" style="background-color: lightyellow; font-size: 1.8rem !important; height: fit-content;">@opt.OptionText</label><br>
+                                        </div>
+                                        <br>
+                                    }
+                                    else
+                                    {
+                                        <div class="input-group">
+                                            <label for="@opt.QuestionId-ques" class="form-control test-option" style="background-color: lightgreen; font-size: 1.8rem !important; height: fit-content;">@opt.OptionText</label><br>
+                                        </div>
+                                        <br>
+                                    }
                                 }
                                 else if (item.CorrectOption.Id != opt.Id && opt.Id == item.SelectedOption.Id)
                                 {
@@ -81,8 +94,6 @@
                                     <br>
                                 }
                             }
-                            <span>Doğru: @item.CorrectOption.OptionText</span>
-                            <span>İşaretlenen: @item.SelectedOption.OptionText</span>
                         </div>
                     </div>
                 </div>

@@ -67,16 +67,49 @@ namespace SanalDenemem.MvcWebUI.Controllers
             List<SubMemberExamDetail> subs = new List<SubMemberExamDetail>();
 
             var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
-            var subMemberExams = db.SubMemberExams.Where(x=>x.MemberExamId == memberExam.Id).ToList();
+            var subMemberExams = db.SubMemberExams.Where(x => x.MemberExamId == memberExam.Id).ToList();
             foreach (var item in subMemberExams)
             {
                 SubMemberExamDetail examDetail = new SubMemberExamDetail();
                 examDetail.SubMemberExam = item;
                 examDetail.Question = db.Questions.Where(x => x.Id == item.QuestionId).FirstOrDefault();
+                examDetail.Question.Exam = db.Exams.Where(x => x.Id == examDetail.Question.ExamId).FirstOrDefault();
+                if (examDetail.Question.Image != null)
+                {
+                    examDetail.Question.Image = examDetail.Question.Image.Split('\\').Last();
+                }
                 examDetail.SelectedOption = db.Options.Where(x => x.Id == item.SelectedOptionId).FirstOrDefault();
                 examDetail.CorrectOption = db.Options.Where(x => x.Id == item.CorrectOptionId).FirstOrDefault();
                 subs.Add(examDetail);
             }
+
+            var list = db.Questions.Where(x => x.ExamId == db.MemberExams.Where(y => y.Id == id).FirstOrDefault().ExamId).ToList();
+
+            List<Question> cozulensorular = new List<Question>();
+            foreach (var item in subs)
+            {
+                cozulensorular.Add(item.Question);
+            }
+            var bossorular = list.Except(cozulensorular);
+            foreach (var item in bossorular)
+            {
+                item.Options = db.Options.Where(x => x.QuestionId == item.Id).ToList();
+                SubMemberExamDetail examDetail = new SubMemberExamDetail();
+                examDetail.Question = item;
+                examDetail.Question.Exam = db.Exams.Where(x => x.Id == examDetail.Question.ExamId).FirstOrDefault();
+                if (examDetail.Question.Image != null)
+                {
+                    examDetail.Question.Image = examDetail.Question.Image.Split('\\').Last();
+                }
+                Option option = new Option();
+                option.IsCorrect = false;
+                option.OptionText = "Empty";
+                option.QuestionId = item.Id;
+                examDetail.SelectedOption = option;
+                examDetail.CorrectOption = db.Options.Where(x => x.QuestionId == item.Id && x.IsCorrect == true).FirstOrDefault();
+                subs.Add(examDetail);
+            }
+            subs = subs.OrderBy(x=>x.Question.RowNo).ToList();
             return View(subs);
         }
 

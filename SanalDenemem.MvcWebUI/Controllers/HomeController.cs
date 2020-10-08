@@ -41,6 +41,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             return View(db.Exams.Where(x => x.ExamTypeId == id).ToList());
         }
 
+        [Authorize(Roles = "premiumMember")]
         public ActionResult ExamQuestionTransition(int? id)
         {
             if (id == null)
@@ -55,6 +56,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             return View(db.Exams.Where(x => x.Id == id).FirstOrDefault());
         }
 
+        [Authorize(Roles = "premiumMember")]
         public ActionResult ExamQuestion(int? id)
         {
             //int memberId = db.Members.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id;

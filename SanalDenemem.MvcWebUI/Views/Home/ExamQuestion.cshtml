@@ -52,7 +52,7 @@
     }
 
     window.onload = function () {
-        var fiveMinutes = 60 * @Model.Item2.FirstOrDefault().Exam.ExamTime,
+        var fiveMinutes = 0.5 * @Model.Item2.FirstOrDefault().Exam.ExamTime,
             display = document.querySelector('#time');
         startTimer(fiveMinutes, display);
     };
@@ -105,6 +105,9 @@
                             </div>
                             <br>
                         }
+                        <div class="input-group">
+                            <button onclick="emptyOption(@item.Id, @item.ExamId)" class="btn btn-danger">Boş Bırak</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,6 +152,15 @@
                 alert(err);
             }
         });
+    }
+
+    function emptyOption(quesId, examId) {
+        $('input[name=' + quesId + '-ques]').attr('checked', false);
+        for (var i = 0; i < dizi.length; i++) {
+            if (dizi[i].examId == examId && dizi[i].quesId == quesId) {
+                dizi.splice(i, 1);
+            }
+        }
     }
 
 </script>
