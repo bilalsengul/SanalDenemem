@@ -277,5 +277,120 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
                 return Json(new { IsSuccess = false, Message = "Silme Başarısız!" });
             }
         }
+
+        [HttpPost]
+        public JsonResult GetQuestionById(int questionId)
+        {
+            Question question = db.Questions.Where(x => x.Id == questionId).FirstOrDefault();
+            QuestionRequestModel questionRequestModel = new QuestionRequestModel();
+            questionRequestModel.ExamId = question.ExamId;
+            if (question.Image != null)
+            {
+                questionRequestModel.Image = question.Image.Split('\\').Last();
+            }
+            questionRequestModel.LessonId = question.LessonId;
+            questionRequestModel.TopicId = question.TopicId;
+            questionRequestModel.Desc = question.Desc;
+            questionRequestModel.Text = question.Text;
+            questionRequestModel.RowNo = question.RowNo;
+            var options = question.Options.OrderBy(x => x.Id).ToList();
+            questionRequestModel.Option1 = options[0].OptionText;
+            questionRequestModel.Option1State = options[0].IsCorrect;
+            questionRequestModel.Option2 = options[1].OptionText;
+            questionRequestModel.Option2State = options[1].IsCorrect;
+            questionRequestModel.Option3 = options[2].OptionText;
+            questionRequestModel.Option3State = options[2].IsCorrect;
+            questionRequestModel.Option4 = options[3].OptionText;
+            questionRequestModel.Option4State = options[3].IsCorrect;
+            questionRequestModel.Option5 = options[4].OptionText;
+            questionRequestModel.Option5State = options[4].IsCorrect;
+            return Json(new { Question = questionRequestModel });
+        }
+
+        public class UpdQuestionRequestModel
+        {
+            public int QuesId { get; set; }
+            public int RowNo { get; set; }
+            public string Desc { get; set; }
+            public string Text { get; set; }
+            public string Image { get; set; }
+            public int ExamId { get; set; }
+            public int LessonId { get; set; }
+            public int TopicId { get; set; }
+            public string Option1 { get; set; }
+            public string Option2 { get; set; }
+            public string Option3 { get; set; }
+            public string Option4 { get; set; }
+            public string Option5 { get; set; }
+            public bool Option1State { get; set; }
+            public bool Option2State { get; set; }
+            public bool Option3State { get; set; }
+            public bool Option4State { get; set; }
+            public bool Option5State { get; set; }
+        }
+
+        [HttpPost]
+        public JsonResult UpdateQuestion(UpdQuestionRequestModel requestModel)
+        {
+            Question question = db.Questions.Where(x => x.Id == requestModel.QuesId).FirstOrDefault();
+            question.RowNo = requestModel.RowNo;
+            question.Desc = requestModel.Desc;
+            question.Text = requestModel.Text;
+            HttpFileCollectionBase files = Request.Files;
+            if (files.Count > 0)
+            {
+                HttpPostedFileBase file = files[0];
+                string extension = Path.GetExtension(file.FileName);
+                string guid = Guid.NewGuid().ToString() + file.FileName.Split('.')[0] + extension.ToLower();
+                string path = Server.MapPath(@"~/Content/Uploads/Questions/");
+                bool folderExists = Directory.Exists(path);
+                if (!folderExists) { Directory.CreateDirectory(path); }
+                file.SaveAs(Path.Combine(path, guid));
+                question.Image = Path.Combine(path, guid);
+            }
+            else
+            {
+                question.Image = null;
+            }
+            question.ExamId = requestModel.ExamId;
+            question.LessonId = requestModel.LessonId;
+            question.TopicId = requestModel.TopicId;
+            List<Option> options = db.Options.Where(x => x.QuestionId == question.Id).OrderBy(x => x.Id).ToList();
+            Option option1 = options[0];
+            option1.OptionText = requestModel.Option1;
+            option1.IsCorrect = requestModel.Option1State;
+            option1.QuestionId = question.Id;
+            Option option2 = options[1];
+            option2.OptionText = requestModel.Option2;
+            option2.IsCorrect = requestModel.Option2State;
+            option2.QuestionId = question.Id;
+            Option option3 = options[2];
+            option3.OptionText = requestModel.Option3;
+            option3.IsCorrect = requestModel.Option3State;
+            option3.QuestionId = question.Id;
+            Option option4 = options[3];
+            option4.OptionText = requestModel.Option4;
+            option4.IsCorrect = requestModel.Option4State;
+            option4.QuestionId = question.Id;
+            Option option5 = options[4];
+            option5.OptionText = requestModel.Option5;
+            option5.IsCorrect = requestModel.Option5State;
+            option5.QuestionId = question.Id;
+            options.Add(option1);
+            options.Add(option2);
+            options.Add(option3);
+            options.Add(option4);
+            options.Add(option5);
+            question.Options = options;
+            try
+            {
+                db.SaveChanges();
+                return Json(new { IsSuccess = true, Message = "Kayıt Başarılı!" });
+            }
+            catch (Exception e)
+            {
+                return Json(new { IsSuccess = false, Message = "Kayıt Başarısız!" });
+            }
+        }
     }
 }

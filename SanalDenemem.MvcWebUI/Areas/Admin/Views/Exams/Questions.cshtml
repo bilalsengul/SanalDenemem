@@ -12,7 +12,7 @@
 <div style="margin-top: 1%;" class="collapse" id="collapseNewQuestion">
     <div class="card card-body">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="RowNumber">Sıra No</label>
@@ -20,7 +20,7 @@
                     <input type="number" class="form-control" id="RowNumber" min="1" placeholder="Giriniz...">
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-4">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="DDLLessons">Ders</label>
@@ -155,7 +155,7 @@
                 </td>
                 <td>
                     <input type="hidden" id="quesId" name="quesId" value="@item.Id">
-                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editQuestionModal">Düzenle</button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#editQuestionModal" onclick="UpdateQuestion(@item.Id)">Düzenle</button>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteQuestionModal" onclick="DeleteQuestion(@item.Id)">Sil</button>
                 </td>
             </tr>
@@ -164,18 +164,18 @@
 </table>
 
 <!-- Modal -->
-<div class="modal bd-example-modal-lg fade" id="editQuestionModal" tabindex="-1" aria-labelledby="editQuestionModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div class="modal bd-example-modal-xl fade" id="editQuestionModal" tabindex="-1" aria-labelledby="editQuestionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="editQuestionModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="editQuestionModalLabel">Soru Güncelleme</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="UpdRowNumber">Sıra No</label>
@@ -183,7 +183,7 @@
                             <input type="number" class="form-control" id="UpdRowNumber" min="1" placeholder="Giriniz...">
                         </div>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <label class="input-group-text" for="UpdDDLLessons">Ders</label>
@@ -220,6 +220,9 @@
                     <div class="col-md-6">
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
+                                <label class="input-group-text" for="UpdImage"><img height="24" id="UpdPhoto" /></label>
+                            </div>
+                            <div class="input-group-prepend">
                                 <label class="input-group-text" for="UpdImage">Resim</label>
                             </div>
                             <div class="custom-file">
@@ -234,7 +237,7 @@
                                 <label class="input-group-text" for="UpdOption1">1. Seçenek</label>
                             </div>
                             <input style="width: 70%;" type="text" class="form-control" id="UpdOption1" placeholder="Giriniz...">
-                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option1State" name="trueOption">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="UpdOption1State" name="trueOption">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -243,7 +246,7 @@
                                 <label class="input-group-text" for="UpdOption2">2. Seçenek</label>
                             </div>
                             <input style="width: 70%;" type="text" class="form-control" id="UpdOption2" placeholder="Giriniz...">
-                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option2State" name="trueOption">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="UpdOption2State" name="trueOption">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -252,7 +255,7 @@
                                 <label class="input-group-text" for="UpdOption3">3. Seçenek</label>
                             </div>
                             <input style="width: 70%;" type="text" class="form-control" id="UpdOption3" placeholder="Giriniz...">
-                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option3State" name="trueOption">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="UpdOption3State" name="trueOption">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -261,7 +264,7 @@
                                 <label class="input-group-text" for="UpdOption4">4. Seçenek</label>
                             </div>
                             <input style="width: 70%;" type="text" class="form-control" id="UpdOption4" placeholder="Giriniz...">
-                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option4State" name="trueOption">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="UpdOption4State" name="trueOption">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -270,27 +273,20 @@
                                 <label class="input-group-text" for="UpdOption5">5. Seçenek</label>
                             </div>
                             <input style="width: 70%;" type="text" class="form-control" id="UpdOption5" placeholder="Giriniz...">
-                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="Option5State" name="trueOption">
+                            <input style="height: 20px; align-self: center;" type="radio" class="form-control" id="UpdOption5State" name="trueOption">
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <button class="btn btn-outline-success" type="button" onclick="UpdateQuestion()">
-                            Kaydet
-                        </button>
-                        <button class="btn btn-outline-warning" type="button">
-                            Temizle
-                        </button>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
+                <input type="hidden" id="updQuesId" name="updQuesId" />
+                <input type="hidden" id="updHiddenRowNo" name="updHiddenRowNo" />
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                <button type="button" class="btn btn-primary">Güncelle</button>
+                <button type="button" class="btn btn-primary" onclick="UpdateSaveChange()">Güncelle</button>
             </div>
         </div>
     </div>
 </div>
-
 
 <script>
     $(document).ready(function () {
@@ -475,4 +471,169 @@
             }
         });
     }
+</script>
+<script>
+    function UpdateSaveChange() {
+        var updQuesId = $('#updQuesId').val();
+        var arr = window.location.href.split('/');
+        var fileData = new FormData();
+        fileData.append('QuesId', updQuesId);
+        fileData.append('RowNo', $('#UpdRowNumber').val());
+        fileData.append('Desc', $('#UpdDescription').val());
+        fileData.append('Text', $('#UpdText').val());
+        var files = document.getElementById("UpdImage").files;
+        if (files.length != 0) { fileData.append(files[0].name, files[0]); }
+        fileData.append('ExamId', arr[arr.length - 1]);
+        fileData.append('LessonId', $('#UpdDDLLessons').val());
+        fileData.append('TopicId', $('#UpdDDLTopics').val());
+        fileData.append('Option1', $('#UpdOption1').val());
+        fileData.append('Option2', $('#UpdOption2').val());
+        fileData.append('Option3', $('#UpdOption3').val());
+        fileData.append('Option4', $('#UpdOption4').val());
+        fileData.append('Option5', $('#UpdOption5').val());
+        fileData.append('Option1State', $('#UpdOption1State').prop('checked') ? true : false);
+        fileData.append('Option2State', $('#UpdOption2State').prop('checked') ? true : false);
+        fileData.append('Option3State', $('#UpdOption3State').prop('checked') ? true : false);
+        fileData.append('Option4State', $('#UpdOption4State').prop('checked') ? true : false);
+        fileData.append('Option5State', $('#UpdOption5State').prop('checked') ? true : false);
+
+        if (updateValidation()) {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UpdateQuestion", "Exams")',
+                contentType: false,
+                processData: false,
+                data: fileData,
+                success: function (response) {
+                    if (response.IsSuccess) {
+                        location.reload();
+                    }
+                    else {
+                        console.log(response);
+                    }
+                },
+                error: function (err) {
+                    alert(err);
+                }
+            });
+        }
+    }
+
+    function updateValidation() {
+        let curRowNo = $('#UpdRowNumber').val();
+        let hidRowNo = $('#updHiddenRowNo').val();
+        let rowNos = [];
+        @foreach (var item in Model.QuestionList) { <text>rowNos.push(@item.RowNo);</text> }
+        rowNos = jQuery.grep(rowNos, function (value) {
+            return value != hidRowNo;
+        });
+        console.log(rowNos);
+        console.log(curRowNo);
+        if (jQuery.inArray(parseInt(curRowNo), rowNos) != -1) { alert("Girdiğiniz Satır Numarası zaten var."); return false; }
+        if ($('#UpdDDLLessons').val() == "Seçiniz...") { alert("Ders seçmelisiniz."); return false; }
+        if ($('#UpdDDLTopics').val() == "Seçiniz...") { alert("Konu seçmelisiniz."); return false; }
+        if ($('#UpdText').val() == "") { alert("Yazı girmelisiniz."); return false; }
+        if ($('#UpdOption1').val() == "") { alert("1. Seçenek girmelisiniz."); return false; }
+        if ($('#UpdOption2').val() == "") { alert("2. Seçenek girmelisiniz."); return false; }
+        if ($('#UpdOption3').val() == "") { alert("3. Seçenek girmelisiniz."); return false; }
+        if ($('#UpdOption4').val() == "") { alert("4. Seçenek girmelisiniz."); return false; }
+        if ($('#UpdOption5').val() == "") { alert("5. Seçenek girmelisiniz."); return false; }
+        if (!($('#UpdOption1State').is(':checked') || $('#UpdOption2State').is(':checked') || $('#UpdOption3State').is(':checked') || $('#UpdOption4State').is(':checked') || $('#UpdOption5State').is(':checked'))) { alert("Doğru şıkkı seçmelisiniz."); return false; }
+        return true;
+    }
+
+    function UpdateQuestion(id) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("GetQuestionById", "Exams")',
+            data: { 'questionId': id},
+            success: function (response) {
+                $('#UpdRowNumber').val(response.Question.RowNo);
+                $('#updHiddenRowNo').val(response.Question.RowNo);
+                $('#UpdDDLLessons').val(response.Question.LessonId).trigger('change');
+                setTimeout(function () { $('#UpdDDLTopics').val(response.Question.TopicId); }, 300);
+                $('#UpdDescription').val(response.Question.Desc);
+                $('#UpdText').val(response.Question.Text);
+                $('#UpdOption1').val(response.Question.Option1);
+                $('#UpdOption2').val(response.Question.Option2);
+                $('#UpdOption3').val(response.Question.Option3);
+                $('#UpdOption4').val(response.Question.Option4);
+                $('#UpdOption5').val(response.Question.Option5);
+                $('#UpdOption1State').val(response.Question.Option1);
+                $('#UpdOption2State').val(response.Question.Option2);
+                $('#UpdOption3State').val(response.Question.Option3);
+                $('#UpdOption4State').val(response.Question.Option4);
+                $('#UpdOption5State').val(response.Question.Option5);
+                response.Question.Option1State == true ? $('#UpdOption1State').prop('checked', true) : $('#UpdOption1State').prop('checked', false);
+                response.Question.Option2State == true ? $('#UpdOption2State').prop('checked', true) : $('#UpdOption2State').prop('checked', false);
+                response.Question.Option3State == true ? $('#UpdOption3State').prop('checked', true) : $('#UpdOption3State').prop('checked', false);
+                response.Question.Option4State == true ? $('#UpdOption4State').prop('checked', true) : $('#UpdOption4State').prop('checked', false);
+                response.Question.Option5State == true ? $('#UpdOption5State').prop('checked', true) : $('#UpdOption5State').prop('checked', false);
+                if (response.Question.Image != null) {
+                    $('#UpdPhoto').attr('src', '../../../Content/Uploads/Questions/' + response.Question.Image);
+                    var element = document.querySelector("#editQuestionModal>div>div>div.modal-body>div>div:nth-child(6)>div>div.custom-file>label");
+                    $(element).html("Dosya Adı: " + response.Question.Image.substr(36, response.Question.Image.length-36));
+                }
+                $('#updQuesId').val(id);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    /*
+
+
+
+            public int RowNo { get; set; }
+            public string Desc { get; set; }
+            public string Text { get; set; }
+            public string Image { get; set; }
+            public int ExamId { get; set; }
+            public int LessonId { get; set; }
+            public int TopicId { get; set; }
+            public string Option1 { get; set; }
+            public string Option2 { get; set; }
+            public string Option3 { get; set; }
+            public string Option4 { get; set; }
+            public string Option5 { get; set; }
+            public bool Option1State { get; set; }
+            public bool Option2State { get; set; }
+            public bool Option3State { get; set; }
+            public bool Option4State { get; set; }
+            public bool Option5State { get; set; }
+
+     */
+
+    $('#UpdDDLLessons').change(function () {
+        if ($('#UpdDDLLessons').val() != 'Seçiniz...') {
+            $('#UpdDDLTopics').attr('disabled', false);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetTopicsByLesson", "Exams")',
+                data: { 'lessonId': $(this).val()},
+                success: function (response) {
+                    $('#UpdDDLTopics option').remove();
+                    $('#UpdDDLTopics').append(createOption("Seçiniz...", "Seçiniz..."));
+                    for (var i = 0; i < response.length; i++) {
+                        var option = createOption(response[i].Id, response[i].TopicName);
+                        $('#UpdDDLTopics').append($(option));
+                    }
+                },
+                failure: function (response) {
+                    console.log(response);
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+        else {
+            $('#UpdDDLTopics option').remove();
+            $('#UpdDDLTopics').append(createOption("Seçiniz...", "Seçiniz..."));
+            $('#UpdDDLTopics').attr('disabled', true);
+        }
+    });
+
 </script>
