@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SanalDenemem.MvcWebUI.Entity;
-
+using SanalDenemem.MvcWebUI.Models;
 namespace SanalDenemem.MvcWebUI.Controllers
 {
     public class MembersController : BaseController
@@ -16,38 +16,62 @@ namespace SanalDenemem.MvcWebUI.Controllers
 
         public ActionResult Profile(string id)
         {
+            ExamResultSub examResultSub = new ExamResultSub();
             var username = User.Identity.Name;
             var member = db.Members.FirstOrDefault(i => i.UserName == username);
-            //if (id == null && !Request.IsAuthenticated || id == null)
-            //{
-            //    return View("Error", new string[] { "yetkisiz veya hatalı giriş" });
-            //}
-
-
             if (!Request.IsAuthenticated && member == null)
             {
                 return View("Error", new string[] { "yetkisiz veya hatalı giriş" });
             }
 
-            //var member = db.Members.FirstOrDefault(i => i.UserName == id || i.UserId == id);
-            //if (member == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+            var memberExams = db.MemberExams.Where(i => i.MemberId == member.Id).ToList();
+            List<Exam> exams = new List<Exam>();
+            List<ExamType> ExamTypes = new List<ExamType>();
+            foreach (var memberExam in memberExams)
+            {
+                var exam = db.Exams.FirstOrDefault(i => i.Id == memberExam.ExamId);
+                exams.Add(exam);
+            }
+            string last = "", current = "";
+            foreach (var exam in exams)
+            {
+                var examType = db.ExamTypes.FirstOrDefault(i => i.Id == exam.ExamTypeId);
+                current = examType.ExamTypeName;
+                if (current == last)
+                {
+                    continue;
+                }
+                last = current;
+                ExamTypes.Add(examType);
+            }
+            foreach (var item in ExamTypes)
+            {
+                //foreach (var item2 in exams)
+                //{
+                //    if (item2.ExamTypeId == item.Id)
+                //    {
+                //        item.Exams.Add(item2);
+                //    }
+                //}
+            }
+            examResultSub.member = member;
+            examResultSub.memberExams = memberExams;
+            examResultSub.exams = exams;
+            examResultSub.ExamTypes = ExamTypes;
 
-            return View(member);
+            return View(examResultSub);
         }
 
-        [ChildActionOnly]
-        public PartialViewResult ExamResult()
-        {
-            var username = User.Identity.Name;
-            var id = db.Members.FirstOrDefault(i => i.UserName == username).Id;
-            var memberExam = db.MemberExams.Where(i => i.MemberId == id).ToList();
-            //db.Exams.Where(x => x.Id == memberExam[0].ExamId).FirstOrDefault().Title;
+        //[ChildActionOnly]
+        //public PartialViewResult ExamResult()
+        //{
 
-            return PartialView("_ExamResult", memberExam);
-        }
+        //    var username = User.Identity.Name;
+        //    var memberId = db.Members.FirstOrDefault(i => i.UserName == username).Id;
+        //    var memberExams = db.MemberExams.Where(i => i.MemberId == memberId).ToList();
+            
+        //    return PartialView("_ExamResult", memberExams);
+        //}
 
 
         public class SubMemberExamDetail
@@ -66,7 +90,8 @@ namespace SanalDenemem.MvcWebUI.Controllers
             }
             List<SubMemberExamDetail> subs = new List<SubMemberExamDetail>();
 
-            var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
+            // ümit eski  var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
+            var memberExam = db.MemberExams.Where(x => x.ExamId == id).FirstOrDefault();
             var subMemberExams = db.SubMemberExams.Where(x => x.MemberExamId == memberExam.Id).ToList();
             foreach (var item in subMemberExams)
             {

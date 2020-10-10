@@ -408,6 +408,7 @@
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\IdentityDataContext.cs" />
     <Compile Include="Identity\IdentityInitializer.cs" />
+    <Compile Include="Models\ExamResultSub.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\RoleAdminInfo.cs" />
