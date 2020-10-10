@@ -39,7 +39,15 @@ namespace SanalDenemem.MvcWebUI.Entity
                 new Exam{ExamTypeId=3,Title="E Denemesi", ExamTime=60},
                 new Exam{ExamTypeId=3,Title="F Denemesi", ExamTime=60},
                 new Exam{ExamTypeId=4,Title="G Denemesi", ExamTime=30},
-                new Exam{ExamTypeId=4,Title="H Denemesi", ExamTime=10}
+                new Exam{ExamTypeId=4,Title="H Denemesi", ExamTime=10},
+                new Exam{ExamTypeId=5,Title="J Denemesi", ExamTime=30},
+                new Exam{ExamTypeId=5,Title="K Denemesi", ExamTime=10},
+                new Exam{ExamTypeId=6,Title="L Denemesi", ExamTime=30},
+                new Exam{ExamTypeId=6,Title="M Denemesi", ExamTime=10},
+                new Exam{ExamTypeId=7,Title="N Denemesi", ExamTime=30},
+                new Exam{ExamTypeId=7,Title="O Denemesi", ExamTime=10},
+                new Exam{ExamTypeId=8,Title="P Denemesi", ExamTime=30},
+                new Exam{ExamTypeId=8,Title="R Denemesi", ExamTime=10}
             };
             exams.ForEach(s => context.Exams.Add(s));
             context.SaveChanges();
@@ -50,7 +58,10 @@ namespace SanalDenemem.MvcWebUI.Entity
                 new Lesson{LessonName="Matematik"},
                 new Lesson{LessonName="Tarih"},
                 new Lesson{LessonName="Din Bilgisi"},
-                new Lesson{LessonName="Fizik"}
+                new Lesson{LessonName="Fizik"},
+                new Lesson{LessonName="Biyoloji"},
+                new Lesson{LessonName="Kimya"},
+                new Lesson{LessonName="Geometri"}
             };
             lessons.ForEach(s => context.Lessons.Add(s));
             context.SaveChanges();
@@ -65,7 +76,12 @@ namespace SanalDenemem.MvcWebUI.Entity
                 new Topic{LessonId=2, TopicName="Türev", Desc="Türev"},
                 new Topic{LessonId=3, TopicName="-", Desc="-"},
                 new Topic{LessonId=4, TopicName="-", Desc="-"},
-                new Topic{LessonId=5, TopicName="-", Desc="-"}
+                new Topic{LessonId=5, TopicName="-", Desc="-"},
+                new Topic{LessonId=6, TopicName="-", Desc="-"},
+                new Topic{LessonId=7, TopicName="-", Desc="-"},
+                new Topic{LessonId=8, TopicName="-", Desc="-"},
+                new Topic{LessonId=8, TopicName="-", Desc="Üçgen"},
+                new Topic{LessonId=8, TopicName="-", Desc="Dörtgen"}
             };
             topics.ForEach(s => context.Topics.Add(s));
             context.SaveChanges();
@@ -74,7 +90,11 @@ namespace SanalDenemem.MvcWebUI.Entity
             var questions = new List<Question>{
                 new Question{Desc="Bilal uzun biridir.", Text="Bilalin boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=1},
                 new Question{Desc="Yunus uzun biridir.", Text="Yunusun boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=2},
-                new Question{Desc="Ümit uzun biridir.", Text="Ümitin boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=3}
+                new Question{Desc="Ümit uzun biridir.", Text="Ümitin boyu kaçtır?", ExamId=1, LessonId=1, TopicId=2, RowNo=3},
+                new Question{Desc="Alfabenin 2. harfidir.", Text="A'dan sonra gelen harf?", ExamId=9, LessonId=1, TopicId=2, RowNo=1},
+                new Question{Desc="Alfabenin 3. harfidir.", Text="B'dan sonra gelen harf?", ExamId=9, LessonId=1, TopicId=2, RowNo=2},
+                new Question{Desc="Alfabenin 4. harfidir.", Text="C'dan sonra gelen harf?", ExamId=9, LessonId=8, TopicId=2, RowNo=3},
+                new Question{Desc="Alfabenin 5. harfidir.", Text="D'dan sonra gelen harf?", ExamId=9, LessonId=8, TopicId=2, RowNo=4}
             };
             questions.ForEach(s => context.Questions.Add(s));
             context.SaveChanges();
@@ -95,7 +115,27 @@ namespace SanalDenemem.MvcWebUI.Entity
                 new Option{OptionText="185cm", QuestionId=3, IsCorrect=false},
                 new Option{OptionText="190cm", QuestionId=3, IsCorrect=false},
                 new Option{OptionText="195cm", QuestionId=3, IsCorrect=true},
-                new Option{OptionText="200cm", QuestionId=3, IsCorrect=false}
+                new Option{OptionText="200cm", QuestionId=3, IsCorrect=false},
+                new Option{OptionText="A", QuestionId=4, IsCorrect=false},
+                new Option{OptionText="B", QuestionId=4, IsCorrect=true},
+                new Option{OptionText="C", QuestionId=4, IsCorrect=false},
+                new Option{OptionText="D", QuestionId=4, IsCorrect=false},
+                new Option{OptionText="E", QuestionId=4, IsCorrect=false},
+                new Option{OptionText="A", QuestionId=5, IsCorrect=false},
+                new Option{OptionText="B", QuestionId=5, IsCorrect=false},
+                new Option{OptionText="C", QuestionId=5, IsCorrect=true},
+                new Option{OptionText="D", QuestionId=5, IsCorrect=false},
+                new Option{OptionText="E", QuestionId=5, IsCorrect=false},
+                new Option{OptionText="A", QuestionId=6, IsCorrect=false},
+                new Option{OptionText="B", QuestionId=6, IsCorrect=false},
+                new Option{OptionText="C", QuestionId=6, IsCorrect=false},
+                new Option{OptionText="Ç", QuestionId=6, IsCorrect=true},
+                new Option{OptionText="D", QuestionId=6, IsCorrect=false},
+                new Option{OptionText="A", QuestionId=7, IsCorrect=false},
+                new Option{OptionText="B", QuestionId=7, IsCorrect=false},
+                new Option{OptionText="C", QuestionId=7, IsCorrect=false},
+                new Option{OptionText="D", QuestionId=7, IsCorrect=true},
+                new Option{OptionText="E", QuestionId=7, IsCorrect=false}
             };
             options.ForEach(s => context.Options.Add(s));
             context.SaveChanges();

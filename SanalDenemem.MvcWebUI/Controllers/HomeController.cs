@@ -27,6 +27,21 @@ namespace SanalDenemem.MvcWebUI.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult GetExamsByExamType(int examTypeId)
+        {
+            List<Exam> ExamList = db.Exams.Where(x => x.ExamTypeId == examTypeId).ToList();
+            return Json(ExamList);
+        }
+
+        public ActionResult ExamsShowResult()
+        {
+            var list = db.ExamTypes.ToList();
+
+            ViewBag.ExamTypeList = new SelectList(list, "Id", "ExamTypeName");
+            return View();
+        }
+
         public ActionResult ExamTypes()
         {
             return View(db.ExamTypes.ToList());
