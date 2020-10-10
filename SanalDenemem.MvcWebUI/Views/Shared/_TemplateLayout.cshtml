@@ -90,10 +90,11 @@
                                 <li><a href="@Url.Action("Pricing","Home")">Üyelik Paketleri</a></li>
                                 <li><a href="@Url.Action("Blog","Home")">Blog</a></li>
                                 <li><a href="@Url.Action("About","Home")">Hakkımızda</a></li>
+                                <li><a href="@Url.Action("Create","Contact")">İletişim</a></li>
 
                                 @if (Request.IsAuthenticated && User.IsInRole("admin"))
                                 {
-                                    <li><a href="@Url.Action("Index", "Base", new { area = "Admin" })">Admin Paneli</a></li>
+                                    <li ><a  href="@Url.Action("Index", "Base", new { area = "Admin" })">Admin Paneli</a></li>
                                 }
                                 @if (Request.IsAuthenticated)
                                 {
@@ -102,9 +103,12 @@
                                     {
                                         logId = logInUser.Id;
                                     }
-                                    <li class="btn-cta">
-                                        <a href="@Url.Action("Profile","Members",new { id =logId })"><span>Profil</span></a>
-                                    </li>
+                                    if (!(User.IsInRole("admin")))
+                                    {
+                                        <li class="btn-cta">
+                                            <a href="@Url.Action("Profile","Members",new { id =logId })"><span>Profil</span></a>
+                                        </li>
+                                    }
                                     <li class="btn-cta">
                                         <a href="@Url.Action("Logout","Account")"><span>Çıkış</span></a>
                                     </li>
