@@ -1,7 +1,7 @@
-﻿@model SanalDenemem.MvcWebUI.Entity.Member
+﻿@model SanalDenemem.MvcWebUI.Models.ExamResultSub
 
 @{
-    ViewBag.Title = Model.Name;
+    ViewBag.Title = Model.member.Name;
     Layout = "~/Views/Shared/_TemplateLayout.cshtml";
 }
 
@@ -115,6 +115,7 @@
     }
 </style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -131,19 +132,19 @@ Licensed under MIT
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic">
-                    @if (Model.ProfileImageName != null)
+                    @if (Model.member.ProfileImageName != null)
                     {
-                        <img src="/Server/img/@Model.ProfileImageName" class="img-responsive" alt="">
+                        <img src="/Server/img/@Model.member.ProfileImageName" class="img-responsive" alt="">
                     }
                     else
                     {
-                        @Html.ActionLink("Resim Ekle", "Upload", new { id = Model.UserId }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Resim Ekle", "Upload", new { id = Model.member.UserId }, new { @class = "btn btn-primary btn-sm" })
                     }
                 </div>
-               
+
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        @Model.Name @Model.Surname
+                        @Model.member.Name @Model.member.Surname
                     </div>
                 </div>
 
@@ -152,15 +153,29 @@ Licensed under MIT
                         <li>
                             <a href="#toDo" class="active">
                                 <i class="glyphicon glyphicon-ok"></i>
-                                 Görev Listesi
+                                Görev Listesi
                             </a>
                         </li>
 
-                        <li >
-                            <a href="#sinavSonuclarin">
-                                <i class="glyphicon glyphicon-home"></i>
-                                Sınav Sonucları
-                            </a>
+                        <li>
+                            @foreach (var item in Model.ExamTypes)
+                            {
+                                <div class="btn-group dropright">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @item.ExamTypeName
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        @foreach (var item2 in item.Exams)
+                                        {
+                                            if (Model.exams.Contains(item2))
+                                            {
+                                                <a class="dropdown-item" target="_blank" href="@Url.Action("ExamToMemberExam", "Members",new {id=item2.Id })">@item2.Title</a>
+                                            }
+
+                                        }
+                                    </div>
+                                </div>
+                            }
                         </li>
                     </ul>
                 </div>
@@ -170,12 +185,12 @@ Licensed under MIT
         <div class="col-md-9">
 
             <div class="profile-content" id="toDo">
-                @Html.Action("Tasks", "Members", new { currentId = Model.Id })
+                @Html.Action("Tasks", "Members", new { currentId = Model.member.Id })
             </div>
-            <hr />
+            @*<hr />
             <div class="profile-content" id="sinavSonuclarin">
-                @Html.Action("ExamResult", "Members")
-            </div>
+                    @Html.Action("ExamResult", "Members")
+                </div>*@
         </div>
 
     </div>

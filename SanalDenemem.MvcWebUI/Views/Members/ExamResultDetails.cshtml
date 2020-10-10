@@ -1,9 +1,22 @@
 ﻿@model List<SanalDenemem.MvcWebUI.Controllers.MembersController.SubMemberExamDetail>
 @{
-    ViewBag.Title = "ExamResultDetails";
+    ViewBag.Title = Model[0].Question.Exam.Title;
     Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+    int emptyCount = 0;
+    foreach (var item in Model)
+    {
+        foreach (var opt in item.Question.Options)
+        {
+            if (item.CorrectOption.Id == opt.Id)
+            {
+                if (item.SelectedOption.OptionText == "Empty")
+                {
+                    emptyCount++;
+                }
+            }
+        }
+    }
 }
-
 <style>
     .group-question {
         padding: 2%;
@@ -28,7 +41,6 @@
         border-top-right-radius: 20px;
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
-    }
 </style>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -36,9 +48,59 @@
 <div class="container" style="margin-top: 3%;">
     <div class="row">
         <div class="exam-title">
-            <h1>@Model[0].Question.Exam.Title</h1>
+            <h1>sınav ismi:@Model[0].Question.Exam.Title</h1>
+        </div>
+        @*<div class="exam-title">
+            <h1>yanlış sayısı :@Model[0].MemberExam.FailCount</h1>
+            <h1>dıgru sayısı:@Model[0].MemberExam.CorrectCount</h1>
+            <h1>net:@Model[0].MemberExam.Score</h1>
+            <h1>boş sayısı:@emptyCount</h1>
+        </div>*@
+    </div>
+    
+    <div class="row" style="margin-top:2%">
+        <div class="container" style="text-align: -webkit-right;">
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Dogru Sayısı</div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">@Model[0].MemberExam.CorrectCount</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Yanlış Sayısı</div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">:@Model[0].MemberExam.FailCount</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Boş Sayısı</div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">@emptyCount</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Net</div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="text-align: center;">@Model[0].MemberExam.Score</h5>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+
+
     <div class="row">
         <div class="col-md-12" style="margin: 2%;">
             @foreach (var item in Model)
