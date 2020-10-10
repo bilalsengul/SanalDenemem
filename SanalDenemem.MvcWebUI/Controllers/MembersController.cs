@@ -11,6 +11,7 @@ using SanalDenemem.MvcWebUI.Entity;
 using SanalDenemem.MvcWebUI.Models;
 namespace SanalDenemem.MvcWebUI.Controllers
 {
+    [Authorize]
     public class MembersController : BaseController
     {
 
@@ -69,7 +70,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
         //    var username = User.Identity.Name;
         //    var memberId = db.Members.FirstOrDefault(i => i.UserName == username).Id;
         //    var memberExams = db.MemberExams.Where(i => i.MemberId == memberId).ToList();
-            
+
         //    return PartialView("_ExamResult", memberExams);
         //}
 
@@ -80,6 +81,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             public Question Question { get; set; }
             public Option CorrectOption { get; set; }
             public Option SelectedOption { get; set; }
+            public MemberExam MemberExam { get; set; }
         }
         public ActionResult ExamResultDetails(int? id)
         {
@@ -90,8 +92,8 @@ namespace SanalDenemem.MvcWebUI.Controllers
             }
             List<SubMemberExamDetail> subs = new List<SubMemberExamDetail>();
 
-            // ümit eski  var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
-            var memberExam = db.MemberExams.Where(x => x.ExamId == id).FirstOrDefault();
+             var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
+            // yunua eski var memberExam = db.MemberExams.Where(x => x.ExamId == id).FirstOrDefault();
             var subMemberExams = db.SubMemberExams.Where(x => x.MemberExamId == memberExam.Id).ToList();
             foreach (var item in subMemberExams)
             {
@@ -135,7 +137,15 @@ namespace SanalDenemem.MvcWebUI.Controllers
                 subs.Add(examDetail);
             }
             subs = subs.OrderBy(x=>x.Question.RowNo).ToList();
+            subs[0].MemberExam = memberExam;
             return View(subs);
+        }
+
+        public ActionResult ExamToMemberExam(int id)
+        {
+            var memberId = db.Members.FirstOrDefault(i => i.UserName == User.Identity.Name).Id;
+            int memberExamId = db.MemberExams.FirstOrDefault(x => x.MemberId == memberId && x.ExamId == id).Id;
+            return RedirectToAction("ExamResultDetails", "Members", new { id= memberExamId });
         }
 
 

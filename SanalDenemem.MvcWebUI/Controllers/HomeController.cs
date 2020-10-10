@@ -49,7 +49,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
                 return View(@"~/Views/Shared/Error.cshtml", new string[] { "Hatalı Sayfa" });
             }
             int memberId = db.Members.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id;
-            if (db.MemberExams.Where(x => x.MemberId == memberId && x.ExamId == id).FirstOrDefault().State == true)
+            if (db.MemberExams.Where(x => x.MemberId == memberId && x.ExamId == id).FirstOrDefault()!=null)
             {
                 return View(@"~/Views/Shared/Error.cshtml", new string[] { "Sınava daha önce giriş yaptınız." });
             }
@@ -60,7 +60,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
         public ActionResult ExamQuestion(int? id)
         {
             int memberId = db.Members.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id;
-            if (db.MemberExams.Where(x => x.MemberId == memberId && x.ExamId == id).FirstOrDefault().State == true)
+            if (db.MemberExams.Where(x => x.MemberId == memberId && x.ExamId == id).FirstOrDefault() != null)
             {
                 return View(@"~/Views/Shared/Error.cshtml", new string[] { "Sınava daha önce giriş yaptınız." });
             }
