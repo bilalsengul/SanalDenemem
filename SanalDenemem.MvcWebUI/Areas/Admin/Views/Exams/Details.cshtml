@@ -27,9 +27,17 @@
             @Html.DisplayFor(model => model.Title)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.ExamTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExamTime)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" }) |
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Listeye Dön", "Index")
 </p>

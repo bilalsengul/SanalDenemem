@@ -52,7 +52,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,ExamTypeId")] Exam exam)
+        public ActionResult Create([Bind(Include = "Id,Title,ExamTime,ExamTypeId")] Exam exam)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Title,ExamTypeId")] Exam exam)
+        public ActionResult Edit([Bind(Include = "Id,Title,ExamTime,ExamTypeId")] Exam exam)
         {
             if (ModelState.IsValid)
             {
