@@ -56,5 +56,7 @@ namespace SanalDenemem.MvcWebUI.Entity
         public DbSet<Option> Options { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<SubMemberExam> SubMemberExams { get; set; }
+
+        public DbSet<Contact>Contacts { get; set; }
     }
 }

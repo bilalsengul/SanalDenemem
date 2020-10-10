@@ -384,9 +384,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminManagerController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Entity\Contact.cs" />
     <Compile Include="Entity\DataContext.cs" />
     <Compile Include="Entity\DataInitializer.cs" />
     <Compile Include="Entity\Exam.cs" />
@@ -481,6 +483,8 @@
     <Content Include="Views\Task\Edit.cshtml" />
     <Content Include="Views\Shared\_taskList.cshtml" />
     <Content Include="Views\Members\ExamResultDetails.cshtml" />
+    <Content Include="Views\Contact\Create.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -494,7 +498,6 @@
     <Folder Include="Content\Css\" />
     <Folder Include="Content\Js\" />
     <Folder Include="Server\img\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
