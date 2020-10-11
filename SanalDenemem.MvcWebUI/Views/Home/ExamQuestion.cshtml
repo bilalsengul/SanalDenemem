@@ -51,8 +51,9 @@
         }, 1000);
     }
 
+    //düzelteme yaptım
     window.onload = function () {
-        var fiveMinutes = 0.5 * @Model.Item2.FirstOrDefault().Exam.ExamTime,
+        var fiveMinutes = 60 * @Model.Item2.FirstOrDefault().Exam.ExamTime,
             display = document.querySelector('#time');
         startTimer(fiveMinutes, display);
     };

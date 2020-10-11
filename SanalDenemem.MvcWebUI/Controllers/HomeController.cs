@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNet.Identity;
 using SanalDenemem.MvcWebUI.Entity;
+using SanalDenemem.MvcWebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -170,6 +172,29 @@ namespace SanalDenemem.MvcWebUI.Controllers
             db.SaveChanges();
 
             return Json(new { IsSuccess = true, Message = "Kayıt Başarılı!" });
+        }
+
+
+        public ActionResult ExamResutlDetails(int? id)
+        {
+            Member member = null;
+            List<ExamResultDetails> examResults = new List<ExamResultDetails>();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            foreach (var examResult in db.MemberExams.Where(i => i.ExamId == id).ToList())
+            {
+                member = db.Members.FirstOrDefault(i => i.Id == examResult.MemberId);
+                examResults.Add(new ExamResultDetails()
+                {
+                    Name = member.Name,
+                    Surname = member.Surname,
+                    UserName = member.UserName,
+                    Score = examResult.Score
+                });
+            }
+            return View(examResults.OrderByDescending(i=>i.Score).ToList());
         }
 
         public ActionResult Blog()

@@ -410,6 +410,7 @@
     <Compile Include="Identity\ApplicationUser.cs" />
     <Compile Include="Identity\IdentityDataContext.cs" />
     <Compile Include="Identity\IdentityInitializer.cs" />
+    <Compile Include="Models\ExamResultDetails.cs" />
     <Compile Include="Models\ExamResultSub.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Register.cs" />
@@ -487,6 +488,7 @@
     <Content Include="Views\Contact\Create.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Home\ExamsShowResult.cshtml" />
+    <Content Include="Views\Home\ExamResutlDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
