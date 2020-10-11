@@ -120,6 +120,11 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Question question = db.Questions.Find(id);
+            List<Option> options = db.Options.Where(x => x.QuestionId == question.Id).ToList();
+            foreach (var item in options)
+            {
+                db.Options.Remove(item);
+            }
             db.Questions.Remove(question);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -3,51 +3,31 @@
     ViewBag.Title = "ExamsShowResult";
     Layout = "~/Views/Shared/_TemplateLayout.cshtml";
 }
-<script src="~/Scripts/jquery-3.5.0.js"></script>
-<aside id="fh5co-hero">
-    <div class="flexslider">
-        <ul class="slides">
-            <li style="background-image: url(../Content/edutemplate/images/exam.jpg);">
-                <div class="overlay-gradient"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 text-center slider-text">
-                            <div class="slider-text-inner">
-                                <h1 class="heading-section">Sınavlar</h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-    </div>
-</aside>
 
 <div id="fh5co-course">
     <div class="container">
         <div class="row animate-box">
             <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-                <h2>Sınav Sonuç Listesi</h2>
+                <h2>Sınav Sonuçları Sıralaması</h2>
             </div>
         </div>
-        @using (Html.BeginForm())
-        {
-            <div class="row">
+        <div class="row">
+            @using (Html.BeginForm())
+            {
                 <div class="col-md-5">
                     @Html.DropDownListFor(m => m.SelectedExamTypeId, (SelectList)ViewBag.ExamTypesData, "Sınav Tipi Seçiniz...", new { @class = "dropdown form-control" })
                 </div>
                 <div class="col-md-5">
                     @Html.DropDownListFor(m => m.SelectedExamId, (SelectList)ViewBag.ExamsData, "Sınav Seçiniz...", new { @class = "dropdown form-control" })
                 </div>
-                <div class="col-md-2">
-                    <button type="submit" style="width: 100%;" class="btn btn-success">Listele</button>
-                </div>
+            }
+            <div class="col-md-2">
+                <button style="width: 100%;" class="btn btn-success" onclick="ShowResult()">Listele</button>
             </div>
-        }
-        <div class="row">
-            <div class="col-md-12">
-                <div><b>Selected ExamType : </b>@Model.SelectedExamTypeId</div>
-                <div><b>Selected Exam : </b>@Model.SelectedExamId</div>
+        </div>
+        <div class="row" style="margin-top: 2%;">
+            <div id="tableResult" class="col-md-12">
+
             </div>
         </div>
     </div>
@@ -79,5 +59,25 @@
     //DDL için option oluşturur.
     function createOption(code, text) {
         return "<option value=" + code + ">" + text + "</option>"
+    }
+
+    function ShowResult() {
+        $.ajax({
+            method: "GET",
+            url: '@Url.Action("ExamResultDetails", "Home")',
+            data: { id: $("#SelectedExamId").val() },
+            success: function (result) {
+                console.log(result);
+                $("#tableResult").html(result);
+                $('#myTable').DataTable({
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Turkish.json"
+                    }
+                } );
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
     }
 </script>

@@ -119,6 +119,26 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Exam exam = db.Exams.Find(id);
+            List<Question> questions = db.Questions.Where(x => x.ExamId == exam.Id).ToList();
+            foreach (var item in questions)
+            {
+                foreach (var item2 in db.Options.Where(x=>x.QuestionId == item.Id))
+                {
+                    db.Options.Remove(item2);
+                }
+                db.SaveChanges();
+                db.Questions.Remove(item);
+            }
+            db.SaveChanges();
+            foreach (var item in db.MemberExams.Where(x=>x.ExamId == exam.Id).ToList())
+            {
+                foreach (var item2 in db.SubMemberExams.Where(x => x.MemberExamId == item.Id).ToList())
+                {
+                    db.SubMemberExams.Remove(item2);
+                }
+                db.SaveChanges();
+                db.MemberExams.Remove(item);
+            }
             db.Exams.Remove(exam);
             db.SaveChanges();
             return RedirectToAction("Index");

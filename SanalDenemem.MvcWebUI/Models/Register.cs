@@ -24,7 +24,11 @@ namespace SanalDenemem.MvcWebUI.Models
         public String Email { get; set; }
         [Required]
         [DisplayName("Şifre")]
-        [StringLength(255, ErrorMessage = "şifre 6 ve 255 karakter arasında olmalı.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
+        [Display(Name = "Password")]
+        [RegularExpression("^((?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])|(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[^a-zA-Z0-9])|(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^a-zA-Z0-9])).{8,}$", 
+            ErrorMessage = "Şifreler en az 8 karakter olmalı ve şunların 3 / 4'ünü içermelidir: büyük harf (A-Z), küçük harf (a-z), sayı (0-9) ve özel karakter (ör.! @ # $% ^ & *)")]
+        //[StringLength(255, ErrorMessage = "şifre 6 ve 255 karakter arasında olmalı.", MinimumLength = 6)]
         public String Password { get; set; }
         [Required]
         [DisplayName("Şifre Tekrar")]

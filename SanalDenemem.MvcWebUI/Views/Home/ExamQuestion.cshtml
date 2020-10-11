@@ -53,7 +53,7 @@
 
     //düzelteme yaptım
     window.onload = function () {
-        var fiveMinutes = 60 * @Model.Item2.FirstOrDefault().Exam.ExamTime,
+        var fiveMinutes = 60 * @Model.Item2.First().Exam.ExamTime,
             display = document.querySelector('#time');
         startTimer(fiveMinutes, display);
     };

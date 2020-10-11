@@ -1,0 +1,26 @@
+﻿@model List<SanalDenemem.MvcWebUI.Models.ExamResultDetails>
+
+<link href="~/Content/Plugins/dataTableJquery/jquery.dataTables.min.css" rel="stylesheet" />
+<table id="myTable" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>İsim</th>
+            <th>Soyisim</th>
+            <th>Kullanıcı Adı</th>
+            <th>Skor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>@item.UserName</td>
+                <td>@item.Score</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/Content/Plugins/dataTableJquery/jquery.dataTables.min.js"></script>

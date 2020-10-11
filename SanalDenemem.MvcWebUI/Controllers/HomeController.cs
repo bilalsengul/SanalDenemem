@@ -73,6 +73,24 @@ namespace SanalDenemem.MvcWebUI.Controllers
             return Json(exams, JsonRequestBehavior.AllowGet);
         }
 
+        public PartialViewResult ExamResultDetails(int? id)
+        {
+            Member member = null;
+            List<ExamResultDetails> examResults = new List<ExamResultDetails>();
+            foreach (var examResult in db.MemberExams.Where(i => i.ExamId == id).ToList())
+            {
+                member = db.Members.FirstOrDefault(i => i.Id == examResult.MemberId);
+                examResults.Add(new ExamResultDetails()
+                {
+                    Name = member.Name,
+                    Surname = member.Surname,
+                    UserName = member.UserName,
+                    Score = examResult.Score
+                });
+            }
+            return PartialView(@"~/Views/Shared/_ExamResultDetails.cshtml", examResults.OrderByDescending(i => i.Score).ToList());
+        }
+
         public ActionResult ExamTypes()
         {
             return View(db.ExamTypes.ToList());
@@ -172,29 +190,6 @@ namespace SanalDenemem.MvcWebUI.Controllers
             db.SaveChanges();
 
             return Json(new { IsSuccess = true, Message = "Kayıt Başarılı!" });
-        }
-
-
-        public ActionResult ExamResutlDetails(int? id)
-        {
-            Member member = null;
-            List<ExamResultDetails> examResults = new List<ExamResultDetails>();
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            foreach (var examResult in db.MemberExams.Where(i => i.ExamId == id).ToList())
-            {
-                member = db.Members.FirstOrDefault(i => i.Id == examResult.MemberId);
-                examResults.Add(new ExamResultDetails()
-                {
-                    Name = member.Name,
-                    Surname = member.Surname,
-                    UserName = member.UserName,
-                    Score = examResult.Score
-                });
-            }
-            return View(examResults.OrderByDescending(i=>i.Score).ToList());
         }
 
         public ActionResult Blog()

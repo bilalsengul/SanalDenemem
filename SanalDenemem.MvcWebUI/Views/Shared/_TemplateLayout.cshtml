@@ -94,7 +94,7 @@
 
                                 @if (Request.IsAuthenticated && User.IsInRole("admin"))
                                 {
-                                    <li ><a  href="@Url.Action("Index", "Base", new { area = "Admin" })">Admin Paneli</a></li>
+                                    <li><a href="@Url.Action("Index", "Base", new { area = "Admin" })">Admin Paneli</a></li>
                                 }
                                 @if (Request.IsAuthenticated)
                                 {
