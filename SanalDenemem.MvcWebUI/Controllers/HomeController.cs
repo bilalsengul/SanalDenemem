@@ -27,19 +27,48 @@ namespace SanalDenemem.MvcWebUI.Controllers
             return View();
         }
 
-        [HttpPost]
-        public JsonResult GetExamsByExamType(int examTypeId)
+        public class IndexViewModel
         {
-            List<Exam> ExamList = db.Exams.Where(x => x.ExamTypeId == examTypeId).ToList();
-            return Json(ExamList);
+            public int SelectedExamTypeId { get; set; }
+            public int SelectedExamId { get; set; }
         }
 
         public ActionResult ExamsShowResult()
         {
-            var list = db.ExamTypes.ToList();
+            ViewBag.ExamTypesData = new SelectList(db.ExamTypes, "Id", "ExamTypeName");
+            ViewBag.ExamsData = new SelectList(db.Exams, "Id", "Title");
+            IndexViewModel model = new IndexViewModel()
+            {
+                SelectedExamTypeId = 1,
+                SelectedExamId = 1
+            };
+            return View(model);
+        }
 
-            ViewBag.ExamTypeList = new SelectList(list, "Id", "ExamTypeName");
-            return View();
+        [HttpPost]
+        public ActionResult ExamsShowResult(IndexViewModel model)
+        {
+            ViewBag.ExamTypesData = new SelectList(db.ExamTypes, "Id", "ExamTypeName");
+            ViewBag.ExamsData = new SelectList(db.Exams, "Id", "Title");
+
+            return View(model);
+        }
+
+        public class AlternativeExamModel
+        {
+            public int Id { get; set; }
+            public string Title { get; set; }
+            public int ExamTypeId { get; set; }
+        }
+
+        public JsonResult GetExamsByExamType(int id)
+        {
+            List<AlternativeExamModel> exams = new List<AlternativeExamModel>();
+            foreach (var item in db.Exams.Where(x => x.ExamTypeId == id))
+            {
+                exams.Add(new AlternativeExamModel() { ExamTypeId = item.ExamTypeId, Id = item.Id, Title = item.Title });
+            }
+            return Json(exams, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ExamTypes()
@@ -64,7 +93,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
                 return View(@"~/Views/Shared/Error.cshtml", new string[] { "Hatalı Sayfa" });
             }
             int memberId = db.Members.Where(x => x.UserName == User.Identity.Name).FirstOrDefault().Id;
-            if (db.MemberExams.Where(x => x.MemberId == memberId && x.ExamId == id).FirstOrDefault()!=null)
+            if (db.MemberExams.Where(x => x.MemberId == memberId && x.ExamId == id).FirstOrDefault() != null)
             {
                 return View(@"~/Views/Shared/Error.cshtml", new string[] { "Sınava daha önce giriş yaptınız." });
             }

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SanalDenemem.MvcWebUI.Controllers.HomeController.IndexViewModel
+@{
     ViewBag.Title = "ExamsShowResult";
     Layout = "~/Views/Shared/_TemplateLayout.cshtml";
 }
@@ -29,61 +30,49 @@
                 <h2>Sınav Sonuç Listesi</h2>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                @Html.DropDownList("DDLExamTypes", (IEnumerable<SelectListItem>)ViewBag.ExamTypeList, new { @class = "form-control", @id = "DDLExamTypes" })
+        @using (Html.BeginForm())
+        {
+            <div class="row">
+                <div class="col-md-5">
+                    @Html.DropDownListFor(m => m.SelectedExamTypeId, (SelectList)ViewBag.ExamTypesData, "Sınav Tipi Seçiniz...", new { @class = "dropdown form-control" })
+                </div>
+                <div class="col-md-5">
+                    @Html.DropDownListFor(m => m.SelectedExamId, (SelectList)ViewBag.ExamsData, "Sınav Seçiniz...", new { @class = "dropdown form-control" })
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" style="width: 100%;" class="btn btn-success">Listele</button>
+                </div>
             </div>
-            <div class="col-md-4">
-                <select class="form-control" id="DDLExams" name="DDLExams" disabled>
-                </select>
-            </div>
-            <div class="col-md-4">
-                <button class="form-control" style="background-color: #bdc3c7; color: #2c3e50;">Listele</button>
-            </div>
-        </div>
+        }
         <div class="row">
             <div class="col-md-12">
-
+                <div><b>Selected ExamType : </b>@Model.SelectedExamTypeId</div>
+                <div><b>Selected Exam : </b>@Model.SelectedExamId</div>
             </div>
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $('#DDLExams').attr('disabled', true);
-        $('#DDLExamTypes').prepend(createOption("", "Seçiniz..."));
-        $('#DDLExams').prepend(createOption("", "Seçiniz..."));
-        $('#DDLExamTypes').val("");
-    });
 
-    $('#DDLExamTypes').change(function () {
-        console.log($(this).val());
-        if ($('#DDLExamTypes').val() != '') {
-            $('#DDLExams').attr('disabled', false);
+<script>
+    //Sınav Tipi değiştiğinde çalışır.
+    $("#SelectedExamTypeId").change(function () {
+        var ddlExamType = $(this);
+        var examTypeId = ddlExamType.val();
+        if (examTypeId != "") {
             $.ajax({
-                type: 'POST',
-                url: '@Url.Action("GetExamsByExamType", "Home")',
-                data: { 'examTypeId': $(this).val()},
-                success: function (response) {
-                    $('#DDLExams option').remove();
-                    $('#DDLExams').append(createOption("", "Seçiniz..."));
-                    for (var i = 0; i < response.length; i++) {
-                        var option = createOption(response[i].Id, response[i].Title);
-                        $('#DDLExams').append($(option));
-                    }
-                },
-                failure: function (response) {
-                    console.log("Hata 1", response);
-                },
-                error: function (response) {
-                    console.log("Hata 2", response);
+                method: "GET",
+                url: '@Url.Action("GetExamsByExamType", "Home")' + '/' + examTypeId,
+                beforeSend: function () {
+                    $("#SelectedExamId option").not(":first").remove();
+                }
+            }).done(function (result) {
+                for (var i = 0; i < result.length; i++) {
+                    var exam = result[i];
+                    $("#SelectedExamId").append(createOption(exam.Id, exam.Title));
                 }
             });
-        }
-        else {
-            $('#DDLTopics option').remove();
-            $('#DDLTopics').append(createOption("Seçiniz...", "Seçiniz..."));
-            $('#DDLTopics').attr('disabled', true);
+        } else {
+            $("#SelectedExamId option").not(":first").remove();
         }
     });
 
