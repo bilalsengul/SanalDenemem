@@ -80,6 +80,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             public Lesson Lesson { get; set; }
             public int CorrectCount { get; set; }
             public int FailCount { get; set; }
+            public double NetCount { get; set; }
         }
 
         public class SubLessonxamDetail

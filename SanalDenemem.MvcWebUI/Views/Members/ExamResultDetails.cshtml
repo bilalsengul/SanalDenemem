@@ -23,6 +23,7 @@
         lessonExamDetail.Lesson = item.Key;
         lessonExamDetail.CorrectCount = 0;
         lessonExamDetail.FailCount = 0;
+        lessonExamDetail.NetCount = 0;
         lessonExamResultList.Add(lessonExamDetail);
     }
     foreach (var item in Model)
@@ -41,6 +42,10 @@
                 }
             }
         }
+    }
+    foreach (var item in lessonExamResultList)
+    {
+        item.NetCount = item.CorrectCount - (item.FailCount * 0.25);
     }
 }
 <style>
@@ -135,6 +140,7 @@
                         <div class="card-body">
                             <h5 class="card-title" style="text-align: center;">Doğru Sayısı: @item.CorrectCount</h5>
                             <h5 class="card-title" style="text-align: center;">Yanlış Sayısı: @item.FailCount</h5>
+                            <h5 class="card-title" style="text-align: center;">Net Sayısı: @item.NetCount</h5>
                         </div>
                     </div>
                 </div>
