@@ -16,6 +16,32 @@
             }
         }
     }
+    List<SanalDenemem.MvcWebUI.Controllers.MembersController.LessonExamDetail> lessonExamResultList = new List<SanalDenemem.MvcWebUI.Controllers.MembersController.LessonExamDetail>();
+    foreach (var item in Model.GroupBy(x=>x.LessonResult.Lesson))
+    {
+        SanalDenemem.MvcWebUI.Controllers.MembersController.LessonExamDetail lessonExamDetail = new SanalDenemem.MvcWebUI.Controllers.MembersController.LessonExamDetail();
+        lessonExamDetail.Lesson = item.Key;
+        lessonExamDetail.CorrectCount = 0;
+        lessonExamDetail.FailCount = 0;
+        lessonExamResultList.Add(lessonExamDetail);
+    }
+    foreach (var item in Model)
+    {
+        foreach (var item2 in lessonExamResultList)
+        {
+            if (item.LessonResult.Lesson == item2.Lesson)
+            {
+                if (item.LessonResult.IsCorrect == true)
+                {
+                    item2.CorrectCount++;
+                }
+                else
+                {
+                    item2.FailCount++;
+                }
+            }
+        }
+    }
 }
 <style>
     .group-question {
@@ -48,20 +74,20 @@
 <div class="container" style="margin-top: 3%;">
     <div class="row">
         <div class="exam-title">
-            <h1>sınav ismi:@Model[0].Question.Exam.Title</h1>
+            <h1>Sınav ismi: @Model[0].Question.Exam.Title</h1>
         </div>
         @*<div class="exam-title">
-            <h1>yanlış sayısı :@Model[0].MemberExam.FailCount</h1>
-            <h1>dıgru sayısı:@Model[0].MemberExam.CorrectCount</h1>
-            <h1>net:@Model[0].MemberExam.Score</h1>
-            <h1>boş sayısı:@emptyCount</h1>
-        </div>*@
+                <h1>yanlış sayısı :@Model[0].MemberExam.FailCount</h1>
+                <h1>dıgru sayısı:@Model[0].MemberExam.CorrectCount</h1>
+                <h1>net:@Model[0].MemberExam.Score</h1>
+                <h1>boş sayısı:@emptyCount</h1>
+            </div>*@
     </div>
-    
+
     <div class="row" style="margin-top:2%">
         <div class="container" style="text-align: -webkit-right;">
             <div class="col-md-3">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card text-white bg-primary mb-3" style="        max-width: 20rem;">
                     <div class="card-header">Dogru Sayısı</div>
                     <div class="card-body">
                         <h5 class="card-title" style="text-align: center;">@Model[0].MemberExam.CorrectCount</h5>
@@ -70,7 +96,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card text-white bg-primary mb-3" style="        max-width: 20rem;">
                     <div class="card-header">Yanlış Sayısı</div>
                     <div class="card-body">
                         <h5 class="card-title" style="text-align: center;">:@Model[0].MemberExam.FailCount</h5>
@@ -79,7 +105,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card text-white bg-primary mb-3" style="        max-width: 20rem;">
                     <div class="card-header">Boş Sayısı</div>
                     <div class="card-body">
                         <h5 class="card-title" style="text-align: center;">@emptyCount</h5>
@@ -88,7 +114,7 @@
             </div>
 
             <div class="col-md-3">
-                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card text-white bg-primary mb-3" style="        max-width: 20rem;">
                     <div class="card-header">Net</div>
                     <div class="card-body">
                         <h5 class="card-title" style="text-align: center;">@Model[0].MemberExam.Score</h5>
@@ -99,6 +125,22 @@
         </div>
     </div>
 
+    <div class="row" style="margin-top:2%">
+        <div class="container" style="text-align: -webkit-right;">
+            @foreach (var item in lessonExamResultList)
+            {
+                <div class="col-md-3">
+                    <div class="card text-white bg-success" style="max-width: 20rem;">
+                        <div class="card-header">@item.Lesson.LessonName</div>
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center;">Doğru Sayısı: @item.CorrectCount</h5>
+                            <h5 class="card-title" style="text-align: center;">Yanlış Sayısı: @item.FailCount</h5>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 
 
     <div class="row">
