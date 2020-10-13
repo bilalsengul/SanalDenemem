@@ -167,7 +167,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             }
             return View(examResults.OrderByDescending(i=>i.Score).ToList());
         }
-
+        
         public ActionResult Blog()
         {
             return View();
