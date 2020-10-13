@@ -50,59 +50,25 @@ namespace SanalDenemem.MvcWebUI.Identity
                 manager.Create(role);
             }
 
-            if (!context.Users.Any(i => i.Name == "Yunussen"))
+            if (!context.Users.Any(i => i.Name == "Admin"))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var manager  = new UserManager<ApplicationUser>(store);
                 var user = new ApplicationUser()
                 {
-                    Name = "Yunus",
-                    Surname = "Şen",
-                    UserName = "Yunussen",
-                    Email = "Yunussen272@gmail.com"
+                    Name = "Admin",
+                    Surname = "Admin",
+                    UserName = "Admin",
+                    Email = "Admin@gmail.com"
                 };
 
-                manager.Create(user,"1234567");
+                manager.Create(user,"Admin171@");
                 manager.AddToRole(user.Id, "admin");
                 manager.AddToRole(user.Id, "freeMember");
                 manager.AddToRole(user.Id, "premiumMember");
             }
 
-            if (!context.Users.Any(i => i.Name == "bilalsengul"))
-            {
-                var store = new UserStore<ApplicationUser>(context);
-                var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser()
-                {
-                    Name = "Bilal",
-                    Surname = "Şengül",
-                    UserName = "bilalsengul",
-                    Email = "bilalsengul@gmail.com"
-                };
-
-                manager.Create(user, "1234567");
-                manager.AddToRole(user.Id, "admin");
-                manager.AddToRole(user.Id, "freeMember");
-                manager.AddToRole(user.Id, "premiumMember");
-            }
-
-            if (!context.Users.Any(i => i.Name == "uogut"))
-            {
-                var store = new UserStore<ApplicationUser>(context);
-                var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser()
-                {
-                    Name = "Ümit Recep",
-                    Surname = "ÖĞÜT",
-                    UserName = "uogut",
-                    Email = "umitrecepogut@gmail.com"
-                };
-
-                manager.Create(user, "12341234");
-                manager.AddToRole(user.Id, "admin");
-                manager.AddToRole(user.Id, "freeMember");
-                manager.AddToRole(user.Id, "premiumMember");
-            }
+          
 
             base.Seed(context);
         }

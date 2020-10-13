@@ -52,7 +52,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
                     }
 
                     memberAdd(member);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Login");
                 }
                 else
                 {

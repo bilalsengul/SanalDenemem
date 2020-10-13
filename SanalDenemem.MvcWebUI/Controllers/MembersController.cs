@@ -75,6 +75,20 @@ namespace SanalDenemem.MvcWebUI.Controllers
         //}
 
 
+        public class LessonExamDetail
+        {
+            public Lesson Lesson { get; set; }
+            public int CorrectCount { get; set; }
+            public int FailCount { get; set; }
+            public double NetCount { get; set; }
+        }
+
+        public class SubLessonxamDetail
+        {
+            public Lesson Lesson { get; set; }
+            public bool IsCorrect { get; set; }
+        }
+
         public class SubMemberExamDetail
         {
             public SubMemberExam SubMemberExam { get; set; }
@@ -82,6 +96,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             public Option CorrectOption { get; set; }
             public Option SelectedOption { get; set; }
             public MemberExam MemberExam { get; set; }
+            public SubLessonxamDetail LessonResult { get; set; }
         }
         public ActionResult ExamResultDetails(int? id)
         {
@@ -92,7 +107,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             }
             List<SubMemberExamDetail> subs = new List<SubMemberExamDetail>();
 
-             var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
+            var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
             // yunua eski var memberExam = db.MemberExams.Where(x => x.ExamId == id).FirstOrDefault();
             var subMemberExams = db.SubMemberExams.Where(x => x.MemberExamId == memberExam.Id).ToList();
             foreach (var item in subMemberExams)
@@ -107,6 +122,10 @@ namespace SanalDenemem.MvcWebUI.Controllers
                 }
                 examDetail.SelectedOption = db.Options.Where(x => x.Id == item.SelectedOptionId).FirstOrDefault();
                 examDetail.CorrectOption = db.Options.Where(x => x.Id == item.CorrectOptionId).FirstOrDefault();
+                SubLessonxamDetail subLessonxamDetail = new SubLessonxamDetail();
+                subLessonxamDetail.Lesson = db.Lessons.Where(x => x.Id == examDetail.Question.LessonId).FirstOrDefault();
+                subLessonxamDetail.IsCorrect = examDetail.SelectedOption == examDetail.CorrectOption ? true : false;
+                examDetail.LessonResult = subLessonxamDetail;
                 subs.Add(examDetail);
             }
 
@@ -136,7 +155,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
                 examDetail.CorrectOption = db.Options.Where(x => x.QuestionId == item.Id && x.IsCorrect == true).FirstOrDefault();
                 subs.Add(examDetail);
             }
-            subs = subs.OrderBy(x=>x.Question.RowNo).ToList();
+            subs = subs.OrderBy(x => x.Question.RowNo).ToList();
             subs[0].MemberExam = memberExam;
             return View(subs);
         }
@@ -145,7 +164,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
         {
             var memberId = db.Members.FirstOrDefault(i => i.UserName == User.Identity.Name).Id;
             int memberExamId = db.MemberExams.FirstOrDefault(x => x.MemberId == memberId && x.ExamId == id).Id;
-            return RedirectToAction("ExamResultDetails", "Members", new { id= memberExamId });
+            return RedirectToAction("ExamResultDetails", "Members", new { id = memberExamId });
         }
 
 

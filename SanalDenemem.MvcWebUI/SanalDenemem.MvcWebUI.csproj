@@ -236,6 +236,8 @@
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\js\bootstrap.bundle.min.js" />
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\js\bootstrap.js" />
     <Content Include="Content\Plugins\bootstrap-4.5.2-dist\js\bootstrap.min.js" />
+    <Content Include="Content\Plugins\dataTableJquery\jquery.dataTables.min.css" />
+    <Content Include="Content\Plugins\dataTableJquery\jquery.dataTables.min.js" />
     <Content Include="Content\Plugins\vendor\anchor.min.js" />
     <Content Include="Content\Plugins\vendor\clipboard.min.js" />
     <Content Include="Content\Plugins\vendor\holder.min.js" />
@@ -488,7 +490,7 @@
     <Content Include="Views\Contact\Create.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Home\ExamsShowResult.cshtml" />
-    <Content Include="Views\Home\ExamResutlDetails.cshtml" />
+    <Content Include="Views\Shared\_ExamResultDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
