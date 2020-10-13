@@ -28,6 +28,15 @@ namespace SanalDenemem.MvcWebUI.Controllers
         {
             return View();
         }
+        public ActionResult Payment()
+        {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Register", "Account");
+            }
+            Member member = db.Members.FirstOrDefault(i => i.UserName == User.Identity.Name);
+            return View(member);
+        }
 
         public class IndexViewModel
         {

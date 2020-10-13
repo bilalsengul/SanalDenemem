@@ -491,6 +491,7 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Home\ExamsShowResult.cshtml" />
     <Content Include="Views\Shared\_ExamResultDetails.cshtml" />
+    <Content Include="Views\Home\Payment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
