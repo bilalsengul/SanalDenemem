@@ -53,48 +53,44 @@
     <!-- Modernizr JS -->
     <script src="~/Content/edutemplate/js/modernizr-2.6.2.min.js"></script>
     <!-- FOR IE9 below -->
+    <script type="text/javascript">(function () {
+        var options = {
+            whatsapp: "+905385088290", // WhatsApp numaranızı buraya girin
+            call_to_action: "Merhaba, bize ulaşmak için tıklayın ?", // Görünecek metin
+            position: "left", // Position may be 'right' or 'left'
+        };
+        var proto = document.location.protocol, host = "whatshelp.io", url = proto + "//static." + host;
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+        s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+        var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+    })();</script>
 
 
 </head>
-<body>
+<body >
 
     <div class="fh5co-loader"></div>
 
     <div id="page">
         <nav class="fh5co-nav" role="navigation">
-            @*<div class="top">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 text-right">
-                                <p class="site">www.sanaldenemem.com</p>
-                                <ul class="fh5co-social">
-                                    <li><a href="https://www.facebook.com/sanaldenemem/"><i class="icon-facebook2"></i></a></li>
-                                    <li><a href="https://twitter.com/sanaldenemem"><i class="icon-twitter2"></i></a></li>
-                                    <li><a href="https://www.instagram.com/sanaldenemem_/"><i class="icon-instagram"></i></a></li>
-                                    <li><a href="https://www.youtube.com/channel/UC7cg94tTqM5S3W6kIt3wr7Q"><i class="icon-youtube"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-            <div class="top-menu">
+            <div class="top" style="background-color:lightblue">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-4">
-                            <div id="fh5co-logo"><a href="@Url.Action("Index","Home")"><i class="icon-study"></i>Sanal Denemem<span></span></a></div>
-                        </div>
-                        <div class="col-xs-8 text-right menu-1">
-                            <ul>
-                                <li class="active"><a href="@Url.Action("Index","Home")">Anasayfa</a></li>
-                                <li><a href="@Url.Action("ExamTypes","Home")">Sınavlar</a></li>
-                                <li><a href="@Url.Action("Pricing","Home")">Üyelik Paketleri</a></li>
-                                <li><a href="@Url.Action("Blog","Home")">Blog</a></li>
-                                <li><a href="@Url.Action("About","Home")">Hakkımızda</a></li>
-                                <li><a href="@Url.Action("Create","Contact")">İletişim</a></li>
+                        <div class="col-xs-12 text-right">
+                            <ul class="site">
+                                <li><a href="https://www.facebook.com/sanaldenemem/"><i class="icon-facebook2"></i></a></li>
+                                <li><a href="https://twitter.com/sanaldenemem"><i class="icon-twitter2"></i></a></li>
+                                <li><a href="https://www.instagram.com/sanaldenemem_/"><i class="icon-instagram"></i></a></li>
+                                <li><a href="https://www.youtube.com/channel/UC7cg94tTqM5S3W6kIt3wr7Q"><i class="icon-youtube"></i></a></li>
+
+                            </ul>
+
+                            <ul class="fh5co-social">
 
                                 @if (Request.IsAuthenticated && User.IsInRole("admin"))
                                 {
-                                    <li><a href="@Url.Action("Index", "Base", new { area = "Admin" })">Admin Paneli</a></li>
+                                   
+                                    <li class="btn-cta"><a style="color:whitesmoke" href="@Url.Action("Index", "Base", new { area = "Admin" })"><span>Admin Paneli</span></a></li>
                                 }
                                 @if (Request.IsAuthenticated)
                                 {
@@ -106,11 +102,11 @@
                                     if (!(User.IsInRole("admin")))
                                     {
                                         <li class="btn-cta">
-                                            <a href="@Url.Action("Profile","Members",new { id =logId })"><span>Profil</span></a>
+                                            <a style="color:whitesmoke" href="@Url.Action("Profile","Members",new { id =logId })"><span>Profil</span></a>
                                         </li>
                                     }
                                     <li class="btn-cta">
-                                        <a href="@Url.Action("Logout","Account")"><span>Çıkış</span></a>
+                                        <a style="color:whitesmoke" href="@Url.Action("Logout","Account")"><span>Çıkış</span></a>
                                     </li>
                                 }
                                 else
@@ -118,6 +114,32 @@
                                     <li class="btn-cta"><a href="@Url.Action("Login","Account")"><span>Giris Yap</span></a></li>
                                     <li class="btn-cta"><a href="@Url.Action("Register","Account")"><span>Kayit ol</span></a></li>
                                 }
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top-menu" style="background-color:white">
+                <div class="container" style="background-color:gray">
+                    
+
+                </div>
+            </div>
+            <div class="top-menu" style="background-color:#202c45">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xs-push-12 text-sm-center menu-1 ">
+                            <ul>
+                                <li class="active"><a style="color:whitesmoke ; font-size:20px" href="@Url.Action("Index","Home")">Anasayfa</a></li>
+                                <li><a style="color:whitesmoke; font-size:20px" href="@Url.Action("ExamTypes","Home")">Denemeler</a></li>
+                                <li><a style="color:whitesmoke; font-size:20px" href="@Url.Action("Pricing","Home")">Üyelik Paketleri</a></li>
+                                <li><a style="color:whitesmoke; font-size:20px" href="@Url.Action("Blog","Home")">Blog</a></li>
+                                <li><a style="color:whitesmoke; font-size:20px" href="@Url.Action("About","Home")">Hakkımızda</a></li>
+                                <li><a style="color:whitesmoke; font-size:20px" href="@Url.Action("Create","Contact")">İletişim</a></li>
+
+                               
 
                             </ul>
                         </div>

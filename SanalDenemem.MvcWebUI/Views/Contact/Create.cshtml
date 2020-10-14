@@ -1,64 +1,85 @@
 ﻿@model SanalDenemem.MvcWebUI.Entity.Contact
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "İletişim";
     Layout = "~/Views/Shared/_TemplateLayout.cshtml";
 }
 
-<h2>Create</h2>
+<aside id="fh5co-hero">
+    <div class="flexslider">
+        <ul class="slides">
+            <li style="background-image: url(../Content/edutemplate/images/banner1eski.jpg);">
+                <div class="overlay-gradient"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center slider-text">
+                            <div class="slider-text-inner">
+                                <h1 class="heading-section">İletişim</h1>
 
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Contact</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
-}
+</aside>
+<div id="fh5co-contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 col-md-push-1 animate-box">
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+                <div class="fh5co-contact-info">
+                    <h3>İletişim Bilgileri</h3>
+                    <ul>
+                        
+                        <li class="phone"><a href="tel://+905384502375">+ 90 538 450 237 5</a></li>
+                        <li class="email"><a href="mailto:info@sanaldenemem.com">info@sanaldenemem.com</a></li>
+            
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 animate-box">
+                <h3>Mesaj Gönderin</h3>
+                <form action="#">
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <!-- <label for="fname">First Name</label> -->
+                            <input type="text" id="fname" class="form-control" placeholder="Adınız">
+                        </div>
+                        <div class="col-md-6">
+                            <!-- <label for="lname">Last Name</label> -->
+                            <input type="text" id="lname" class="form-control" placeholder="Soyadınız">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <!-- <label for="email">Email</label> -->
+                            <input type="text" id="email" class="form-control" placeholder="Mail Adresiniz">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <!-- <label for="subject">Subject</label> -->
+                            <input type="text" id="subject" class="form-control" placeholder="Mesajın Konusu">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <!-- <label for="message">Message</label> -->
+                            <textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Mesaj"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Gönder" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 </div>
+
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
