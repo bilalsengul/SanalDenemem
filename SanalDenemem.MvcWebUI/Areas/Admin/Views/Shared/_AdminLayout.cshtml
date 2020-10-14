@@ -30,11 +30,11 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            @Html.ActionLink("SANALDENEMEM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Geri Dön", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Base" ? "active" : "")">
+                @*<li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Base" ? "active" : "")">
                     <a class="nav-link" href="@Url.Action("Index", "Base", new { area = "Admin" })">Anasayfa</a>
-                </li>
+                </li>*@
                 <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "AdminManager" ? "active" : "")">
                     <a class="nav-link" href="@Url.Action("Index", "AdminManager", new { area = "" })">Hesap Yönetimi</a>
                 </li>
@@ -50,9 +50,9 @@
                 <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Exams" ? "active" : "")">
                     <a class="nav-link" href="@Url.Action("Index", "Exams", new { area = "Admin" })">Sınavlar</a>
                 </li>
-                <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Contact" ? "active" : "")">
+                @*<li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Contact" ? "active" : "")">
                     <a class="nav-link" href="@Url.Action("Index", "Contact", new { area = "" })">İletişim</a>
-                </li>
+                </li>*@
             </ul>
             @*<form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
