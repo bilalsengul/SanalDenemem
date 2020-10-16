@@ -33,25 +33,26 @@
     <!-- Template Main CSS File -->
     <link href="~/Content/profil/assets/css/style.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <style>
-.skill{
-    font-size:20px
+    .skill {
+        font-size: 20px
+    }
 
-}
-.card-header{
+    .card-header {
+        font-size: 20px;
+        text-align: center;
+        font-weight: bold;
+    }
 
-    font-size:20px;
-    text-align:center;
-    font-weight:bold;
-}
-.card-title{
-    font-size:14px;
-    color:white;
-    
-
-}
+    .card-title {
+        font-size: 14px;
+        color: white;
+    }
 </style>
 <body>
 
@@ -63,7 +64,15 @@
         <div class="d-flex flex-column">
 
             <div class="profile">
-                <img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">
+                @if (Model.member.ProfileImageName != null)
+                {
+                    <img src="/Server/img/@Model.member.ProfileImageName" class="img-fluid rounded-circle" alt="">
+                }
+                else
+                {
+                    @Html.ActionLink("Resim Ekle", "Upload", new { id = Model.member.UserId }, new { @class = "btn btn-primary btn-sm" })
+                }
+                @*<img src="assets/img/profile-img.jpg" alt="" class="img-fluid rounded-circle">*@
                 <h1 class="text-light"><a href="index.html">Yunus Şen</a></h1>
 
             </div>
@@ -72,7 +81,30 @@
                 <ul>
                     <li class="active"><a href="#facts"><i class="bx bx-home"></i> <span>Menu</span></a></li>
                     <li><a href="#skills"><i class="bx bx-file-blank"></i> <span>İstatistikler</span></a></li>
-                    <li><a href="#portfolio"><i class="bx bx-book-content"></i> <span>Sınav Sonuçları</span></a></li>
+
+                    @foreach (var item in Model.ExamTypes)
+                    {
+                    <li>
+                        
+                        <div class="dropdown dropright">
+                            
+                            <button class="btn btn-secondary dropdown-toggle" style="margin-left: 35px; margin-bottom: 15px;background-color: #040b14; font-size: large" type="button" data-toggle="dropdown">
+                                <span>@item.ExamTypeName</span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                @foreach (var item2 in item.Exams)
+                                {
+                                    if (Model.exams.Contains(item2))
+                                    {
+                                        <li> <a class="dropdown-item" target="_blank" href="@Url.Action("ExamToMemberExam", "Members",new {id=item2.Id })">@item2.Title</a></li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </li>
+                    }
+                    @*<a href="#portfolio"><i class="bx bx-book-content"></i> <span>Sınav Sonuçları</span></a>*@
+
                     <li><a href="@Url.Action("Index","Home")"><i class="icon-arrow-back"></i> <span>Çıkış Yap</span></a></li>
 
                 </ul>
@@ -202,103 +234,102 @@
             </div>
         </section><!-- End Skills Section -->
         <!-- ======= Portfolio Section ======= -->
-        <section id="portfolio" class="portfolio section-bg">
-            <div class="container">
+        @*<section id="portfolio" class="portfolio section-bg">
+                <div class="container">
 
-                <div class="section-title">
-                    <h2>Sınav Sonuçları</h2>
+                    <div class="section-title">
+                        <h2>Sınav Sonuçları</h2>
+
+                    </div>
+
+                    <div class="row" data-aos="fade-up">
+                        <div class="col-lg-12 d-flex justify-content-center">
+                            <ul id="portfolio-flters">
+                                <li data-filter="*" class="filter-active">Tüm Sınavlar</li>
+                                <li data-filter=".filter-yk">YKS</li>
+                                <li data-filter=".filter-tyt">TYT</li>
+                                <li data-filter=".filter-ayt">AYT</li>
+                                <li data-filter=".filter-dhpt">DHPT</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+
+                        <div class=" col-md-2 portfolio-item filter-yk">
+                            <div class="portfolio-wrap">
+
+                                <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+                                    <div class="card-header">YKS</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Doğru Sayısı:115</h5>
+                                        <h5 class="card-title">Yanlış Sayısı: 21</h5>
+                                        <h5 class="card-title">Net Sayısı: 100</h5>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class=" col-md-2 portfolio-item filter-tyt">
+                            <div class="portfolio-wrap">
+
+
+                                <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+                                    <div class="card-header">TYT</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Doğru Sayısı:115</h5>
+                                        <h5 class="card-title">Yanlış Sayısı: 21</h5>
+                                        <h5 class="card-title">Net Sayısı: 100</h5>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class=" col-md-2 portfolio-item filter-ayt">
+                            <div class="portfolio-wrap">
+
+
+                                <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+                                    <div class="card-header">AYT</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Doğru Sayısı:115</h5>
+                                        <h5 class="card-title">Yanlış Sayısı: 21</h5>
+                                        <h5 class="card-title">Net Sayısı: 100</h5>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class=" col-md-2 portfolio-item filter-dhpt">
+                            <div class="portfolio-wrap">
+
+
+                                <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+                                    <div class="card-header">DHPT</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Doğru Sayısı:115</h5>
+                                        <h5 class="card-title">Yanlış Sayısı: 21</h5>
+                                        <h5 class="card-title">Net Sayısı: 100</h5>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
 
                 </div>
-
-                <div class="row" data-aos="fade-up">
-                    <div class="col-lg-12 d-flex justify-content-center">
-                        <ul id="portfolio-flters">
-                            <li data-filter="*" class="filter-active">Tüm Sınavlar</li>
-                            <li data-filter=".filter-yks">YKS</li>
-                            <li data-filter=".filter-tyt">TYT</li>
-                            <li data-filter=".filter-ayt">AYT</li>
-                            <li data-filter=".filter-dhpt">DHPT</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-
-                    <div class=" col-md-2 portfolio-item filter-yks">
-                        <div class="portfolio-wrap">
-
-
-                            <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
-                                <div class="card-header">YKS</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Doğru Sayısı:115</h5>
-                                    <h5 class="card-title">Yanlış Sayısı: 21</h5>
-                                    <h5 class="card-title">Net Sayısı: 100</h5>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <div class=" col-md-2 portfolio-item filter-tyt">
-                        <div class="portfolio-wrap">
-
-
-                            <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
-                                <div class="card-header">TYT</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Doğru Sayısı:115</h5>
-                                    <h5 class="card-title">Yanlış Sayısı: 21</h5>
-                                    <h5 class="card-title">Net Sayısı: 100</h5>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class=" col-md-2 portfolio-item filter-ayt">
-                        <div class="portfolio-wrap">
-
-
-                            <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
-                                <div class="card-header">AYT</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Doğru Sayısı:115</h5>
-                                    <h5 class="card-title">Yanlış Sayısı: 21</h5>
-                                    <h5 class="card-title">Net Sayısı: 100</h5>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class=" col-md-2 portfolio-item filter-dhpt">
-                        <div class="portfolio-wrap">
-
-
-                            <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
-                                <div class="card-header">DHPT</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Doğru Sayısı:115</h5>
-                                    <h5 class="card-title">Yanlış Sayısı: 21</h5>
-                                    <h5 class="card-title">Net Sayısı: 100</h5>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                   
-
-                </div>
-
-            </div>
-        </section><!-- End Portfolio Section -->
+            </section>*@<!-- End Portfolio Section -->
 
 
 
