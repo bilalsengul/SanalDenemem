@@ -125,6 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\denemeprofile.txt" />
     <Content Include="Content\edutemplate\about.html" />
     <Content Include="Content\edutemplate\blog.html" />
     <Content Include="Content\edutemplate\courses.html" />
@@ -363,6 +364,9 @@
     <Content Include="Scripts\jquery-3.5.0.slim.min.js" />
     <Content Include="Scripts\jquery-3.5.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.0.min.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -493,6 +497,7 @@
     <Content Include="Views\Shared\_ExamResultDetails.cshtml" />
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\Shared\_denemeLayout.cshtml" />
+    <Content Include="Views\Shared\_profilLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

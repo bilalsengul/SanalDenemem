@@ -1,0 +1,198 @@
+@model SanalDenemem.MvcWebUI.Models.ExamResultSub
+
+@{
+    ViewBag.Title = Model.member.Name;
+    Layout = "~/Views/Shared/_TemplateLayout.cshtml";
+}
+
+<style>
+    body {
+        background: #F1F3FA;
+    }
+
+    /* Profile container */
+    .profile {
+        margin: 20px 0;
+    }
+
+    /* Profile sidebar */
+    .profile-sidebar {
+        padding: 20px 0 10px 0;
+        background: #fff;
+    }
+
+    .profile-userpic img {
+        float: none;
+        margin: 0 auto;
+        width: 50%;
+        height: 50%;
+        -webkit-border-radius: 50% !important;
+        -moz-border-radius: 50% !important;
+        border-radius: 50% !important;
+    }
+
+    .profile-usertitle {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .profile-usertitle-name {
+        color: #5a7391;
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 7px;
+    }
+
+    .profile-usertitle-job {
+        text-transform: uppercase;
+        color: #5b9bd1;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .profile-userbuttons {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+        .profile-userbuttons .btn {
+            text-transform: uppercase;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 15px;
+            margin-right: 5px;
+        }
+
+            .profile-userbuttons .btn:last-child {
+                margin-right: 0px;
+            }
+
+    .profile-usermenu {
+        margin-top: 30px;
+    }
+
+        .profile-usermenu ul li {
+            border-bottom: 1px solid #f0f4f7;
+        }
+
+            .profile-usermenu ul li:last-child {
+                border-bottom: none;
+            }
+
+            .profile-usermenu ul li a {
+                color: #93a3b5;
+                font-size: 14px;
+                font-weight: 400;
+            }
+
+                .profile-usermenu ul li a i {
+                    margin-right: 8px;
+                    font-size: 14px;
+                }
+
+                .profile-usermenu ul li a:hover {
+                    background-color: #fafcfd;
+                    color: #5b9bd1;
+                }
+
+            .profile-usermenu ul li.active {
+                border-bottom: none;
+            }
+
+                .profile-usermenu ul li.active a {
+                    color: #5b9bd1;
+                    background-color: #f6f9fb;
+                    border-left: 2px solid #5b9bd1;
+                    margin-left: -2px;
+                }
+
+    /* Profile Content */
+    .profile-content {
+        padding: 20px;
+        background: #fff;
+        min-height: 460px;
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<!--
+
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+<div class="container">
+    <div class="row profile">
+        <div class="col-md-3">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                    @if (Model.member.ProfileImageName != null)
+                    {
+                        <img src="/Server/img/@Model.member.ProfileImageName" class="img-responsive" alt="">
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Resim Ekle", "Upload", new { id = Model.member.UserId }, new { @class = "btn btn-primary btn-sm" })
+                    }
+                </div>
+
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        @Model.member.Name @Model.member.Surname
+                    </div>
+                </div>
+
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        <li>
+                            <a href="#toDo" class="active">
+                                <i class="glyphicon glyphicon-ok"></i>
+                                Görev Listesi
+                            </a>
+                        </li>
+
+                        <li>
+                            @foreach (var item in Model.ExamTypes)
+                            {
+                                <div class="btn-group dropright">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @item.ExamTypeName
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        @foreach (var item2 in item.Exams)
+                                        {
+                                            if (Model.exams.Contains(item2))
+                                            {
+                                                <a class="dropdown-item" target="_blank" href="@Url.Action("ExamToMemberExam", "Members",new {id=item2.Id })">@item2.Title</a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+        <div class="col-md-9">
+
+            <div class="profile-content" id="toDo">
+                @Html.Action("Tasks", "Members", new { currentId = Model.member.Id })
+            </div>
+            @*<hr />
+            <div class="profile-content" id="sinavSonuclarin">
+                    @Html.Action("ExamResult", "Members")
+                </div>*@
+        </div>
+
+    </div>
+</div>
+
+
