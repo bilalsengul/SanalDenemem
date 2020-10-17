@@ -258,51 +258,51 @@
 </style>
 <style>
 
-  
-   /*.snippet-body {
-        height: 100%
-    }
 
-   .snippet-body {
-       
-    }*/
+     /*.snippet-body {
+         height: 100%
+     }
 
-    .modal-content.snippet-body {
-        border-radius: 1rem ;
-        display: grid;
-        place-items: center;
-        width: 100%;
-        height: 100vh;
-        background-image: linear-gradient(to bottom right, rgb(10, 153, 209), rgb(5, 76, 122));
-        text-align: center;
-        font-size: 16px
-    }
+    .snippet-body {
 
-        .modal-content:hover.snippet-body {
-            box-shadow: 2px 2px 2px black
-        }
+     }*/
 
-    .fa.snippet-body {
-        color: #2b84be;
-        font-size: 90px;
-        padding: 30px 0px
-    }
+     .modal-content.snippet-body {
+         border-radius: 1rem;
+         display: grid;
+         place-items: center;
+         width: 100%;
+         height: 100vh;
+         background-image: linear-gradient(to bottom right, rgb(10, 153, 209), rgb(5, 76, 122));
+         text-align: center;
+         font-size: 16px
+     }
 
-    .b1.snippet-body {
-        background-color: #2b84be;
-        box-shadow: 0px 4px #337095;
-        font-size: 17px
-    }
+     .modal-content:hover.snippet-body {
+         box-shadow: 2px 2px 2px black
+     }
 
-    .r3.snippet-body{
-        color: #c1c1c1;
-        font-weight: 500
-    }
+     .fa.snippet-body {
+         color: #2b84be;
+         font-size: 90px;
+         padding: 30px 0px
+     }
 
-    a,
-    a:hover.snippet-body {
-        text-decoration: none
-    }
+     .b1.snippet-body {
+         background-color: #2b84be;
+         box-shadow: 0px 4px #337095;
+         font-size: 17px
+     }
+
+     .r3.snippet-body {
+         color: #c1c1c1;
+         font-weight: 500
+     }
+
+     a,
+     a:hover.snippet-body {
+         text-decoration: none
+     }
 </style>
 
 
@@ -399,98 +399,7 @@
             </div>
         }
     </div>
-    <button onclick="finishExam()" class="large green button"data-target="#form" style="position:relative;left: 50%; ">Sınavı Bitir</button>
-    @*<style>
-       
-
-$timing        : 265ms;
-$iconColor     : #00B5F5;
-$accent        : #002A8F;
-$bluefade      : #0043E0;
-$gradient      : #00B5F5;
-
-
-body {
-    background-color: rgba($iconColor, 0.05);
-}
-
-.social-container {
-    width: 400px;
-    margin: 40vh auto;
-    text-align: center;
-}
-
-.social-icons {
-    padding: 0;
-    list-style: none;
-    margin: 1em;
-
-    li {
-        display: inline-block;
-        margin: 0.15em;
-        position: relative;
-        font-size: 1.2em;
-
-    }
-
-    i {
-        color: #fff;
-        position: absolute;
-        top: 21px;
-        left: 21px;
-        transition: all $timing ease-out;
-    }
-
-    a {
-        display: inline-block;
-
-        &:before {
-           
-            content: " ";
-            width: 60px;
-            height: 60px;
-            border-radius: 100%;
-            display: block;
-            background: linear-gradient(45deg, $iconColor, $accent);
-            transition: all $timing ease-out;
-        }
-
-        &:hover:before {
-            transform: scale(0);
-            transition: all $timing ease-in;
-        }
-
-        &:hover i {
-           
-            color: $iconColor;
-            background: -webkit-linear-gradient(45deg, $iconColor, $accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: all $timing ease-in;
-        }
-    }
-
-}
-    </style>*@
-    @*<body oncontextmenu='return false' class='snippet-body' >
-        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#form"style="position:relative;left: 50%; ">Sınav Bitir 2 </button>
-        <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
-                    <h3>Push notifications</h3> <i class="fa fa-bell"></i>
-                    <div class="social-container">
-                        <ul class="social-icons">
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-codepen"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="text-center mb-3"> <button class="btn btn-primary w-50 rounded-pill b1">Subscribe</button> </div> <a onclick="finishExam()" href="">Not now</a>
-                </div>
-            </div>
-        </div>
-    </body>*@
+    <button onclick="finishExam()" class="large green button" data-target="#form" style="position:relative;left: 50%; ">Sınavı Bitir</button>
     <br />
     <br />
     <br />
@@ -520,7 +429,7 @@ body {
     }
 
     function finishExam() {
-        console.log("finisexam girdi.")
+        if(dizi.length != 0){
         $.ajax({
             type: "POST",
             url: '@Url.Action("ExamResult", "Home")',
@@ -533,15 +442,25 @@ body {
                 alert(err);
             }
         });
+        }
+    else{alert("Tüm sorular boş bırakılamaz.");}
     }
 
     function emptyOption(quesId, examId) {
         $('input[name=' + quesId + '-ques]').attr('checked', false);
+        var data = {
+            examId: examId,
+            quesId: quesId,
+            optId: 0,
+            memberId: @Model.Item1
+        };
         for (var i = 0; i < dizi.length; i++) {
             if (dizi[i].examId == examId && dizi[i].quesId == quesId) {
                 dizi.splice(i, 1);
+                return;
             }
         }
+        dizi.push(data);
     }
 
 </script>

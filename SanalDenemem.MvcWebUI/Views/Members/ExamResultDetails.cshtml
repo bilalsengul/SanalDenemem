@@ -17,7 +17,7 @@
         }
     }
     List<SanalDenemem.MvcWebUI.Controllers.MembersController.LessonExamDetail> lessonExamResultList = new List<SanalDenemem.MvcWebUI.Controllers.MembersController.LessonExamDetail>();
-    foreach (var item in Model.GroupBy(x=>x.LessonResult.Lesson))
+    foreach (var item in Model.Where(x => x.LessonResult != null).GroupBy(x => x.LessonResult.Lesson))
     {
         SanalDenemem.MvcWebUI.Controllers.MembersController.LessonExamDetail lessonExamDetail = new SanalDenemem.MvcWebUI.Controllers.MembersController.LessonExamDetail();
         lessonExamDetail.Lesson = item.Key;
@@ -30,15 +30,18 @@
     {
         foreach (var item2 in lessonExamResultList)
         {
-            if (item.LessonResult.Lesson == item2.Lesson)
+            if (item.LessonResult != null)
             {
-                if (item.LessonResult.IsCorrect == true)
+                if (item.LessonResult.Lesson == item2.Lesson)
                 {
-                    item2.CorrectCount++;
-                }
-                else
-                {
-                    item2.FailCount++;
+                    if (item.LessonResult.IsCorrect == true)
+                    {
+                        item2.CorrectCount++;
+                    }
+                    else
+                    {
+                        item2.FailCount++;
+                    }
                 }
             }
         }
@@ -73,17 +76,16 @@
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
     }
-    .card-header{
-        font-size:16px;
-        font-weight:bold;
-        text-align:left;
 
-
+    .card-header {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: left;
     }
-    .card-title{
 
-        color:black;
-        text-align:left;
+    .card-title {
+        color: black;
+        text-align: left;
     }
 </style>
 
@@ -101,7 +103,7 @@
                 <h1>boş sayısı:@emptyCount</h1>
             </div>*@
     </div>
-   
+
     <div class="row" style="margin-top:2%">
         <div class="container" style="text-align: -webkit-right;">
             <div class="col-md-3">
@@ -155,7 +157,7 @@
                             <h5 class="card-title">Yanlış Sayısı: @item.FailCount</h5>
                             <h5 class="card-title">Net Sayısı: @item.NetCount</h5>
                         </div>
-                        
+
                     </div>
                 </div>
             }

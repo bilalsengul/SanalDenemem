@@ -34,16 +34,9 @@ namespace SanalDenemem.MvcWebUI.Controllers
                 exams.Add(exam);
             }
             string last = "", current = "";
-            foreach (var exam in exams)
+            foreach (var exam in exams.GroupBy(x=>x.ExamTypeId).Select(x=>x.Key))
             {
-                var examType = db.ExamTypes.FirstOrDefault(i => i.Id == exam.ExamTypeId);
-                current = examType.ExamTypeName;
-                if (current == last)
-                {
-                    continue;
-                }
-                last = current;
-                ExamTypes.Add(examType);
+                ExamTypes.Add(db.ExamTypes.Where(x => x.Id == exam).FirstOrDefault());
             }
             foreach (var item in ExamTypes)
             {
