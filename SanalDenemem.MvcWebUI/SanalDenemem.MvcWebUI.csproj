@@ -498,6 +498,8 @@
     <Content Include="Views\Home\Payment.cshtml" />
     <Content Include="Views\Shared\_denemeLayout.cshtml" />
     <Content Include="Views\Shared\_profilLayout.cshtml" />
+    <Content Include="Views\Home\SingleBlog.cshtml" />
+    <Content Include="Views\Shared\_singleBlogLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

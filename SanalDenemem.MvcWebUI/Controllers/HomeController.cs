@@ -28,6 +28,10 @@ namespace SanalDenemem.MvcWebUI.Controllers
         {
             return View();
         }
+        public ActionResult SingleBlog()
+        {
+            return View();
+        }
         public ActionResult Payment()
         {
             if (!Request.IsAuthenticated)
