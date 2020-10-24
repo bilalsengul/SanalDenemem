@@ -505,7 +505,69 @@
     <br />
     <br />
 
+    <style>
 
+
+
+
+.social-container {
+    width: 400px;
+    
+    text-align: center;
+}
+
+.social-icons {
+    padding: 0;
+    list-style: none;
+    margin: 1em;
+
+    li{
+        display: inline;
+        margin: 0.15em;
+        position: relative;
+        font-size: 1.2em;
+
+    }
+
+    i {
+        color: #fff;
+        position: absolute;
+        top: 21px;
+        left: 21px;
+        transition: all $timing ease-out;
+    }
+
+    a {
+        display: inline-block;
+
+        &:before {
+           
+            content: " ";
+            width: 60px;
+            height: 60px;
+            border-radius: 100%;
+            display: block;
+            background: linear-gradient(45deg, $iconColor, $accent);
+            transition: all $timing ease-out;
+        }
+
+        &:hover:before {
+            transform: scale(0);
+            transition: all $timing ease-in;
+        }
+
+        &:hover i {
+           
+            color: $iconColor;
+            background: -webkit-linear-gradient(45deg, $iconColor, $accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all $timing ease-in;
+        }
+    }
+
+}
+    </style>
 
     <!-- Modal HTML -->
     <div id="myModal" class="modal fade">
@@ -519,6 +581,15 @@
                 </div>
                 <div class="modal-body">
                     <p class="text-center">Sosyal medya platformlarımızı takip ederek çeşitli ödüller kazanabilirsin.</p>
+                </div>
+                <div class="social-container" style="align-self:center; margin:20px; color:greenyellow; border:1px black;box-shadow: 5px 8px 8px 10px #888888; border-radius:25px; background-color:lightgray;">
+                    <ul class="social-icons" style="display:inline; font-size:45px; text-align:center; position:center; color:greenyellow;">
+                        <li style="display:inline; padding:10px;"><a href="https://www.facebook.com/sanaldenemem/"><i class="fa fa-facebook fa-lg"></i></a></li>
+                        <li style="display:inline; padding:10px;"><a href="https://twitter.com/sanaldenemem"><i class="fa fa-instagram"></i></a></li>
+                        <li style="display:inline; padding:10px;"><a href="https://www.instagram.com/sanaldenemem/"><i class="fa fa-linkedin"></i></a></li>
+                        <li style="display:inline; padding:10px;"><a href="https://www.youtube.com/channel/UC7cg94tTqM5S3W6kIt3wr7Q"><i class="fa fa-youtube"></i></a></li>
+                   
+                    </ul>
                 </div>
                 <div class="modal-footer">
                     <button onclick="finishExam()" class="btn btn-success btn-block" data-dismiss="modal" style="font-size:18px;">Tamam</button>
