@@ -1185,14 +1185,11 @@
 .icon-globe2:before {
   content: "\e0b2";
 }
-.icon-box:before {
-  content: "\e0b3";
-}
 .icon-reload:before {
   content: "\e0b4";
 }
 .icon-share3:before {
-  content: "\e0b5";
+  
 }
 .icon-marquee:before {
   content: "\e0b6";
