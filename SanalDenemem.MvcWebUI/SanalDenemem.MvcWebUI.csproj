@@ -500,6 +500,8 @@
     <Content Include="Views\Shared\_profilLayout.cshtml" />
     <Content Include="Views\Home\SingleBlog.cshtml" />
     <Content Include="Views\Shared\_singleBlogLayout.cshtml" />
+    <Content Include="Views\Home\Result.cshtml" />
+    <Content Include="Views\Members\MemberResult.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

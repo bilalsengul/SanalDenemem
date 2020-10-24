@@ -14,7 +14,10 @@ namespace SanalDenemem.MvcWebUI.Controllers
     [Authorize]
     public class MembersController : BaseController
     {
-
+        public ActionResult MemberResult()
+        {
+            return View();
+        }
         public ActionResult Profile(string id)
         {
             ExamResultSub examResultSub = new ExamResultSub();
