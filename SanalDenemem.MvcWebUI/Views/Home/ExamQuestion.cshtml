@@ -408,8 +408,10 @@
 
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
-            if (display.textContent == "00:00") {
-                pencereyiKapat();
+            if (display.textContent == "00:01") {
+                finishExam();
+                if(display.textContent == "00:00")pencereyiKapat();
+                
             }
             display.textContent = minutes + ":" + seconds;
 
@@ -430,6 +432,8 @@
         window.open('', '_parent', '');
         window.close();
     }
+
+    window.onbeforeunload = finishExam;
 </script>
 
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
