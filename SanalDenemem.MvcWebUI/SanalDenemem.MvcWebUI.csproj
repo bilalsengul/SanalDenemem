@@ -282,6 +282,9 @@
     <Content Include="Content\edutemplate\images\banner1eski.jpg" />
     <Content Include="Content\edutemplate\images\bg.jpg" />
     <Content Include="Content\edutemplate\images\blog.jpg" />
+    <Content Include="Content\edutemplate\images\blog1.jpg" />
+    <Content Include="Content\edutemplate\images\blog2.jpg" />
+    <Content Include="Content\edutemplate\images\blog3.jpg" />
     <Content Include="Content\edutemplate\images\e-mail.png" />
     <Content Include="Content\edutemplate\images\exam.jpg" />
     <Content Include="Content\edutemplate\images\ikon.ico" />
