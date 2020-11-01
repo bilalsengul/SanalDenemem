@@ -4,22 +4,32 @@
 <table id="myTable" class="table table-bordered">
     <thead>
         <tr>
+            <th>Derece</th>
             <th>İsim</th>
             <th>Soyisim</th>
             <th>Kullanıcı Adı</th>
             <th>Skor</th>
         </tr>
     </thead>
+    @{ 
+
+        int sira = 1;
+    }
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Surname</td>
-                <td>@item.UserName</td>
-                <td>@item.Score</td>
-            </tr>
-        }
+        <tr>
+            <td>@sira</td>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.UserName</td>
+            <td>@item.Score</td>
+            @{
+                sira = sira + 1;
+            }
+            
+        </tr>
+                }
     </tbody>
 </table>
 
