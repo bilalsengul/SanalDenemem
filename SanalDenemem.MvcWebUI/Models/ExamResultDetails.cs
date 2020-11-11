@@ -11,5 +11,6 @@ namespace SanalDenemem.MvcWebUI.Models
         public string Surname { get; set; }
         public string  UserName { get; set; }
         public double Score { get; set; }
+        public double TotalPoint { get; set; }
     }
 }

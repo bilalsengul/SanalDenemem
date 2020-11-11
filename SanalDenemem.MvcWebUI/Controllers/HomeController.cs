@@ -102,10 +102,12 @@ namespace SanalDenemem.MvcWebUI.Controllers
                     Name = member.Name,
                     Surname = member.Surname,
                     UserName = member.UserName,
-                    Score = examResult.Score
+                    //Score = examResult.Score
+                    TotalPoint = examResult.Total
                 });
             }
-            return PartialView(@"~/Views/Shared/_ExamResultDetails.cshtml", examResults.OrderByDescending(i => i.Score).ToList());
+            //return PartialView(@"~/Views/Shared/_ExamResultDetails.cshtml", examResults.OrderByDescending(i => i.Score).ToList());
+            return PartialView(@"~/Views/Shared/_ExamResultDetails.cshtml", examResults.OrderByDescending(i => i.TotalPoint).ToList());
         }
 
         public ActionResult ExamTypes()
