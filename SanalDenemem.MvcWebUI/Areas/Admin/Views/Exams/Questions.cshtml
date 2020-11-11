@@ -20,6 +20,22 @@
                     <input type="number" class="form-control" id="RowNumber" min="1" placeholder="Giriniz...">
                 </div>
             </div>
+
+
+
+            <div class="col-md-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="Point">puan </label>
+                    </div>
+                    <input type="number" class="form-control" id="Point" min="1" placeholder="Giriniz...">
+                </div>
+            </div>
+
+
+
+
+
             <div class="col-md-4">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -393,6 +409,7 @@
         var arr = window.location.href.split('/');
         var fileData = new FormData();
         fileData.append('RowNo', $('#RowNumber').val());
+        fileData.append('Point', $('#Point').val());//puan icin ekledim.
         fileData.append('Desc', $('#Description').val());
         fileData.append('Text', $('#Text').val());
         var files = document.getElementById("Image").files;

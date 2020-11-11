@@ -194,6 +194,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         public class QuestionRequestModel
         {
             public int RowNo { get; set; }
+            public double Point { get; set; }
             public string Desc { get; set; }
             public string Text { get; set; }
             public string Image { get; set; }
@@ -217,6 +218,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         {
             Question question = new Question();
             question.RowNo = requestModel.RowNo;
+            question.Point = requestModel.Point;
             question.Desc = requestModel.Desc;
             question.Text = requestModel.Text;
             HttpFileCollectionBase files = Request.Files;
@@ -313,6 +315,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
             questionRequestModel.Desc = question.Desc;
             questionRequestModel.Text = question.Text;
             questionRequestModel.RowNo = question.RowNo;
+            questionRequestModel.Point = question.Point;
             var options = question.Options.OrderBy(x => x.Id).ToList();
             questionRequestModel.Option1 = options[0].OptionText;
             questionRequestModel.Option1State = options[0].IsCorrect;
@@ -331,6 +334,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         {
             public int QuesId { get; set; }
             public int RowNo { get; set; }
+            public int Point { get; set; }
             public string Desc { get; set; }
             public string Text { get; set; }
             public string Image { get; set; }
@@ -354,6 +358,7 @@ namespace SanalDenemem.MvcWebUI.Areas.Admin.Controllers
         {
             Question question = db.Questions.Where(x => x.Id == requestModel.QuesId).FirstOrDefault();
             question.RowNo = requestModel.RowNo;
+            question.Point = requestModel.Point;
             question.Desc = requestModel.Desc;
             question.Text = requestModel.Text;
             HttpFileCollectionBase files = Request.Files;

@@ -77,6 +77,8 @@ namespace SanalDenemem.MvcWebUI.Controllers
             public int CorrectCount { get; set; }
             public int FailCount { get; set; }
             public double NetCount { get; set; }
+            public double Total { get; set; }
+
         }
 
         public class SubLessonxamDetail
@@ -104,6 +106,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             List<SubMemberExamDetail> subs = new List<SubMemberExamDetail>();
 
             var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
+            ViewBag.total = memberExam.Total;
             // yunua eski var memberExam = db.MemberExams.Where(x => x.ExamId == id).FirstOrDefault();
             var subMemberExams = db.SubMemberExams.Where(x => x.MemberExamId == memberExam.Id).ToList();
             foreach (var item in subMemberExams)

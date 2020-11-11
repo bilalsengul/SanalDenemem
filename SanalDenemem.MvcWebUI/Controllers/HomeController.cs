@@ -169,6 +169,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             public int quesId { get; set; }
             public int optId { get; set; }
             public int memberId { get; set; }
+            public double total { get; set; }
         }
 
         public JsonResult ExamResult(List<SubResult> dizi)
@@ -177,6 +178,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             List<SubMemberExam> subMemberExams = new List<SubMemberExam>();
             int correctCount = 0;
             int failCount = 0;
+            double total = 0;
             memberExam.State = true;
             memberExam.SubMemberExams = subMemberExams;
             memberExam.MemberId = dizi[0].memberId;
@@ -184,11 +186,16 @@ namespace SanalDenemem.MvcWebUI.Controllers
             memberExam.CorrectCount = correctCount;
             memberExam.FailCount = failCount;
             memberExam.Score = correctCount - failCount * 0.25;
+            memberExam.Total = total;
             db.MemberExams.Add(memberExam);
             foreach (SubResult item in dizi)
             {
                 bool isCorrect = db.Options.Where(x => x.Id == item.optId && x.QuestionId == item.quesId).FirstOrDefault().IsCorrect;
-                if (isCorrect) { correctCount++; }
+                double point = db.Questions.Where(x => x.Id == item.quesId).FirstOrDefault().Point;
+                if (isCorrect) {
+                    correctCount++;
+                    total = total+point;
+                }
                 else { failCount++; }
 
                 SubMemberExam subMemberExam = new SubMemberExam();
@@ -204,6 +211,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             a.FailCount = failCount;
             a.CorrectCount = correctCount;
             a.Score = correctCount - failCount * 0.25;
+            a.Total = total;
             db.SaveChanges();
 
             return Json(new { IsSuccess = true, Message = "Kayıt Başarılı!" });
