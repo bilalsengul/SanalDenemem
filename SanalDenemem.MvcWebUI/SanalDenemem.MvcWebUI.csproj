@@ -888,7 +888,6 @@
     <Folder Include="Content\Css\" />
     <Folder Include="Content\Js\" />
     <Folder Include="Content\profil\forms\" />
-    <Folder Include="Server\img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
