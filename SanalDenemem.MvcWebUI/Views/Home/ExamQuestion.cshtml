@@ -635,9 +635,9 @@
 			type: 'POST',
 			url: '@Url.Action("ExamResult", "Home", new { area = "" })',
 			data: { dizi: dizi },
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            traditional : true,
+          //contenttype: "application/json; charset=utf-8",
+          //datatype: "json",
+          //traditional : true,
 			success: function (response) {
               console.log(response);
 			  window.location.href = '@Url.Action("Profile", "Members", new { area = "" })';
