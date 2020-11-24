@@ -147,6 +147,8 @@
         <th>Konu</th>
         <th>Açıklama</th>
         <th>Yazı</th>
+        <th>Puan</th>
+        <th>Doğru Cevap</th>
         <th>İşlemler</th>
     </tr>
     @if (Model.QuestionList.Count > 0)
@@ -168,6 +170,12 @@
                 </td>
                 <td>
                     @item.Text
+                </td>
+                <td>
+                    @item.Point
+                </td>
+                <td>
+                    @item.Options.Where(x => x.IsCorrect == true).FirstOrDefault().OptionText
                 </td>
                 <td>
                     <input type="hidden" id="quesId" name="quesId" value="@item.Id">

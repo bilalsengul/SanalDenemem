@@ -259,7 +259,7 @@
 <style>
 
 
-     /*.snippet-body {
+    /*.snippet-body {
          height: 100%
      }
 
@@ -267,42 +267,42 @@
 
      }*/
 
-     .modal-content.snippet-body {
-         border-radius: 1rem;
-         display: grid;
-         place-items: center;
-         width: 100%;
-         height: 100vh;
-         background-image: linear-gradient(to bottom right, rgb(10, 153, 209), rgb(5, 76, 122));
-         text-align: center;
-         font-size: 16px
-     }
+    .modal-content.snippet-body {
+        border-radius: 1rem;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(to bottom right, rgb(10, 153, 209), rgb(5, 76, 122));
+        text-align: center;
+        font-size: 16px
+    }
 
-     .modal-content:hover.snippet-body {
-         box-shadow: 2px 2px 2px black
-     }
+    .modal-content:hover.snippet-body {
+        box-shadow: 2px 2px 2px black
+    }
 
-     .fa.snippet-body {
-         color: #2b84be;
-         font-size: 90px;
-         padding: 30px 0px
-     }
+    .fa.snippet-body {
+        color: #2b84be;
+        font-size: 90px;
+        padding: 30px 0px
+    }
 
-     .b1.snippet-body {
-         background-color: #2b84be;
-         box-shadow: 0px 4px #337095;
-         font-size: 17px
-     }
+    .b1.snippet-body {
+        background-color: #2b84be;
+        box-shadow: 0px 4px #337095;
+        font-size: 17px
+    }
 
-     .r3.snippet-body {
-         color: #c1c1c1;
-         font-weight: 500
-     }
+    .r3.snippet-body {
+        color: #c1c1c1;
+        font-weight: 500
+    }
 
-     a,
-     a:hover.snippet-body {
-         text-decoration: none
-     }
+    a,
+    a:hover.snippet-body {
+        text-decoration: none
+    }
 </style>
 <style>
     body {
@@ -411,7 +411,7 @@
             if (display.textContent == "00:01") {
                 finishExam();
                 if(display.textContent == "00:00")pencereyiKapat();
-                
+
             }
             display.textContent = minutes + ":" + seconds;
 
@@ -501,7 +501,7 @@
     <br />
     <br />
 
-    <button class="large green button" href="#myModal" data-toggle="modal" style="position:relative;left: 50%;">Sınavı Bitir</button>
+    <button id="sinaviBitirBtn" class="large green button" href="#myModal" data-toggle="modal" style="position:relative;left: 50%;">Sınavı Bitir</button>
     <br />
     <br />
     <br />
@@ -514,38 +514,37 @@
 
 
 
-.social-container {
-    width: 400px;
-    
-    text-align: center;
-}
+        .social-container {
+            width: 400px;
+            text-align: center;
+        }
 
-.social-icons {
-    padding: 0;
-    list-style: none;
-    margin: 1em;
+        .social-icons {
+            padding: 0;
+            list-style: none;
+            margin: 1em;
+            li
 
-    li{
-        display: inline;
-        margin: 0.15em;
-        position: relative;
-        font-size: 1.2em;
+        {
+            display: inline;
+            margin: 0.15em;
+            position: relative;
+            font-size: 1.2em;
+        }
 
-    }
+        i {
+            color: #fff;
+            position: absolute;
+            top: 21px;
+            left: 21px;
+            transition: all $timing ease-out;
+        }
 
-    i {
-        color: #fff;
-        position: absolute;
-        top: 21px;
-        left: 21px;
-        transition: all $timing ease-out;
-    }
+        a {
+            display: inline-block;
+            &:before
 
-    a {
-        display: inline-block;
-
-        &:before {
-           
+        {
             content: " ";
             width: 60px;
             height: 60px;
@@ -561,16 +560,15 @@
         }
 
         &:hover i {
-           
             color: $iconColor;
             background: -webkit-linear-gradient(45deg, $iconColor, $accent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             transition: all $timing ease-in;
         }
-    }
 
-}
+        }
+        }
     </style>
 
     <!-- Modal HTML -->
@@ -592,12 +590,11 @@
                         <li style="display:inline; padding:10px;"><a href="https://twitter.com/sanaldenemem"><i class="fa fa-instagram" style="color:orangered;"></i></a></li>
                         <li style="display:inline; padding:10px;"><a href="https://www.instagram.com/sanaldenemem/"><i class="fa fa-twitter"></i></a></li>
                         <li style="display:inline; padding:10px;"><a href="https://www.youtube.com/channel/UC7cg94tTqM5S3W6kIt3wr7Q"><i class="fa fa-youtube-play" style="color:red;"></i></a></li>
-                   
+
                     </ul>
                 </div>
                 <div class="modal-footer">
                     <button onclick="finishExam()" class="btn btn-success btn-block" data-dismiss="modal" style="font-size:18px;">Tamam</button>
-
                 </div>
             </div>
         </div>
@@ -611,6 +608,8 @@
     let dizi = [];
 
     function sendAnswer(e) {
+    console.log(dizi);
+
         var arr = window.location.href.split('/');
         var data = {
             examId: arr[arr.length - 1],
@@ -626,7 +625,11 @@
         dizi.push(data);
     }
 
+    let isFinish = false;
     function finishExam() {
+    $('#sinaviBitirBtn').prop('disabled', true); 
+    console.log(dizi);
+    if(isFinish != true){
         if(dizi.length != 0){
         $.ajax({
             type: "POST",
@@ -641,10 +644,13 @@
             }
         });
         }
-    else{alert("Tüm sorular boş bırakılamaz.");}
+        else{alert("Tüm sorular boş bırakılamaz.");}
     }
-
+    else{alert("Sınav zaten bitti.");}
+    }
+    
     function emptyOption(quesId, examId) {
+    console.log(dizi);
         $('input[name=' + quesId + '-ques]').attr('checked', false);
         var data = {
             examId: examId,

@@ -189,32 +189,36 @@ namespace SanalDenemem.MvcWebUI.Controllers
             memberExam.FailCount = failCount;
             memberExam.Score = correctCount - failCount * 0.25;
             memberExam.Total = total;
-            db.MemberExams.Add(memberExam);
-            foreach (SubResult item in dizi)
+            if (db.MemberExams.Where(x => x.MemberId == memberExam.MemberId && x.ExamId == memberExam.ExamId).FirstOrDefault() == null)
             {
-                bool isCorrect = db.Options.Where(x => x.Id == item.optId && x.QuestionId == item.quesId).FirstOrDefault().IsCorrect;
-                double point = db.Questions.Where(x => x.Id == item.quesId).FirstOrDefault().Point;
-                if (isCorrect) {
-                    correctCount++;
-                    total = total+point;
-                }
-                else { failCount++; }
+                db.MemberExams.Add(memberExam);
+                foreach (SubResult item in dizi)
+                {
+                    bool isCorrect = db.Options.Where(x => x.Id == item.optId && x.QuestionId == item.quesId).FirstOrDefault().IsCorrect;
+                    double point = db.Questions.Where(x => x.Id == item.quesId).FirstOrDefault().Point;
+                    if (isCorrect)
+                    {
+                        correctCount++;
+                        total = total + point;
+                    }
+                    else { failCount++; }
 
-                SubMemberExam subMemberExam = new SubMemberExam();
-                subMemberExam.MemberExamId = memberExam.Id;
-                subMemberExam.QuestionId = item.quesId;
-                subMemberExam.SelectedOptionId = item.optId;
-                subMemberExam.CorrectOptionId = db.Options.Where(x => x.QuestionId == item.quesId && x.IsCorrect == true).FirstOrDefault().Id;
-                db.SubMemberExams.Add(subMemberExam);
-                subMemberExams.Add(subMemberExam);
+                    SubMemberExam subMemberExam = new SubMemberExam();
+                    subMemberExam.MemberExamId = memberExam.Id;
+                    subMemberExam.QuestionId = item.quesId;
+                    subMemberExam.SelectedOptionId = item.optId;
+                    subMemberExam.CorrectOptionId = db.Options.Where(x => x.QuestionId == item.quesId && x.IsCorrect == true).FirstOrDefault().Id;
+                    db.SubMemberExams.Add(subMemberExam);
+                    subMemberExams.Add(subMemberExam);
+                    db.SaveChanges();
+                }
+                var a = db.MemberExams.Where(x => x.Id == memberExam.Id).FirstOrDefault();
+                a.FailCount = failCount;
+                a.CorrectCount = correctCount;
+                a.Score = correctCount - failCount * 0.25;
+                a.Total = total;
                 db.SaveChanges();
             }
-            var a = db.MemberExams.Where(x => x.Id == memberExam.Id).FirstOrDefault();
-            a.FailCount = failCount;
-            a.CorrectCount = correctCount;
-            a.Score = correctCount - failCount * 0.25;
-            a.Total = total;
-            db.SaveChanges();
 
             return Json(new { IsSuccess = true, Message = "Kayıt Başarılı!" });
         }
@@ -239,7 +243,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
                     Score = examResult.Score
                 });
             }
-            return View(examResults.OrderByDescending(i=>i.Score).ToList());
+            return View(examResults.OrderByDescending(i => i.Score).ToList());
         }
 
         public ActionResult Blog()
