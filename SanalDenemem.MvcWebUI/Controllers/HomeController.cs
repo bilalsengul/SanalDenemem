@@ -174,6 +174,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
             public double total { get; set; }
         }
 
+        [HttpPost]
         public JsonResult ExamResult(List<SubResult> dizi)
         {
             MemberExam memberExam = new MemberExam();
