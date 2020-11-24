@@ -631,14 +631,18 @@
     console.log(dizi);
     if(isFinish != true){
         if(dizi.length != 0){
-        $.ajax({
-            type: "POST",
-            url: '@Url.Action("ExamResult", "Home")',
-            data: { dizi: dizi },
-            success: function (response) {
-                window.location.href = '@Url.Action("Profile", "Members")';
-                console.log("basarılı.")
-            },
+		  $.ajax({
+			type: 'POST',
+			url: '@Url.Action("ExamResult", "Home", new { area = "" })',
+			data: { dizi: dizi },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            traditional : true,
+			success: function (response) {
+              console.log(response);
+			  window.location.href = '@Url.Action("Profile", "Members", new { area = "" })';
+			  console.log("basarılı.");
+			},
             error: function (err) {
                 alert(err);
             }
