@@ -37,7 +37,7 @@ namespace SanalDenemem.MvcWebUI.Controllers
                 exams.Add(exam);
             }
             string last = "", current = "";
-            foreach (var exam in exams.GroupBy(x=>x.ExamTypeId).Select(x=>x.Key))
+            foreach (var exam in exams.GroupBy(x => x.ExamTypeId).Select(x => x.Key))
             {
                 ExamTypes.Add(db.ExamTypes.Where(x => x.Id == exam).FirstOrDefault());
             }
@@ -106,7 +106,30 @@ namespace SanalDenemem.MvcWebUI.Controllers
             List<SubMemberExamDetail> subs = new List<SubMemberExamDetail>();
 
             var memberExam = db.MemberExams.Where(x => x.Id == id).FirstOrDefault();
-            ViewBag.total = memberExam.Total;
+
+            //
+
+            var subMemberExam214 = db.SubMemberExams.Where(x => x.MemberExamId == memberExam.Id && db.Questions.Where(c => c.Id == x.QuestionId).FirstOrDefault().Point == 2.14).ToList();
+            var subMemberExam286 = db.SubMemberExams.Where(x => x.MemberExamId == memberExam.Id && db.Questions.Where(c => c.Id == x.QuestionId).FirstOrDefault().Point == 2.86).ToList();
+            double net214 = 0, net286 = 0, totalPoint = 0;
+            foreach (var item in subMemberExam214)
+            {
+                Question question = db.Questions.Where(x => x.Id == item.QuestionId).FirstOrDefault();
+                if (item.CorrectOptionId == item.SelectedOptionId) { net214 = net214 + 1; }
+                else { net214 = net214 - 0.25; }
+            }
+            if (net214 > 0) { totalPoint += net214 * 2.14; }
+            foreach (var item in subMemberExam286)
+            {
+                Question question = db.Questions.Where(x => x.Id == item.QuestionId).FirstOrDefault();
+                if (item.CorrectOptionId == item.SelectedOptionId) { net286 = net286 + 1; }
+                else { net286 = net286 - 0.25; }
+            }
+            if (net286 > 0) { totalPoint += net286 * 2.86; }
+
+            //
+
+            ViewBag.total = totalPoint;
             // yunua eski var memberExam = db.MemberExams.Where(x => x.ExamId == id).FirstOrDefault();
             var subMemberExams = db.SubMemberExams.Where(x => x.MemberExamId == memberExam.Id).ToList();
             foreach (var item in subMemberExams)
