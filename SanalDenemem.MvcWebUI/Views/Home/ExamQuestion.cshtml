@@ -433,7 +433,7 @@
         window.close();
     }
 
-    window.onbeforeunload = finishExam;
+    window.onbeforeunload = finishExam();
 </script>
 
 <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
@@ -478,7 +478,7 @@
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text" style="font-size: 1.8rem !important;">
-                                        <input name="@opt.QuestionId-ques--@item.Point-point" id="@opt.Id-opt" type="radio" class="ml-1" style="width: 1em; height: 1em;" onclick="sendAnswer(this)">
+                                        <input name="@opt.QuestionId-ques" id="@opt.Id-opt" type="radio" class="ml-1" style="width: 1em; height: 1em;" onclick="sendAnswer(this)">
 
                                     </div>
                                 </div>
@@ -487,7 +487,7 @@
                             <br>
                         }
                         <div class="input-group">
-                            <button onclick="emptyOption(@item.Id, @item.ExamId, @item.Point)" class=" red button">Boş Bırak</button>
+                            <button onclick="emptyOption(@item.Id, @item.ExamId)" class=" red button">Boş Bırak</button>
 
                         </div>
                     </div>
@@ -509,7 +509,7 @@
     <br />
     <br />
 
-    <style>
+    @*<style>
 
 
 
@@ -569,7 +569,7 @@
 
         }
         }
-    </style>
+    </style>*@
 
     <!-- Modal HTML -->
     <div id="myModal" class="modal fade">
@@ -601,9 +601,6 @@
     </div>
 </div>
 
-
-
-
 <script>
     let dizi = [];
 
@@ -615,8 +612,7 @@
             examId: parseInt(arr[arr.length - 1]),
             quesId: parseInt(e.name.split('--')[0].split('-')[0]),
             optId: parseInt(e.id.split('-')[0]),
-            memberId: parseInt(@Model.Item1),
-            total: parseFloat(e.name.split('--')[1].split('-')[0])
+            memberId: parseInt(@Model.Item1)
         };
         for (var i = 0; i < dizi.length; i++) {
             if (dizi[i].examId == data.examId && dizi[i].quesId == data.quesId) {
@@ -635,7 +631,7 @@
 		  $.ajax({
 			type: 'POST',
 			url: '@Url.Action("ExamResult", "Home", new { area = "" })',
-			data: dizi,
+            data: { dizi: dizi},
             //contenttype: "application/json; charset=utf-8",
             //datatype: "json",
             //traditional : true,
@@ -661,8 +657,7 @@
             examId: parseInt(examId),
             quesId: parseInt(quesId),
             optId: 0,
-            memberId: parseInt(@Model.Item1),
-            total: parseFloat(point)
+            memberId: parseInt(@Model.Item1)
         };
         for (var i = 0; i < dizi.length; i++) {
             if (dizi[i].examId == examId && dizi[i].quesId == quesId) {
@@ -672,18 +667,4 @@
         }
         dizi.push(data);
     }
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-

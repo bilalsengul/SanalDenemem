@@ -171,7 +171,6 @@ namespace SanalDenemem.MvcWebUI.Controllers
             public int quesId { get; set; }
             public int optId { get; set; }
             public int memberId { get; set; }
-            public double total { get; set; }
         }
 
         [HttpPost]
