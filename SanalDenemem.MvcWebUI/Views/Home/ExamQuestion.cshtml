@@ -612,11 +612,11 @@
 
         var arr = window.location.href.split('/');
         var data = {
-            examId: arr[arr.length - 1],
-            quesId: e.name.split('--')[0].split('-')[0],
-            optId: e.id.split('-')[0],
-            memberId: @Model.Item1,
-            total: e.name.split('--')[1].split('-')[0]
+            examId: parseInt(arr[arr.length - 1]),
+            quesId: parseInt(e.name.split('--')[0].split('-')[0]),
+            optId: parseInt(e.id.split('-')[0]),
+            memberId: parseInt(@Model.Item1),
+            total: parseFloat(e.name.split('--')[1].split('-')[0])
         };
         for (var i = 0; i < dizi.length; i++) {
             if (dizi[i].examId == data.examId && dizi[i].quesId == data.quesId) {
@@ -635,10 +635,10 @@
 		  $.ajax({
 			type: 'POST',
 			url: '@Url.Action("ExamResult", "Home", new { area = "" })',
-			data: JSON.stringify({ dizi: dizi }),
-            contenttype: "application/json; charset=utf-8",
-            datatype: "json",
-          //traditional : true,
+			data: dizi,
+            //contenttype: "application/json; charset=utf-8",
+            //datatype: "json",
+            //traditional : true,
 			success: function (response) {
               console.log(response);
 			  window.location.href = '@Url.Action("Profile", "Members", new { area = "" })';
@@ -658,11 +658,11 @@
     console.log(dizi);
         $('input[name=' + quesId + '-ques]').attr('checked', false);
         var data = {
-            examId: examId,
-            quesId: quesId,
+            examId: parseInt(examId),
+            quesId: parseInt(quesId),
             optId: 0,
-            memberId: @Model.Item1,
-            total: point
+            memberId: parseInt(@Model.Item1),
+            total: parseFloat(point)
         };
         for (var i = 0; i < dizi.length; i++) {
             if (dizi[i].examId == examId && dizi[i].quesId == quesId) {
