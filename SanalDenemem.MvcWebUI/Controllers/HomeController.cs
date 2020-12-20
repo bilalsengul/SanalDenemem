@@ -121,7 +121,9 @@ namespace SanalDenemem.MvcWebUI.Controllers
             {
                 return View(@"~/Views/Shared/Error.cshtml", new string[] { "Hatalı Sayfa" });
             }
-            return View(db.Exams.Where(x => x.ExamTypeId == id && x.Questions.Count() > 0).ToList());
+            var exams = db.Exams.Where(x => x.ExamTypeId == id && x.Questions.Count() > 0).ToList();
+            foreach (var item in exams) { item.ExamType = db.ExamTypes.Where(x => x.Id == item.ExamTypeId).FirstOrDefault(); }
+            return View(exams);
         }
 
         //[Authorize(Roles = "premiumMember")]

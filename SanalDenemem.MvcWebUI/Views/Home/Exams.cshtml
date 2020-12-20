@@ -18,18 +18,24 @@
                     <div class="course">
                         <img class="course-img" src="~/Content/Images/manset-2020-sinav-takvimi-1576876560.jpg" />
                         <div class="desc">
-                            <h3><a href="#">@item.Title</a></h3>
-                            <span><a href="@Url.Action("ExamQuestionTransition", "Home", new { id=item.Id})" target="_blank" class="btn btn-primary btn-sm btn-course">Sınava Gir</a></span>
-
-                            @*@if (Request.IsAuthenticated && User.IsInRole("premiumMember"))
+                            <h3><a href="#">@item.Title</a></h3> 
+                            
+                            @if (Request.IsAuthenticated && User.IsInRole("premiumMember"))
                             {
                                 <span><a href="@Url.Action("ExamQuestionTransition", "Home", new { id=item.Id})" target="_blank" class="btn btn-primary btn-sm btn-course">Sınava Gir</a></span>
-
                             }
+                            else if (Request.IsAuthenticated && !User.IsInRole("premiumMember") && item.ExamType.ExamTypeName == "DHBT")
+                            {
+                                <span><a href="@Url.Action("ExamQuestionTransition", "Home", new { id=item.Id})" target="_blank" class="btn btn-primary btn-sm btn-course">Sınava Gir</a></span>
+                            }
+                            @*else if (Request.IsAuthenticated && User.IsInRole("freeMember") && item.Id == Model.Min(c => c.Id))
+        {
+            <span><a href="@Url.Action("ExamQuestionTransition", "Home", new { id=item.Id})" target="_blank" class="btn btn-primary btn-sm btn-course">Sınava Gir</a></span>
+        }*@
                             else
                             {
                                 <span><a href="@Url.Action("Payment", "Home")" class="btn btn-primary btn-sm btn-course">Premium Ol</a></span>
-                            }*@
+                            }
                         </div>
                     </div>
                 </div>

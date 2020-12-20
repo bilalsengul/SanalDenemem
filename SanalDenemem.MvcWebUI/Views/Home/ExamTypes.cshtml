@@ -76,30 +76,60 @@
                         <div class="desc">
                             <h3><a href="#">@item.ExamTypeName</a></h3>
                             <p>@item.Desc</p>
+
+
+
                             <span><a href="@Url.Action("Exams", "Home", new { id=item.Id})" class="btn btn-primary btn-sm btn-course">Sınava Katıl</a></span>
+
                         </div>
                     </div>
                 </div>
             }
         </div>
-        @*<div class="row animate-box">
-            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-                <a href="@Url.Action("ExamsShowResult","Home")"><h2>Deneme Sonuçları Sıralaması</h2></a>
-                <div class="row mt-3">
+        <div id="GenelSiralamaBox" class="row">
+            <a href="@Url.Action("ExamsShowResult","Home")"> <button class="col btn btn-funky-moon btn-rounded"> Genel Sıralamanı Gör</button></a>
 
-                    @*<div class="col">
-                        <button class="col btn btn-dark-moon btn-rounded">Dark Moon</button>
-                    </div>
-                    <div class="col">
-                        <button class="col btn btn-light-moon btn-rounded">Light Moon</button>
-                    </div>*@
-                    <div class="col">
-                        <a href="@Url.Action("ExamsShowResult","Home")"> <button class="col btn btn-funky-moon btn-rounded"> Genel Sıralamanı Gör</button></a>
+        </div>
 
-                    </div>
-                </div>
 
-            </div>
-        </div>*@
+
     </div>
 </div>
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+<script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+        apiKey: "AIzaSyDlkWn-6-CG4Vrcba48qC-d4c7GEsi0Vr4",
+        authDomain: "database-ec572.firebaseapp.com",
+        databaseURL: "https://database-ec572.firebaseio.com",
+        projectId: "database-ec572",
+        storageBucket: "database-ec572.appspot.com",
+        messagingSenderId: "65575832017",
+        appId: "1:65575832017:web:93db321abe0b6ed5c0f8f0",
+        measurementId: "G-47RG171PTF"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    var ref = firebase.database().ref('parameters');
+
+    ref.on("value", function (snapshot) {
+        if (snapshot.val().state == true) { $('#GenelSiralamaBox').show(); }
+        else { $('#GenelSiralamaBox').hide(); }
+    }, function (error) {
+        console.log("Error: " + error.code);
+    });
+
+
+</script>
